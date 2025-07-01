@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IGDTUW Nest - Home</title>
+  <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+  <!-- Chatbot HTML -->
+<button id="chatBtn" onclick="toggleChat()">💬</button>
+
+<div id="chatContainer">
+  <div id="chatHeader">
+    Ask Me Anything
+    <span style="float:right;cursor:pointer" onclick="toggleChat()">❌</span>
+  </div>
+  <div id="chatbox">
+    <div class="msg bot"><b>Bot:</b> Hi! Tap a question below 👇</div>
+  </div>
+  <div id="options">
+    <div class="optionBtn" onclick="handleQuestion('tuck shops in college')">Tuck shops</div>
+    <div class="optionBtn" onclick="handleQuestion('campus snacks and canteens')">Campus snacks and canteens</div>
+    <div class="optionBtn" onclick="handleQuestion('sport facilities inside campus')">Sport facilities</div>
+    <div class="optionBtn" onclick="handleQuestion('PG vs Hostel-What to consider')">PG vs Hostel</div>
+    <div class="optionBtn" onclick="handleQuestion('What to bring for PG-Checklist')">What to bring for PG?</div>
+    <div class="optionBtn" onclick="handleQuestion('Gyms near college-Location and Plans')">Are there gyms nearby?</div>
+  </div>
+</div>
+  <div class="home-container">
+    <header class="hero">
+      <img src="WhatsApp Image 2025-04-10 at 11.58.50.jpeg" alt="Nest Logo" class="logo" />
+      <h1>Welcome to IGDTUW Nest</h1>
+      <p>Your guide to comfort, community & campus life!</p>
+    </header>
+
+    <div class="nav-cards">
+      <a class="card" href="findnest.html">
+        <span>🏠</span>
+        <h3>Find a Nest</h3>
+        <p>PGs & Flats reviewed by students</p>
+      </a>
+      <a class="card" href="studentspot.html">
+        <span>💬</span>
+        <h3>Student Spotlights</h3>
+        <p>Our comfort cafés, chai corners & more</p>
+      </a>
+      <a class="card" href="campus.html">
+        <span>🎉</span>
+        <h3>Campus Life</h3>
+        <p>Societies, events & your must-knows</p>
+      </a>
+      <a class="card" href="update.html">
+        <span>📢</span>
+        <h3>Updates & Tips</h3>
+        <p>IGDTUW hacks, notices & more</p>
+      </a>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <h2 class="video-title stroke">🎬 Explore IGDTUW in Motion</h2>
+    <br>
+      <div class="video-grid">
+        <iframe width="500" height="300" src="https://www.youtube.com/embed/y6vGAHNUp3E?si=cDu0F2HSgLHsHslC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="500" height="300" src="https://www.youtube.com/embed/IEkVnxdJ9p8?si=ToRHuAtWBNxxCiet" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- <iframe width="500" height="300" src="https://www.youtube.com/embed/4O8R_3DHqW4?si=vlU2q7jVB31sYJ_e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+      </div>
+    
+
+    
+
+    <footer>
+      <div style="background-color: bisque; width:auto;"><p>Made with ❤️ for IGDTUW girls</p></div>
+    </footer>
+  </div>
+  <script>
+    let faq = {};
+  
+    fetch('faq.json')
+      .then(res => res.json())
+      .then(data => {
+        faq = data;
+      });
+  
+    function toggleChat() {
+      const box = document.getElementById('chatContainer');
+      box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+    }
+  
+    function handleQuestion(key) {
+  const chatbox = document.getElementById('chatbox');
+
+  chatbox.innerHTML += `
+    <div class="msg user"><b>You:</b> ${key}</div>
+  `;
+  chatbox.innerHTML += `
+    <div class="msg bot"><b>Bot:</b> ${faq[key] || 'Sorry, no answer available.'}</div>
+  `;
+
+  chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+  </script>
+</body>
+</html>

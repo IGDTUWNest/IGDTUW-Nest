@@ -1,0 +1,167 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e7a0b3, #87d3dd);
+    color: #333;
+  }
+  
+  .about-objective {
+    padding: 60px 20px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .objective-box {
+    background: #ffffffcc;
+    padding: 40px 30px;
+    max-width: 800px;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    text-align: left;
+  }
+  
+  .objective-box h2 {
+    font-size: 2.5rem;
+    color: #922358;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .highlight {
+    background: #fbd0d7;
+    padding: 6px 12px;
+    border-radius: 12px;
+  }
+  
+  .objective-box p {
+    font-size: 1.05rem;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  
+  .intro-line {
+    font-weight: 600;
+    color: #5a0035;
+    font-size: 1.15rem;
+  }
+  
+  .closing-line {
+    font-style: italic;
+    color: #444;
+  }
+  
+  
+  .team-section {
+    padding: 50px 20px;
+    text-align: center;
+    
+  }
+  
+  .team-section h2 {
+    font-size: 2rem;
+    color: #800040;
+    margin-bottom: 40px;
+  }
+  
+  .team-container {
+    background: #f2d8bd;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 40px 30px;
+  }
+  
+  .team-card {
+    background: #fdf0f6;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    min-width: 300px;
+    max-width: 500px; /* optional: to prevent it from stretching too much */
+  }
+  
+  
+  
+  .team-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  .page-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 20px;     
+    background-color: #130116;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  
+  .nav-center {
+    display: flex;
+    gap: 24px;
+  }
+  .nav-home {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .home-button {
+    background-color: #da93e9;
+    color: rgb(13, 1, 13);
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background-color: #7c495e;
+  }
+
+  .founder-name {
+    font-size: 1.8rem;            /* Larger than default */
+    font-weight: 700;             /* Bolder */
+    color: #a60049;               /* Your site’s accent color */
+    font-family: 'Playfair Display', serif;  /* Stylish serif (or use your font) */
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.05); /* Subtle depth */
+    transition: transform 0.3s ease;
+  }
+  
+  .founder-name:hover {
+    transform: scale(1.05);       /* Slight zoom on hover */
+    color: #d70067;               /* Interactive feel */
+    cursor: default;
+  }
+  
+  
+  
+  
+  

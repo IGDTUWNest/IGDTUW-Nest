@@ -1,0 +1,134 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #b47185, #55848b);
+  font-family: 'Poppins', sans-serif;
+}
+
+.splash-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* BIRD */
+.bird {
+  position: absolute;
+  width: 120px;
+  top: 50%;
+  left: -100px;
+  transition: transform 0.2s;
+  z-index: 3;
+}
+
+/* LOGO + TAGLINE */
+.logo {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 2;
+}
+
+.logo img {
+  width: 400px;
+  animation: shine 2s ease-in-out 1;
+  border-radius: 20%;
+  
+} 
+
+@keyframes shine {
+    0% {
+      filter: brightness(0.5) blur(3px);
+      transform: scale(1.05);
+    }
+    100% {
+      filter: brightness(1) blur(0);
+      transform: scale(1);
+    }
+}
+  
+.tagline {
+  font-size: 1.8rem;
+  color: #60b1c6;
+  margin-top: 10px;
+  letter-spacing: 2px;
+}
+
+/* CLOUDS */
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  width: 150px;
+  height: 80px;
+  top: 10%;
+  animation: floatClouds 30s linear infinite;
+  z-index: 1;
+}
+
+.cloud1 {
+  left: -200px;
+  animation-delay: 0s;
+}
+
+.cloud2 {
+  top: 30%;
+  left: -300px;
+  animation-delay: 10s;
+}
+
+@keyframes floatClouds {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(130vw); }
+}
+
+.logo:hover {
+  cursor: url("Screenshot\ 2025-04-21\ 191321.png"), auto;
+}
+
+/* Button container (keeps them side-by-side & centered) */
+.splash-buttons {
+  margin-top: 18px;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}
+
+/* Common button style */
+.splash-btn {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 10px 22px;
+  border-radius: 30px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+/* Primary (pink-purple) */
+.splash-btn.primary {
+  background: linear-gradient(135deg, #935efb, #a777e3);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(147, 94, 251, 0.4);
+}
+
+/* Secondary (outline) */
+.splash-btn.secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 2px solid #fff;
+  backdrop-filter: blur(4px);
+}
+
+/* Hover effect */
+.splash-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}

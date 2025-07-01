@@ -1,0 +1,272 @@
+body {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(135deg, #e7a0b3, #87d3dd);
+}
+
+
+
+  .sticky-notes-section {
+    padding: 60px 30px;
+    background: linear-gradient(135deg, #e7a0b3, #87d3dd);
+    text-align: center;
+  }
+  
+  .sticky-notes-section h2 {
+    font-size: 2.3rem;
+    color: #660033;
+    margin-bottom: 40px;
+    font-family: 'Poppins', cursive;
+  }
+  
+  .notes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+  
+  .note-card {
+    /* — removed min-height — */
+    min-width: 150px;              /* a minimum so very short tips aren’t too tiny   */
+    max-width: 420px;              /* cap so long tips don’t stretch the whole row   */
+    width: fit-content;            /* ▶️ auto-size to the content                    */
+    height: auto;                  /* ▶️ let height grow naturally                   */
+  
+    background-color: #fffacd;
+    padding: 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    font-family: 'Comic Sans MS', 'Patrick Hand', cursive;
+    transform: rotate(var(--angle));
+    transition: transform 0.3s ease;
+    box-shadow: 6px 10px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .note-card:hover {
+    transform: scale(1.03) rotate(var(--angle));
+    box-shadow: 8px 12px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* optional: give every card a little breathing room for big screens */
+  @media (min-width: 768px) {
+    .note-card {
+      flex: 0 1 calc(33% - 40px);  /* try 3 per row max, but still shrink if needed */
+    }
+  }
+  
+  .note-card:nth-child(n) {
+    background-color: #fff3c6;
+    --angle: 1.5deg;
+  }
+  .note-card:nth-child(2n) {
+    background-color: #ffd5ec;
+    --angle: -2deg;
+  }
+  .note-card:nth-child(3n) {
+    background-color: #d2f8d2;
+    --angle: 2deg;
+  }
+  .note-card:nth-child(4n) {
+    background-color: #e4e0ff;
+    --angle: -3deg;
+  }
+  .note-card:nth-child(5n) {
+    background-color: #fff3c6;
+    --angle: 3deg;
+  }
+  
+  .page-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 20px;     
+    background-color: #130116;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  
+  .nav-center {
+    display: flex;
+    gap: 24px;
+  }
+  .nav-home {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .home-button {
+    background-color: #da93e9;
+    color: rgb(13, 1, 13);
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background-color: #7c495e;
+  }
+
+
+  .note-icon {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-size: 1.3rem;
+  }
+  
+  .speaker-btn {
+    position: fixed;
+    bottom: 670px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    font-size: 1.8rem;
+    color: #ff6ec7;
+    box-shadow: 0 8px 20px rgba(255, 110, 199, 0.3);
+    z-index: 1001;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulseGlow 2s infinite;
+  }
+  
+  .speaker-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(255, 110, 199, 0.5);
+  }
+  
+  @keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 110, 199, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 110, 199, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 110, 199, 0); }
+  }
+  
+  .slide-panel {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100%;
+    background: rgba(255, 240, 245, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 110, 199, 0.3);
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+    transition: left 0.4s ease;
+    z-index: 1000;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .slide-panel.open {
+    left: 0;
+  }
+  
+  .slide-header {
+    background: linear-gradient(135deg, #ff6ec7, #ffa9d2);
+    padding: 20px;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border-top-right-radius: 12px;
+    position: relative;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.3rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .updates-wrapper {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  
+  .update {
+    background: #ffe4ec;
+    margin-bottom: 18px;
+    padding: 12px 15px 12px 40px;
+    border-radius: 12px;
+    border-left: 5px solid #ff6ec7;
+    font-size: 0.95rem;
+    color: #4b2c4a;
+    position: relative;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.05);
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: slideIn 0.5s forwards;
+  }
+  
+  .update:hover {
+    transform: translateX(5px) scale(1.02) rotate(-1deg);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+  
+  .update::before {
+    content: "📢";
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    font-size: 1.1rem;
+  }
+  
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .new-badge {
+    background: #ff6ec7;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 8px;
+    margin-left: 8px;
+    font-weight: bold;
+  }
+  
+  .update a {
+    background-color: #ffb6d1;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 8px;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  
+  .update a:hover {
+    background-color: #ff69b4;
+  }
+  
+
+  
+  
+  
+  
