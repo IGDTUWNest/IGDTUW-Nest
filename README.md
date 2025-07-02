@@ -17,7 +17,7 @@ We've compiled **verified PG listings**, **campus hacks**, **event updates**, an
 
 ---
 
-## 💻 Features
+## Features
 
 - ✅ **Verified PG Listings** with distance, facilities & honest notes
 - 🍴 **Best Food and Hangout Spots** curated from student experiences
