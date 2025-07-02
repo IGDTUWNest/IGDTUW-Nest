@@ -20,7 +20,7 @@ We've compiled **verified PG listings**, **campus hacks**, **event updates**, an
 ## 💻 Features
 
 - ✅ **Verified PG Listings** with distance, facilities & honest notes
-- 🍴 **Best Food Spots** curated from student experiences
+- 🍴 **Best Food and Hangout Spots** curated from student experiences
 - 💡 **Senior Tips** – practical, relatable, and helpful
 - 🌐 **Campus Life** resources (student-run platforms, notes, etc.)
 
