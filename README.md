@@ -1,4 +1,4 @@
-# 🕊️ IGDTUW Nest
+# IGDTUW Nest
 
 Welcome to **IGDTUW Nest** — a cozy, student-built platform designed to make the journey at **(IGDTUW)** a little easier, warmer, and more informed 💖
 
