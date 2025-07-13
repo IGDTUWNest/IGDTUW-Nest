@@ -57,16 +57,15 @@ body {
 }
 
 .card {
-  background: rgba(222, 220, 217, 0.3);
-  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.55); /* Lighter & more opaque */
+  backdrop-filter: blur(8px); /* Stronger blur */
+  border: 2px solid #d7c1ec;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* More depth */
   border-radius: 20px;
-  border: 2px solid #e1bee7; 
   padding: 25px;
   width: 220px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   text-decoration: none;
-  color: #000;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .card:hover {
@@ -227,3 +226,57 @@ footer {
   background: #dcdcff;
 }
 
+.insta-banner {
+  background: rgba(255, 255, 255, 0.55); /* Lighter & more opaque */
+  backdrop-filter: blur(8px); /* Stronger blur */
+  padding: 16px 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* More depth */
+  border-radius: 20px;
+  max-width: 820px;
+  margin: 40px auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: 'Poppins', sans-serif;
+  animation: slideFade 1s ease forwards;
+  border: 1.5px solid #dcb0f3;
+}
+
+.insta-logo {
+  width: 32px;
+  height: 32px;
+  animation: pulse 2s infinite;
+}
+
+.insta-text {
+  color: #370439;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.insta-text a {
+  color: #1a0741;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.insta-text a:hover {
+  text-decoration: underline;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
