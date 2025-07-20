@@ -47,4 +47,4 @@ We've compiled **verified PG listings**, **campus hacks**, **event updates**, an
 
 ---
 
-> This platform is dedicated to every confused fresher who just needs a friend on the internet. We hope this helps. ✨
+> This platform is dedicated to every confused fresher who just needs a friend on the internet. We hope this helps. 
