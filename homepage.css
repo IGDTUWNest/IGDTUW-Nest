@@ -33,14 +33,15 @@ body {
 
 .hero .logo:hover {
   transform: scale(1.1);
-  cursor: url('6da0446d-5742-432d-a569-64dab33f2fba.png'), auto; /* Replace with bird cursor image if available */
+  cursor: url('6da0446d-5742-432d-a569-64dab33f2fba.png'), auto; 
 }
 
 .hero h1 {
-  font-size: 3rem;
-  color: #660033;
-  -webkit-text-stroke: 2px #cecdcd; 
-  margin: 15px 0 10px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  -webkit-text-stroke: 2.5px #5a0030;   
+  letter-spacing: 1px;
 }
 
 .hero p {
@@ -140,12 +141,21 @@ footer {
 }
 
 .video-title.stroke {
-  font-size: 2.3rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  color: transparent;              
-  -webkit-text-stroke: 2px #8d0641;
+  color: #ffffff;
+  -webkit-text-stroke: 2.5px #5a0030;   /* Stronger outline */
   letter-spacing: 1px;
 }
+
+
+.video-title.stroke::before {
+  content: "▶";
+  font-size: 1.6rem;
+  margin-right: 10px;
+  color: #8d0641;
+}
+
 
 @supports not (-webkit-text-stroke: 1px #000) {
   
