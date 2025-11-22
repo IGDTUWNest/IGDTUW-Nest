@@ -58,7 +58,7 @@ body {
   font-size: 1.1rem;
 }
 
-/* FEATURE SECTION */
+
 .featured {
   margin: 40px 0 20px;
 }
@@ -70,7 +70,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* CLEAN, MODERN CARD */
+
 .feature-card {
   background-color: #ecd9e2;
   width: 320px;
@@ -101,7 +101,6 @@ body {
   margin-top: 6px;
 }
 
-/* CREDIT BOX */
 .credit-box {
   background: #ffe7f1;
   padding: 8px 12px;
@@ -114,7 +113,7 @@ body {
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.08);
 }
 
-/* DESCRIPTION */
+
 .feature-desc {
   margin-top: 14px;
   font-size: 0.95rem;
@@ -122,7 +121,6 @@ body {
   color: #3a3a3a;
 }
 
-/* PHOTO DUMP SECTION */
 .photo-dump {
   text-align: center;
   margin-top: 60px;
@@ -142,7 +140,6 @@ body {
   margin-bottom: 25px;
 }
 
-/* MASONRY GRID */
 .photo-grid {
   column-count: 3;
   column-gap: 18px;
@@ -161,7 +158,6 @@ body {
   transform: scale(1.03);
 }
 
-/* RESPONSIVE */
 @media screen and (max-width: 768px) {
   .photo-grid {
     column-count: 2;
@@ -174,7 +170,6 @@ body {
   }
 }
 
-/* FOOTER */
 footer {
   margin-top: 40px;
   padding: 12px 0;
