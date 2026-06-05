@@ -1,50 +1,16 @@
-# IGDTUW Nest
+# React + Vite
 
-Welcome to **IGDTUW Nest** — a cozy, student-built platform designed to make the journey at **(IGDTUW)** a little easier, warmer, and more informed 💖
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## 🌸 What is IGDTUW Nest?
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-IGDTUW Nest is a passion project built *by students, for students* — especially curated for freshers and juniors who feel overwhelmed with questions like:
+## React Compiler
 
-- Where should I stay near college? 🏠
-- What are the best food spots or hangout places nearby? 🍕🍵
-- How do I understand campus life, societies, or events? 🏫🎭
-- Where can I find notes, tips, or senior advice? 📚💬
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-We've compiled **verified PG listings**, **campus hacks**, **event updates**, and even **real senior advice** to help you feel at home from day one.
+## Expanding the ESLint configuration
 
----
-
-## Features
-
-- ✅ **Verified PG Listings** with distance, facilities & honest notes
-- 🍴 **Best Food and Hangout Spots** curated from student experiences
-- 💡 **Senior Tips** – practical, relatable, and helpful
-- 🌐 **Campus Life** resources (student-run platforms, notes, etc.)
-
----
-
-## Built With
-
-- HTML, CSS, JavaScript
-- 💖 A whole lot of student love
-
----
-
-## Contributors
-
-- **Aradhana Dash** – Co-founder, Designer & Developer  
-- **Stuti Shukla** – Co-founder, Content & Strategy
-
----
-
-## 📬 Reach Out
-
-📸 Instagram: [@igdtuw.nest](https://www.instagram.com/igdtuw.nest?igsh=MTZreWZ4aXk5MGdtaw==) 
-🌐 Website: [(https://igdtuwnest.github.io/IGDTUW-Nest/)](#)
-
----
-
-> This platform is dedicated to every confused fresher who just needs a friend on the internet. We hope this helps. 
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
