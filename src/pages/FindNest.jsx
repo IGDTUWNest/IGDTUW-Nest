@@ -144,14 +144,14 @@ export default function FindNest() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 space-y-8 flex-1 flex flex-col">
         {/* Header Title Section */}
         <div className="text-center space-y-3">
-          <div className="mx-auto bg-brand-pink/15 text-brand-pink text-xs border border-brand-pink/20 px-3 py-1.5 rounded-full font-bold w-fit flex items-center gap-1.5 shadow-sm">
+          <div className="mx-auto bg-brand-pink/10 text-brand-pink text-xs border border-brand-pink/20 px-3 py-1.5 rounded-full font-bold w-fit flex items-center gap-1.5 shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Student Vetted PG Directories</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
             Verified PGs near IGDTUW
           </h1>
-          <p className="text-sm text-slate-300 max-w-xl mx-auto font-medium leading-relaxed">
+          <p className="text-sm text-slate-600 max-w-xl mx-auto font-semibold leading-relaxed">
             Handpicked by seniors, reviewed by students — safe, affordable, and girl-friendly accommodation guides.
           </p>
         </div>
@@ -164,8 +164,8 @@ export default function FindNest() {
               onClick={() => setSelectedFilter(opt)}
               className={`px-4.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition duration-300 ${
                 selectedFilter === opt
-                  ? 'bg-brand-pink/20 text-brand-pink border-brand-pink/40 shadow-[0_0_15px_rgba(236,72,153,0.1)]'
-                  : 'bg-white/5 border-white/10 text-slate-300 hover:border-white/20 hover:text-white'
+                  ? 'bg-brand-pink/10 text-brand-pink border-brand-pink/20 shadow-[0_0_15px_rgba(244,114,182,0.1)]'
+                  : 'bg-white border-slate-200 text-slate-600 hover:border-brand-pink/30 hover:text-brand-pink'
               }`}
             >
               {opt}
@@ -191,13 +191,13 @@ export default function FindNest() {
         </div>
 
         {/* General Disclaimer Warning Alert */}
-        <div className="rounded-2xl border border-amber-500/20 bg-amber-500/[0.04] p-5 flex items-start gap-4 max-w-4xl mx-auto shadow-[0_0_20px_rgba(245,158,11,0.02)]">
-          <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+        <div className="rounded-2xl border border-amber-200 bg-amber-50/50 p-5 flex items-start gap-4 max-w-4xl mx-auto shadow-sm">
+          <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <h4 className="font-bold text-sm text-amber-200">
+            <h4 className="font-bold text-sm text-amber-800">
               Personal Verification Safety Warning
             </h4>
-            <p className="text-xs text-slate-400 font-medium leading-relaxed">
+            <p className="text-xs text-slate-600 font-semibold leading-relaxed">
               All PGs listed above are suggested based on senior inputs for reference and general information. We strongly advise you to explore the official links, speak with the wardens, and personally visit/verify the space before making any financial bookings or down payments.
             </p>
           </div>

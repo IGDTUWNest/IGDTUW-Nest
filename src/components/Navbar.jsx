@@ -42,25 +42,25 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
       scrolled 
-        ? 'py-3 bg-brand-bg/85 backdrop-blur-md border-b border-white/10 shadow-lg' 
+        ? 'py-3 bg-white/85 backdrop-blur-md border-b border-slate-200/50 shadow-md' 
         : 'py-5 bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           {/* Logo Section */}
           <Link to="/home" className="flex items-center gap-3 group focus:outline-none">
-            <div className="w-10 h-10 rounded-xl overflow-hidden border border-brand-pink/30 group-hover:border-brand-pink transition duration-300">
+            <div className="w-10 h-10 rounded-xl overflow-hidden border border-brand-pink/30 bg-white p-0.5 group-hover:border-brand-pink transition duration-300">
               <img 
                 src="/WhatsApp Image 2025-04-10 at 11.58.50.jpeg" 
                 alt="IGDTUW Nest Logo" 
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                className="w-full h-full object-contain group-hover:scale-105 transition duration-300"
               />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-lg tracking-wide bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent group-hover:opacity-80 transition duration-300">
                 IGDTUW Nest
               </span>
-              <span className="text-[10px] text-brand-slate tracking-widest uppercase">
+              <span className="text-[10px] text-slate-500 tracking-widest uppercase font-semibold">
                 Campus Comfort
               </span>
             </div>
@@ -77,8 +77,8 @@ export default function Navbar() {
                   to={link.path}
                   className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
                     active
-                      ? 'bg-brand-pink/15 text-brand-pink border border-brand-pink/25 shadow-[0_0_15px_rgba(236,72,153,0.1)]'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5 border border-transparent'
+                      ? 'bg-brand-pink/10 text-brand-pink border border-brand-pink/20 shadow-[0_0_15px_rgba(244,114,182,0.1)]'
+                      : 'text-slate-600 hover:text-brand-pink hover:bg-brand-pink/5 border border-transparent'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -92,7 +92,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition duration-300 focus:outline-none"
+              className="p-2.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 hover:text-brand-pink hover:bg-brand-pink/5 transition duration-300 focus:outline-none"
               aria-label="Toggle menu"
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -103,7 +103,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer Overlay */}
       {isOpen && (
-        <div className="md:hidden fixed inset-0 top-[60px] bg-brand-bg/95 backdrop-blur-xl z-40 flex flex-col px-4 pt-6 pb-24 gap-4 animate-fade-in border-t border-white/5">
+        <div className="md:hidden fixed inset-0 top-[60px] bg-white/95 backdrop-blur-xl z-40 flex flex-col px-4 pt-6 pb-24 gap-4 animate-fade-in border-t border-slate-100">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const active = isActive(link.path);
@@ -113,8 +113,8 @@ export default function Navbar() {
                 to={link.path}
                 className={`flex items-center gap-3 px-5 py-4 rounded-xl text-base font-semibold transition duration-300 ${
                   active
-                    ? 'bg-brand-pink/20 text-brand-pink border border-brand-pink/30 shadow-[0_0_15px_rgba(236,72,153,0.05)]'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5 border border-transparent'
+                    ? 'bg-brand-pink/10 text-brand-pink border border-brand-pink/20 shadow-[0_0_15px_rgba(244,114,182,0.05)]'
+                    : 'text-slate-600 hover:text-brand-pink hover:bg-brand-pink/5 border border-transparent'
                 }`}
               >
                 <Icon className="w-5 h-5 text-brand-pink" />

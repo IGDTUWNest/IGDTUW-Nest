@@ -69,7 +69,9 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen pt-24 pb-12 overflow-hidden flex flex-col items-center">
+    <div className="relative min-h-screen pt-24 pb-12 overflow-hidden flex flex-col items-center bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/backimg.png')" }}>
+      {/* Frosted Glass Overlay */}
+      <div className="absolute inset-0 bg-white/70 backdrop-blur-[6px] -z-10 bg-gradient-to-tr from-[#fdfafd]/60 via-white/80 to-[#fae8ff]/60" />
       <AnimatedBg />
 
       {/* Main Container */}
@@ -81,18 +83,18 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="text-center py-6 sm:py-10 flex flex-col items-center gap-4"
         >
-          <div className="w-20 h-20 rounded-2xl overflow-hidden border border-brand-pink/30 shadow-[0_0_20px_rgba(236,72,153,0.15)]">
+          <div className="w-20 h-20 rounded-2xl overflow-hidden border border-brand-pink/30 bg-white p-1 shadow-md">
             <img 
               src="/WhatsApp Image 2025-04-10 at 11.58.50.jpeg" 
               alt="Nest Logo" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
           <div className="space-y-2">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent">
               Welcome to IGDTUW Nest
             </h1>
-            <p className="text-sm sm:text-base text-slate-300 max-w-lg mx-auto font-medium">
+            <p className="text-sm sm:text-base text-slate-700 max-w-lg mx-auto font-bold">
               Your guide to comfort, community & campus life. Built for students, by students! 💗
             </p>
           </div>
@@ -114,14 +116,14 @@ export default function Home() {
                   className={`group relative flex flex-col justify-between p-6 h-56 rounded-2xl glass-panel border hover:scale-[1.03] hover:-translate-y-1 transition-all duration-300 ${card.color} ${card.glow}`}
                 >
                   <div className="space-y-3">
-                    <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-pink/10 transition duration-300">
+                    <div className="w-11 h-11 rounded-xl bg-white/40 border border-slate-200 flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-pink/10 transition duration-300">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div className="space-y-1">
-                      <h3 className="font-bold text-lg text-slate-100 group-hover:text-brand-pink transition duration-200">
+                      <h3 className="font-bold text-lg text-brand-dark group-hover:text-brand-pink transition duration-200">
                         {card.title}
                       </h3>
-                      <p className="text-xs text-slate-400 leading-relaxed font-semibold">
+                      <p className="text-xs text-slate-600 leading-relaxed font-semibold">
                         {card.description}
                       </p>
                     </div>
@@ -147,13 +149,13 @@ export default function Home() {
             <h2 className="text-2xl sm:text-3xl font-extrabold text-stroke uppercase tracking-wider">
               Explore IGDTUW in Motion
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 font-semibold">
+            <p className="text-xs sm:text-sm text-slate-600 font-semibold">
               Walk through the campus corridors and student experiences
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-            <div className="relative rounded-2xl overflow-hidden glass-panel border border-white/10 aspect-video shadow-2xl">
+            <div className="relative rounded-2xl overflow-hidden glass-panel border border-slate-200 aspect-video shadow-lg">
               <iframe
                 className="absolute inset-0 w-full h-full border-0"
                 src="https://www.youtube.com/embed/y6vGAHNUp3E?si=cDu0F2HSgLHsHslC"
@@ -163,7 +165,7 @@ export default function Home() {
                 allowFullScreen
               />
             </div>
-            <div className="relative rounded-2xl overflow-hidden glass-panel border border-white/10 aspect-video shadow-2xl">
+            <div className="relative rounded-2xl overflow-hidden glass-panel border border-slate-200 aspect-video shadow-lg">
               <iframe
                 className="absolute inset-0 w-full h-full border-0"
                 src="https://www.youtube.com/embed/IEkVnxdJ9p8?si=ToRHuAtWBNxxCiet"
@@ -181,17 +183,17 @@ export default function Home() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="my-8 rounded-2xl bg-gradient-to-r from-brand-pink/20 to-brand-purple/20 border border-brand-pink/30 p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-[0_0_20px_rgba(236,72,153,0.08)]"
+          className="my-8 rounded-2xl bg-gradient-to-r from-brand-pink/10 to-brand-purple/10 border border-brand-pink/20 p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-[0_8px_30px_rgba(236,72,153,0.04)]"
         >
           <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-brand-pink">
+            <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center flex-shrink-0 text-brand-pink">
               <Instagram className="w-5 h-5 text-brand-pink" />
             </div>
             <div className="text-center sm:text-left space-y-0.5">
-              <h4 className="font-bold text-sm text-slate-100">
+              <h4 className="font-bold text-sm text-slate-800">
                 Join our Instagram Family!
               </h4>
-              <p className="text-xs text-slate-400 font-medium">
+              <p className="text-xs text-slate-600 font-semibold">
                 Stay in the loop with PG alerts, freshers updates, & campus cute chaos.
               </p>
             </div>

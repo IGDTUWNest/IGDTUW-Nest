@@ -8,7 +8,7 @@ export default function Footer() {
   if (location.pathname === '/') return null;
 
   return (
-    <footer className="mt-auto border-t border-white/5 bg-brand-bg/40 backdrop-blur-sm py-8 sm:py-12">
+    <footer className="mt-auto border-t border-slate-200/50 bg-white/60 backdrop-blur-sm py-8 sm:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo & Tribute */}
@@ -16,13 +16,13 @@ export default function Footer() {
             <h3 className="font-bold text-lg bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent">
               IGDTUW Nest
             </h3>
-            <p className="text-xs text-slate-400 mt-1 max-w-[280px]">
+            <p className="text-xs text-slate-500 mt-1 max-w-[280px] font-medium">
               Making campus transition comfortable, warm, and memorable for our junior girls.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-slate-400">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-slate-500 font-semibold">
             <Link to="/home" className="hover:text-brand-pink transition duration-200">Dashboard</Link>
             <Link to="/find-nest" className="hover:text-brand-pink transition duration-200">Find Nest</Link>
             <Link to="/student-spot" className="hover:text-brand-pink transition duration-200">Spotlights</Link>
@@ -37,7 +37,7 @@ export default function Footer() {
               href="https://www.instagram.com/igdtuw.nest/?igsh=MTZreWZ4aXk5MGdtaw%3D%3D" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-brand-pink/25 hover:text-brand-pink text-slate-300 text-xs border border-white/10 transition duration-300 shadow-sm"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brand-pink/10 hover:text-brand-pink text-slate-600 text-xs border border-slate-200 transition duration-300 shadow-sm font-bold"
             >
               <svg 
                 className="w-3.5 h-3.5" 
@@ -58,11 +58,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Credits */}
-        <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-center gap-3 text-xs text-slate-500">
+        <div className="mt-8 pt-6 border-t border-slate-200/50 flex flex-col sm:flex-row items-center justify-between text-center gap-3 text-xs text-slate-500 font-semibold">
           <p>© {new Date().getFullYear()} IGDTUW Nest. All rights reserved.</p>
           <p className="flex items-center justify-center gap-1">
             Made with <Heart className="w-3 h-3 text-red-500 fill-current animate-pulse" /> by 
-            <span className="text-slate-400 font-semibold ml-0.5">IGDTUW girls</span>
+            <span className="text-slate-600 font-bold ml-0.5">IGDTUW girls</span>
           </p>
         </div>
       </div>

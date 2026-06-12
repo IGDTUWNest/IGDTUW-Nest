@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 import { Heart, HelpCircle, Compass, Users } from 'lucide-react';
 
 const Linkedin = ({ className }) => (
-  <svg 
-    className={className} 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
     strokeLinejoin="round"
   >
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -46,26 +46,26 @@ export default function AboutUs() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="rounded-2xl glass-panel border border-white/10 p-6 sm:p-10 max-w-4xl mx-auto shadow-[0_4px_25px_rgba(0,0,0,0.2)]"
+          className="rounded-2xl glass-panel border border-slate-200/60 p-6 sm:p-10 max-w-4xl mx-auto shadow-md"
         >
-          <div className="flex items-center gap-2.5 text-brand-pink border-b border-white/5 pb-4 mb-5">
+          <div className="flex items-center gap-2.5 text-brand-pink border-b border-slate-200/50 pb-4 mb-5">
             <Compass className="w-5 h-5 text-brand-pink" />
-            <h2 className="font-extrabold text-xl sm:text-2xl text-slate-100">
-              ✨ About IGDTUW Nest
+            <h2 className="font-extrabold text-xl sm:text-2xl text-slate-800">
+              About IGDTUW Nest
             </h2>
           </div>
 
-          <div className="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed font-semibold">
-            <p className="text-brand-pink text-base sm:text-lg font-bold border-l-4 border-brand-pink/50 pl-4 py-1.5 bg-brand-pink/[0.02] rounded-r-xl">
+          <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed font-semibold">
+            <p className="text-brand-pink text-base sm:text-lg font-bold border-l-4 border-brand-pink pl-4 py-1.5 bg-brand-pink/5 rounded-r-xl">
               IGDTUW Nest is a space built by students — for students — to make your college transition a little easier and a lot more real.
             </p>
             <p>
-              We’ve curated <strong className="text-white font-bold">student-recommended PGs</strong> with honest details, so you don’t feel lost while house-hunting in your first weeks. From the best local food spots to cozy chai corners and campus chill scenes — everything’s listed based on real experiences.
+              We’ve curated <strong className="text-brand-pink font-bold">student-recommended PGs</strong> with honest details, so you don’t feel lost while house-hunting in your first weeks. From the best local food spots to cozy chai corners and campus chill scenes — everything’s listed based on real experiences.
             </p>
             <p>
               Since campus life can feel overwhelming at first, we’ve also added resources created by seniors to guide you through. Whether it's exploring Delhi during your breaks or finding answers when things feel confusing, we’ve tried to cover it all.
             </p>
-            <p className="text-xs sm:text-sm text-slate-400 bg-white/[0.02] border border-white/5 p-4 rounded-xl">
+            <p className="text-xs sm:text-sm text-slate-500 bg-slate-50/50 border border-slate-100 p-4 rounded-xl">
               IGDTUW Nest isn’t just a website. It’s a <strong className="text-brand-pink font-bold">warm comfort space</strong>, something close to our hearts — built to reflect what being an IGDTUW girl truly feels like. 💗
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function AboutUs() {
               <Users className="w-6 h-6 text-brand-pink" />
               <span>Meet the Founders</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 font-semibold max-w-sm mx-auto">
+            <p className="text-xs sm:text-sm text-slate-500 font-semibold max-w-sm mx-auto">
               The creative minds behind the Nest initiative
             </p>
           </div>
@@ -89,16 +89,16 @@ export default function AboutUs() {
               <motion.div
                 key={idx}
                 whileHover={{ y: -5 }}
-                className="rounded-2xl glass-panel border border-white/10 p-6 flex flex-col sm:flex-row gap-6 hover:border-brand-pink/40 hover:shadow-[0_10px_30px_rgba(236,72,153,0.08)] transition-all duration-300"
+                className="rounded-2xl glass-panel border border-slate-200/50 bg-white/70 p-6 flex flex-col sm:flex-row gap-6 hover:border-brand-pink/40 hover:shadow-[0_10px_30px_rgba(236,72,153,0.06)] transition-all duration-300"
               >
                 {/* Photo Profile */}
                 <div className="flex-shrink-0 flex flex-col items-center gap-3">
                   <div className="relative group">
                     <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-pink to-brand-purple opacity-40 blur-sm group-hover:opacity-75 transition duration-300" />
-                    <div className="relative w-32 h-32 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border border-white/10">
-                      <img 
-                        src={found.image} 
-                        alt={found.name} 
+                    <div className="relative w-32 h-32 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border border-slate-200 bg-white p-0.5 shadow-sm">
+                      <img
+                        src={found.image}
+                        alt={found.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -108,7 +108,7 @@ export default function AboutUs() {
                     href={found.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-brand-pink/15 hover:bg-brand-pink/25 hover:text-brand-pink text-slate-300 text-xs border border-brand-pink/35 transition duration-300 font-bold"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-brand-pink/10 hover:bg-brand-pink/20 text-brand-pink text-xs border border-brand-pink/30 transition duration-300 font-bold"
                   >
                     <Linkedin className="w-3.5 h-3.5" />
                     <span>LinkedIn</span>
@@ -118,12 +118,12 @@ export default function AboutUs() {
                 {/* Profile Description */}
                 <div className="space-y-2.5 flex-1">
                   <div className="space-y-0.5">
-                    <h3 className="font-extrabold text-lg text-slate-100">{found.name}</h3>
+                    <h3 className="font-extrabold text-lg text-slate-800">{found.name}</h3>
                     <span className="text-xs text-brand-pink font-bold block tracking-wider uppercase">
                       {found.role}
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-semibold whitespace-pre-line">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold whitespace-pre-line">
                     {found.bio}
                   </p>
                 </div>

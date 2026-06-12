@@ -20,12 +20,11 @@ export default function Splash() {
   useEffect(() => {
     if (!showLogo) return;
     let i = 0;
+    setTaglineText("");
     const interval = setInterval(() => {
-      if (i < tagline.length) {
-        // Safe state update callback
-        setTaglineText((prev) => prev + tagline.charAt(i));
-        i++;
-      } else {
+      setTaglineText(tagline.slice(0, i + 1));
+      i++;
+      if (i >= tagline.length) {
         clearInterval(interval);
       }
     }, 85);
@@ -33,7 +32,7 @@ export default function Splash() {
   }, [showLogo]);
 
   return (
-    <div className="relative w-full min-h-screen bg-gradient-to-br from-[#1c182a] to-[#0A0915] overflow-hidden flex flex-col items-center justify-center font-sans">
+    <div className="relative w-full min-h-screen bg-gradient-to-br from-[#fdfafd] via-[#f5f3ff] to-[#fae8ff] overflow-hidden flex flex-col items-center justify-center font-sans">
       
       {/* Background Clouds */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -41,13 +40,13 @@ export default function Splash() {
         <motion.div
           animate={{ x: ['-20vw', '120vw'] }}
           transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-[10%] left-0 w-44 h-24 bg-white/5 rounded-full blur-xl"
+          className="absolute top-[10%] left-0 w-44 h-24 bg-brand-pink/5 rounded-full blur-xl"
         />
         {/* Cloud 2 */}
         <motion.div
           animate={{ x: ['-30vw', '130vw'] }}
           transition={{ duration: 45, repeat: Infinity, ease: 'linear', delay: 8 }}
-          className="absolute top-[28%] left-0 w-52 h-28 bg-white/5 rounded-full blur-2xl"
+          className="absolute top-[28%] left-0 w-52 h-28 bg-brand-purple/5 rounded-full blur-2xl"
         />
       </div>
 
@@ -84,27 +83,27 @@ export default function Splash() {
       >
         {/* Rotating Circular Neon Glow */}
         <div className="relative mb-6 group cursor-pointer">
-          <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-brand-pink to-brand-purple opacity-45 group-hover:opacity-75 blur-md group-hover:blur-lg transition duration-500 animate-pulse-slow" />
-          <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+          <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-brand-pink to-brand-purple opacity-30 group-hover:opacity-60 blur-md group-hover:blur-lg transition duration-500 animate-pulse-slow" />
+          <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden border border-slate-200 bg-white p-2.5 shadow-xl">
             <img
               src="/WhatsApp Image 2025-04-10 at 11.58.50.jpeg"
               alt="IGDTUW Nest Logo"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
             />
           </div>
         </div>
 
         {/* Brand Name */}
-        <h1 className="font-extrabold text-3xl sm:text-4xl tracking-tight text-white mt-4 bg-gradient-to-r from-brand-pink via-purple-300 to-brand-purple bg-clip-text text-transparent drop-shadow-sm">
+        <h1 className="font-extrabold text-3xl sm:text-4xl tracking-tight mt-4 bg-gradient-to-r from-brand-pink via-purple-500 to-brand-purple bg-clip-text text-transparent drop-shadow-sm">
           Welcome to IGDTUW Nest
         </h1>
 
         {/* Typewriter Tagline */}
-        <div className="h-8 mt-2.5">
-          <p className="text-slate-300 font-semibold tracking-wider text-base sm:text-lg flex items-center justify-center">
+        <div className="min-h-[2.5rem] h-auto mt-2.5 flex items-center justify-center">
+          <p className="text-slate-600 font-semibold tracking-wider text-base sm:text-lg text-center flex flex-wrap items-center justify-center">
             {taglineText}
             {taglineText.length < tagline.length && (
-              <span className="w-2 h-4.5 bg-brand-pink ml-1 inline-block animate-pulse" />
+              <span className="w-1.5 h-4.5 bg-brand-pink ml-1 inline-block animate-pulse" />
             )}
           </p>
         </div>
@@ -121,10 +120,10 @@ export default function Splash() {
           </motion.button>
           
           <motion.button
-            whileHover={{ scale: 1.04, backgroundColor: 'rgba(255,255,255,0.08)' }}
+            whileHover={{ scale: 1.04, backgroundColor: 'rgba(192,132,252,0.08)' }}
             whileTap={{ scale: 0.96 }}
             onClick={() => navigate('/about')}
-            className="w-4/5 sm:w-auto px-8 py-3.5 rounded-full border border-white/20 bg-white/5 text-white font-semibold text-sm transition duration-300 hover:border-white/40"
+            className="w-4/5 sm:w-auto px-8 py-3.5 rounded-full border border-brand-purple/20 bg-brand-purple/5 text-brand-purple font-semibold text-sm transition duration-300 hover:border-brand-purple/40"
           >
             About Us
           </motion.button>

@@ -41,14 +41,14 @@ export default function CampusLife() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 space-y-12 flex-1 flex flex-col">
         {/* Header Title */}
         <div className="text-center space-y-3">
-          <div className="mx-auto bg-brand-pink/15 text-brand-pink text-xs border border-brand-pink/20 px-3 py-1.5 rounded-full font-bold w-fit flex items-center gap-1.5 shadow-sm">
+          <div className="mx-auto bg-brand-pink/10 text-brand-pink text-xs border border-brand-pink/20 px-3 py-1.5 rounded-full font-bold w-fit flex items-center gap-1.5 shadow-sm">
             <Award className="w-3.5 h-3.5" />
             <span>Campus Resources & Societies</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
             Campus Life
           </h1>
-          <p className="text-sm text-slate-300 max-w-xl mx-auto font-medium leading-relaxed">
+          <p className="text-sm text-slate-600 max-w-xl mx-auto font-semibold leading-relaxed">
             Discover student-run networks, academic hubs, and explore IGDTUW beyond standard textbooks!
           </p>
         </div>
@@ -59,15 +59,15 @@ export default function CampusLife() {
             <motion.div
               key={idx}
               whileHover={{ y: -5 }}
-              className="rounded-2xl glass-panel border border-white/10 overflow-hidden flex flex-col hover:border-brand-pink/40 hover:shadow-[0_10px_30px_rgba(236,72,153,0.1)] transition-all duration-300"
+              className="rounded-2xl glass-panel border border-slate-200/50 bg-white/70 overflow-hidden flex flex-col hover:border-brand-pink/40 hover:shadow-[0_10px_30px_rgba(236,72,153,0.06)] transition-all duration-300"
             >
-              <div className="h-56 overflow-hidden bg-brand-bg/60 border-b border-white/5 relative">
+              <div className="h-56 overflow-hidden bg-slate-100 border-b border-slate-200/50 relative">
                 <img 
                   src={feat.image} 
                   alt={feat.title} 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-bg to-transparent opacity-85" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-85" />
                 <h3 className="absolute bottom-4 left-5 text-xl font-bold text-white flex items-center gap-1.5">
                   <span>{feat.title}</span>
                 </h3>
@@ -75,16 +75,16 @@ export default function CampusLife() {
               <div className="p-6 flex-1 flex flex-col justify-between gap-6">
                 <div className="space-y-4">
                   {/* Credit tag info */}
-                  <div className="bg-white/[0.03] border border-white/5 px-4 py-3 rounded-xl">
+                  <div className="bg-slate-50 border border-slate-100 px-4 py-3 rounded-xl">
                     <span className="text-[10px] text-brand-pink font-bold uppercase tracking-wider block">Created By</span>
-                    <p className="text-sm font-semibold text-slate-200 mt-0.5">
+                    <p className="text-sm font-bold text-slate-800 mt-0.5">
                       {feat.creators}
                     </p>
-                    <span className="text-xs text-slate-400 font-medium">
+                    <span className="text-xs text-slate-500 font-semibold">
                       {feat.creatorsInfo}
                     </span>
                   </div>
-                  <p className="text-sm text-slate-300 leading-relaxed font-medium">
+                  <p className="text-sm text-slate-600 leading-relaxed font-semibold">
                     {feat.description}
                   </p>
                 </div>
@@ -92,7 +92,7 @@ export default function CampusLife() {
                   href={feat.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-center font-bold text-xs py-3 rounded-xl bg-gradient-to-r from-brand-pink/15 to-brand-purple/15 border border-brand-pink/35 hover:border-brand-pink hover:bg-brand-pink/20 hover:text-brand-pink transition duration-300 block text-brand-pink"
+                  className="text-center font-bold text-xs py-3 rounded-xl bg-gradient-to-r from-brand-pink/10 to-brand-purple/10 border border-brand-pink/35 hover:border-brand-pink hover:bg-brand-pink/20 hover:text-brand-pink transition duration-300 block text-brand-pink"
                 >
                   Visit Portal
                 </a>
@@ -107,7 +107,7 @@ export default function CampusLife() {
             <h2 className="text-2xl sm:text-3xl font-extrabold text-stroke uppercase tracking-wider">
               📸 Campus Photo Dump
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 font-semibold max-w-lg mx-auto">
+            <p className="text-xs sm:text-sm text-slate-500 font-semibold max-w-lg mx-auto">
               IGDTUW through the eyes of our girls – the drama, the chaos, the charm. Click a photo to expand!
             </p>
           </div>
@@ -119,7 +119,7 @@ export default function CampusLife() {
                 key={idx}
                 whileHover={{ scale: 1.03 }}
                 onClick={() => setActivePhoto(src)}
-                className="group relative aspect-square rounded-xl overflow-hidden glass-panel border border-white/10 cursor-pointer shadow-md bg-brand-bg/40"
+                className="group relative aspect-square rounded-xl overflow-hidden glass-panel border border-slate-200 cursor-pointer shadow-md bg-white/70"
               >
                 <img
                   src={src}

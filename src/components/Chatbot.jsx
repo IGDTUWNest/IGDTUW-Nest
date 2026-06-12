@@ -82,25 +82,25 @@ export default function Chatbot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 50 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-24 right-6 w-[90vw] sm:w-[400px] h-[500px] rounded-2xl glass-panel border border-white/10 shadow-[0_10px_35px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden z-40"
+            className="fixed bottom-24 right-6 w-[90vw] sm:w-[400px] h-[500px] rounded-2xl glass-panel border border-pink-100/50 shadow-[0_10px_40px_rgba(31,38,135,0.08)] flex flex-col overflow-hidden z-40"
           >
             {/* Header */}
-            <div className="p-4 bg-gradient-to-r from-brand-pink/20 to-brand-purple/20 border-b border-white/5 flex items-center justify-between">
+            <div className="p-4 bg-gradient-to-r from-brand-pink/10 to-brand-purple/10 border-b border-pink-100/30 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-brand-pink/20 flex items-center justify-center border border-brand-pink/30">
+                <div className="w-8 h-8 rounded-lg bg-brand-pink/10 flex items-center justify-center border border-brand-pink/20">
                   <Bot className="w-4 h-4 text-brand-pink" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-slate-100">IGDTUW Nest Bot</h4>
-                  <span className="text-[10px] text-green-400 flex items-center gap-1 font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+                  <h4 className="font-bold text-sm text-brand-dark">IGDTUW Nest Bot</h4>
+                  <span className="text-[10px] text-green-600 flex items-center gap-1 font-semibold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                     Online Guide
                   </span>
                 </div>
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-lg hover:bg-white/5 text-slate-400 hover:text-white transition duration-200"
+                className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition duration-200"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -116,8 +116,8 @@ export default function Chatbot() {
                   {/* Bubble icon */}
                   <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 border ${
                     msg.sender === 'user' 
-                      ? 'bg-brand-purple/10 border-brand-purple/35 text-brand-purple' 
-                      : 'bg-brand-pink/10 border-brand-pink/30 text-brand-pink'
+                      ? 'bg-brand-purple/15 border-brand-purple/30 text-brand-purple' 
+                      : 'bg-brand-pink/15 border-brand-pink/25 text-brand-pink'
                   }`}>
                     {msg.sender === 'user' ? <User className="w-3.5 h-3.5" /> : <Bot className="w-3.5 h-3.5" />}
                   </div>
@@ -125,16 +125,16 @@ export default function Chatbot() {
                   {/* Bubble text */}
                   <div className={`max-w-[78%] rounded-2xl px-3.5 py-2.5 text-sm shadow-sm leading-relaxed border ${
                     msg.sender === 'user'
-                      ? 'bg-brand-purple/20 border-brand-purple/20 rounded-tr-none text-slate-200'
-                      : 'bg-white/[0.04] border-white/5 rounded-tl-none text-slate-300'
+                      ? 'bg-brand-purple/10 border-brand-purple/15 rounded-tr-none text-slate-800 font-medium'
+                      : 'bg-white/80 border-pink-100/50 rounded-tl-none text-slate-700'
                   }`}>
                     {msg.isHtml ? (
                       <div 
-                        className="prose prose-invert max-w-none text-xs space-y-2 [&_ul]:list-disc [&_ul]:pl-4 [&_b]:text-white [&_i]:text-brand-pink/80" 
+                        className="prose max-w-none text-xs space-y-2 [&_ul]:list-disc [&_ul]:pl-4 [&_b]:text-brand-dark [&_b]:font-bold [&_i]:text-brand-pink font-medium" 
                         dangerouslySetInnerHTML={{ __html: msg.text }} 
                       />
                     ) : (
-                      <p>{msg.text}</p>
+                      <p className="font-medium">{msg.text}</p>
                     )}
                   </div>
                 </div>
@@ -143,7 +143,7 @@ export default function Chatbot() {
             </div>
 
             {/* Questions Picker */}
-            <div className="p-3 bg-white/[0.02] border-t border-white/5 space-y-2 max-h-[140px] overflow-y-auto">
+            <div className="p-3 bg-slate-50/50 border-t border-slate-100 space-y-2 max-h-[140px] overflow-y-auto">
               <span className="text-[10px] text-brand-pink font-semibold uppercase tracking-wider block px-1">
                 Select a Question
               </span>
@@ -152,7 +152,7 @@ export default function Chatbot() {
                   <button
                     key={key}
                     onClick={() => handleQuestionSelect(key)}
-                    className="text-left text-xs px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-brand-pink/50 hover:bg-brand-pink/10 text-slate-300 hover:text-white transition duration-200 focus:outline-none"
+                    className="text-left text-xs px-2.5 py-1.5 rounded-lg bg-white border border-slate-200/50 hover:border-brand-pink/40 hover:bg-brand-pink/5 text-slate-600 hover:text-brand-pink transition duration-200 focus:outline-none shadow-sm font-medium"
                   >
                     {cleanOptionName(key)}
                   </button>
