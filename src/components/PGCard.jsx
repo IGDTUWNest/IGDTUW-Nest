@@ -1,7 +1,7 @@
 import { MapPin, ArrowUpRight, Compass, ShieldCheck, DollarSign } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function PGCard({ title, rent, facilities, nearby, detailsLink, distance, directionsLink, isHighlighted }) {
+export default function PGCard({ title, rent, facilities, nearby, detailsLink, distance, directionsLink, isHighlighted, matchScore }) {
   // Convert facility string to array
   const facilitiesArray = facilities ? facilities.split(',').map(f => f.trim()) : [];
 
@@ -15,6 +15,13 @@ export default function PGCard({ title, rent, facilities, nearby, detailsLink, d
           : 'border-slate-200/50 bg-white/70'
       }`}
     >
+      {/* Match Score Badge */}
+      {matchScore !== undefined && (
+        <div className="absolute top-0 left-0 bg-gradient-to-r from-emerald-500 to-teal-500 text-[10px] font-extrabold text-white px-3 py-1 rounded-br-xl uppercase tracking-wider shadow-sm flex items-center gap-1 z-10">
+          <span>🔥 {matchScore}% Match</span>
+        </div>
+      )}
+
       {/* Top Banner Ribbon for Student Choice */}
       {isHighlighted && (
         <div className="absolute top-0 right-0 bg-gradient-to-r from-brand-pink to-brand-purple text-[10px] font-extrabold text-white px-3 py-1 rounded-bl-xl uppercase tracking-wider shadow-sm flex items-center gap-1 z-10">

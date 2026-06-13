@@ -60,7 +60,7 @@ export default function Navbar() {
               <span className="font-bold text-lg tracking-wide bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent group-hover:opacity-80 transition duration-300">
                 IGDTUW Nest
               </span>
-              <span className="text-[10px] text-slate-500 tracking-widest uppercase font-semibold">
+              <span className="text-[10px] text-slate-400 tracking-widest uppercase font-semibold">
                 Campus Comfort
               </span>
             </div>
@@ -78,7 +78,7 @@ export default function Navbar() {
                   className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
                     active
                       ? 'bg-brand-pink/10 text-brand-pink border border-brand-pink/20 shadow-[0_0_15px_rgba(244,114,182,0.1)]'
-                      : 'text-slate-600 hover:text-brand-pink hover:bg-brand-pink/5 border border-transparent'
+                      : 'text-slate-300 hover:text-brand-pink hover:bg-brand-pink/5 border border-transparent'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -114,7 +114,7 @@ export default function Navbar() {
                 className={`flex items-center gap-3 px-5 py-4 rounded-xl text-base font-semibold transition duration-300 ${
                   active
                     ? 'bg-brand-pink/10 text-brand-pink border border-brand-pink/20 shadow-[0_0_15px_rgba(244,114,182,0.05)]'
-                    : 'text-slate-600 hover:text-brand-pink hover:bg-brand-pink/5 border border-transparent'
+                    : 'text-slate-700 hover:text-brand-pink hover:bg-brand-pink/5 border border-transparent'
                 }`}
               >
                 <Icon className="w-5 h-5 text-brand-pink" />
