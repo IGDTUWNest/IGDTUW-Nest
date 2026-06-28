@@ -1,26 +1,36 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Home, Search, Compass, Info, Bell, Award } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [widgetIndex, setWidgetIndex] = useState(0);
   const location = useLocation();
 
-  // Handle scroll detection for glassmorphism shift
+  const rollingWidgets = [
+    "12 New Nests near Campus",
+    "5-Star spot added in Campus Life",
+    "Library Wi-Fi connection restored",
+    "Fest registrations are now live!"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWidgetIndex((prev) => (prev + 1) % rollingWidgets.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile drawer on navigation
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
@@ -36,38 +46,58 @@ export default function Navbar() {
 
   const isActive = (path) => location.pathname === path;
 
-  // Don't render standard navbar on splash screen
   if (location.pathname === '/') return null;
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'py-3 bg-white/85 backdrop-blur-md border-b border-slate-200/50 shadow-md' 
-        : 'py-5 bg-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-12">
-          {/* Logo Section */}
-          <Link to="/home" className="flex items-center gap-3 group focus:outline-none">
-            <div className="w-10 h-10 rounded-xl overflow-hidden border border-brand-pink/30 bg-white p-0.5 group-hover:border-brand-pink transition duration-300">
+    <motion.nav 
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled ? 'py-2.5 bg-white/40 backdrop-blur-sm' : 'py-4 bg-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Isolated Floating Main Dock */}
+        <div className="flex items-center justify-between h-14 px-4 sm:px-6 rounded-2xl bg-white/80 backdrop-blur-xl border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300">
+          
+          {/* Elegant Minimal Brand Section */}
+          <Link to="/home" className="flex items-center gap-3 group focus:outline-none relative z-50">
+            <div className="w-8 h-8 rounded-lg overflow-hidden border border-black/[0.06] bg-white p-0.5 shadow-sm transition duration-300 group-hover:scale-102">
               <img 
                 src="/WhatsApp Image 2025-04-10 at 11.58.50.jpeg" 
-                alt="IGDTUW Nest Logo" 
-                className="w-full h-full object-contain group-hover:scale-105 transition duration-300"
+                alt="Logo" 
+                className="w-full h-full object-contain rounded-md"
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-lg tracking-wide bg-gradient-to-r from-brand-pink to-brand-purple bg-clip-text text-transparent group-hover:opacity-80 transition duration-300">
+              <span className="font-semibold text-sm tracking-tight text-slate-900 group-hover:text-brand-pink transition duration-300">
                 IGDTUW Nest
               </span>
-              <span className="text-[10px] text-slate-400 tracking-widest uppercase font-semibold">
+              <span className="text-[8px] text-slate-400 tracking-[0.2em] uppercase font-medium">
                 Campus Comfort
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Minimal Live Ticker */}
+          <div className="hidden lg:flex items-center h-full max-w-[200px] overflow-hidden relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={widgetIndex}
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[11px] font-medium text-slate-400 truncate"
+              >
+                <span className="text-brand-pink font-semibold mr-1.5">•</span> {rollingWidgets[widgetIndex]}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Clean High-Contrast Tabs */}
+          <div className="hidden md:flex items-center gap-6 h-full">
             {navLinks.map((link) => {
               const Icon = link.icon;
               const active = isActive(link.path);
@@ -75,10 +105,58 @@ export default function Navbar() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
-                    active
-                      ? 'bg-brand-pink/10 text-brand-pink border border-brand-pink/20 shadow-[0_0_15px_rgba(244,114,182,0.1)]'
-                      : 'text-slate-300 hover:text-brand-pink hover:bg-brand-pink/5 border border-transparent'
+                  className={`relative flex items-center gap-1.5 h-full px-1 text-xs font-bold tracking-wide uppercase transition-colors duration-200 focus:outline-none ${
+                    active ? 'text-brand-pink' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Icon className={`w-3.5 h-3.5 ${active ? 'text-brand-pink' : 'text-slate-400'}`} />
+                  <span>{link.name}</span>
+                  
+                  {/* Microscopic Premium Slide Indicator */}
+                  {active && (
+                    <motion.div 
+                      layoutId="navUnderline"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-pink rounded-full"
+                      transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Minimal Mobile Button */}
+          <div className="md:hidden relative z-50">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-1.5 text-slate-600 hover:text-slate-900 transition-colors focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden absolute inset-x-6 top-[68px] bg-white border border-slate-100 rounded-xl flex flex-col p-3 gap-1 shadow-xl"
+          >
+            {navLinks.map((link) => {
+              const Icon = link.icon;
+              const active = isActive(link.path);
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`flex items-center gap-3 py-3 px-3 rounded-lg text-xs font-semibold tracking-wide transition duration-200 ${
+                    active ? 'bg-slate-50 text-brand-pink' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -86,44 +164,9 @@ export default function Navbar() {
                 </Link>
               );
             })}
-          </div>
-
-          {/* Mobile Hamburguer Menu */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 hover:text-brand-pink hover:bg-brand-pink/5 transition duration-300 focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Drawer Overlay */}
-      {isOpen && (
-        <div className="md:hidden fixed inset-0 top-[60px] bg-white/95 backdrop-blur-xl z-40 flex flex-col px-4 pt-6 pb-24 gap-4 animate-fade-in border-t border-slate-100">
-          {navLinks.map((link) => {
-            const Icon = link.icon;
-            const active = isActive(link.path);
-            return (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`flex items-center gap-3 px-5 py-4 rounded-xl text-base font-semibold transition duration-300 ${
-                  active
-                    ? 'bg-brand-pink/10 text-brand-pink border border-brand-pink/20 shadow-[0_0_15px_rgba(244,114,182,0.05)]'
-                    : 'text-slate-700 hover:text-brand-pink hover:bg-brand-pink/5 border border-transparent'
-                }`}
-              >
-                <Icon className="w-5 h-5 text-brand-pink" />
-                <span>{link.name}</span>
-              </Link>
-            );
-          })}
-        </div>
-      )}
-    </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 }

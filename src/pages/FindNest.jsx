@@ -1,13 +1,253 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home as HomeIcon, MapPin, AlertCircle, Sparkles, DollarSign, Check, ChevronRight, ChevronLeft, Undo2, Users } from 'lucide-react';
+import { 
+  AlertCircle, Sparkles, DollarSign, Check, 
+  ChevronRight, ChevronLeft, Undo2, Users, 
+  ShieldAlert 
+} from 'lucide-react';
 import AnimatedBg from '../components/AnimatedBg';
 import PGCard from '../components/PGCard';
 
+// Decoupled Static Configuration to optimize memory footprint & eliminate re-allocation on re-renders
+const PGS_DATA = [
+  {
+    title: "Sunder Bhawan PG – Civil Lines",
+    rent: "₹21,000 – ₹22,000 (double sharing)",
+    minRent: 21000,
+    maxRent: 22000,
+    sharing: ["double"],
+    hasAC: false,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: false,
+    hasPowerBackup: false,
+    facilities: "Meals, WiFi, Geyser, Quiet Environment, Security",
+    nearby: "Civil Lines Metro Station",
+    detailsLink: "https://www.justdial.com/Delhi/Sunder-Bhawan-Girls-Pg-Hostel-Near-Civil-Lines-Metro-Station-Civil-Lines/011PXX11-XX11-230626145847-R7Y6_BZDET",
+    distance: "~3.4 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Sunder+Bhawan+PG+Kashmere+Gate,+Delhi",
+    isHighlighted: true,
+    locality: "Civil Lines"
+  },
+  {
+    title: "Saisha Homes – GTB Nagar",
+    rent: "₹20,000",
+    minRent: 20000,
+    maxRent: 20000,
+    sharing: ["single", "double"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: true,
+    hasPowerBackup: true,
+    facilities: "Meals, Wi-Fi, AC, Laundry, Attached Washroom, Power Backup, Security, Geyser, Personal Table/Cupboard",
+    nearby: "2637, Hudson Lane, GTB Nagar",
+    detailsLink: "https://www.magicbricks.com/propertyDetail/saisha-home-pg-hudson-lane-gtb-nagar-in-new-delhi&pgid=4d4233323430677261646531",
+    distance: "~7.5 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/2637+Hudson+Lane,+GTB+Nagar,+Delhi",
+    isHighlighted: false,
+    locality: "GTB Nagar & Hudson"
+  },
+  {
+    title: "Toronto House – Stanza Living",
+    rent: "₹15,399 – ₹18,299",
+    minRent: 15399,
+    maxRent: 18299,
+    sharing: ["single", "double"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: false,
+    hasPowerBackup: true,
+    facilities: "AC, Meals, Wi‑Fi, Housekeeping, Attached Washroom, Security, Biometric Entry",
+    nearby: "Jawahar Nagar, North Campus",
+    detailsLink: "https://www.stanzaliving.com/delhi/pg-hostel-in-north-campus/female/toronto-house",
+    distance: "~5 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Toronto+House,+North+Campus+Delhi",
+    isHighlighted: false,
+    locality: "North Campus"
+  },
+  {
+    title: "Birdhouse PG – Vijay Nagar",
+    rent: "₹17,000 – ₹22,000",
+    minRent: 17000,
+    maxRent: 22000,
+    sharing: ["single", "double"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: true,
+    hasPowerBackup: true,
+    facilities: "Meals, Wi-Fi, AC, Laundry, Power Backup, Geyser, Security",
+    nearby: "Bungalow Road, Hudson Lane side",
+    detailsLink: "https://birdhouse.co.in/new-delhi/",
+    distance: "~7 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Birdhouse+PG+Vijay+Nagar+Delhi",
+    isHighlighted: false,
+    locality: "North Campus"
+  },
+  {
+    title: "Exotic PG – Hudson Lane",
+    rent: "₹7,800 - ₹10,400",
+    minRent: 7800,
+    maxRent: 10400,
+    sharing: ["double", "triple"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: false,
+    hasPowerBackup: true,
+    facilities: "AC, Food*, Wi‑Fi, TV, Power Backup, Security",
+    nearby: "Hudson Lane, GTB Nagar – student hub",
+    detailsLink: "https://www.magicbricks.com/propertyDetail/exotic-pg-hudson-lane-gtb-nagar-in-new-delhi&pgid=4d42323231363933677261646532",
+    distance: "~6.3 km",
+    directionsLink: null,
+    isHighlighted: false,
+    locality: "GTB Nagar & Hudson"
+  },
+  {
+    title: "Orion Aquila – Civil Lines",
+    rent: "₹22,500",
+    minRent: 22500,
+    maxRent: 22500,
+    sharing: ["single", "double"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: true,
+    hasPowerBackup: true,
+    facilities: "AC, Meals, Wi-Fi, Laundry, Power Backup, Geyser, Guard, Housekeeping",
+    nearby: "Civil Lines Metro, posh locality",
+    detailsLink: "https://orionhostels.com/orion-aquila-civil-lines/",
+    distance: "~3.6 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Orion+Aquila+Civil+Lines+Delhi",
+    isHighlighted: true,
+    locality: "Civil Lines"
+  },
+  {
+    title: "Elitee PG – Hudson Lane",
+    rent: "₹15,600",
+    minRent: 15600,
+    maxRent: 15600,
+    sharing: ["single", "double"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: true,
+    hasPowerBackup: true,
+    facilities: "AC, Meals (veg), Wi-Fi, Power Backup, Biometric Security, Laundry",
+    nearby: "GTB Nagar Metro, Satyawati College",
+    detailsLink: "https://www.magicbricks.com/propertyDetail/elitee-pg-hudson-lane-gtb-nagar-in-new-delhi&pgid=4d4239383032677261646531",
+    distance: "~6 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Elitee+PG+Hudson+Lane,+Delhi",
+    isHighlighted: false,
+    locality: "GTB Nagar & Hudson"
+  },
+  {
+    title: "Armagh House – Stanza Living, Malkaganj",
+    rent: "₹18,000 – ₹22,000",
+    minRent: 18000,
+    maxRent: 22000,
+    sharing: ["single", "double"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: true,
+    hasPowerBackup: true,
+    facilities: "AC, Meals, Wi‑Fi, Laundry, Housekeeping, Power Backup, Security, Attached Washroom, Biometric Entry",
+    nearby: "North Campus, Malkaganj",
+    detailsLink: "https://www.stanzaliving.com/delhi/pg-hostel-in-north-campus/female/armagh-house",
+    distance: "~3.3 – 3.9 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Armagh+House+Stanza+Living,+Delhi",
+    isHighlighted: false,
+    locality: "North Campus"
+  },
+  {
+    title: "Aggarwal Living – Kamla Nagar",
+    rent: "₹25,000",
+    minRent: 25000,
+    maxRent: 25000,
+    sharing: ["single", "double"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: true,
+    hasPowerBackup: true,
+    facilities: "AC, Meals, Wi-Fi, Laundry, Power Backup, Geyser, Security, Wardrobes",
+    nearby: "Kamla Nagar Market, close to metro & shopping",
+    detailsLink: "https://www.aggarwalliving.com/",
+    distance: "~5 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Aggarwal+Living+Kamla+Nagar+Delhi",
+    isHighlighted: false,
+    locality: "North Campus"
+  },
+  {
+    title: "ASILO India Girls PG – GTB Nagar",
+    rent: "₹13,000 – ₹15,000",
+    minRent: 13000,
+    maxRent: 15000,
+    sharing: ["double", "triple"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: true,
+    hasPowerBackup: false,
+    facilities: "AC, Food, Laundry, Wi-Fi, Geyser, Warden Guidance",
+    nearby: "Outram Lane, GTB Nagar Metro Station",
+    detailsLink: "https://www.justdial.com/Delhi/Asilo-India-Near-GTB-METRO-STATION-GATE-NO2-Gtb-Nagar/011PXX11-XX11-190704105528-J3M7_BZDET",
+    distance: "~8.4 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/ASILO+India+Girls+PG+GTB+Nagar",
+    isHighlighted: true,
+    locality: "GTB Nagar & Hudson"
+  },
+  {
+    title: "Mehra PG – Civil Lines",
+    rent: "₹15,500 (excluding electricity, ₹17.5/unit)",
+    minRent: 15500,
+    maxRent: 15500,
+    sharing: ["single", "double"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: true,
+    hasPowerBackup: false,
+    facilities: "AC, Food, Wi-Fi, Laundry, Induction, Fridge, Security, Geyser",
+    nearby: "Civil lines metro station, Underhill Road",
+    detailsLink: null,
+    distance: "~4 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/1A+Goela+Lane,+Underhill+Road,+Civil+Lines,+Delhi",
+    isHighlighted: false,
+    locality: "Civil Lines"
+  }
+];
+
+const FILTER_OPTIONS = ['All', 'Civil Lines', 'GTB Nagar & Hudson', 'North Campus'];
+
+const BUDGET_OPTIONS = [
+  { id: 'under-15', label: 'Budget', desc: 'Under ₹15,000' },
+  { id: '15-20', label: 'Mid-Range', desc: '₹15,000 – ₹20,000' },
+  { id: 'above-20', label: 'Premium', desc: 'Above ₹20,000' },
+  { id: 'any', label: 'Any Budget', desc: 'Show all properties' }
+];
+
+const SHARING_OPTIONS = [
+  { id: 'single', label: 'Single Occupancy', desc: 'Maximum privacy & space' },
+  { id: 'double', label: 'Double Sharing', desc: 'Shared with one student' },
+  { id: 'triple', label: 'Triple/Multi-sharing', desc: 'Budget-friendly shared room' }
+];
+
+const FACILITY_OPTIONS = [
+  { id: 'hasAC', label: '❄️ AC' },
+  { id: 'hasMeals', label: '🍔 Meals' },
+  { id: 'hasWifi', label: '🌐 Wi-Fi' },
+  { id: 'hasLaundry', label: '🧺 Laundry' },
+  { id: 'hasPowerBackup', label: '🔋 Power Backup' }
+];
+
 export default function FindNest() {
   const [selectedFilter, setSelectedFilter] = useState('All');
-  
-  // PG Matcher States
+
+  // Matcher Quiz Engine States
   const [quizMode, setQuizMode] = useState(false);
   const [quizStep, setQuizStep] = useState(1);
   const [userBudget, setUserBudget] = useState('any');
@@ -15,262 +255,35 @@ export default function FindNest() {
   const [userFacilities, setUserFacilities] = useState([]);
   const [matchedResults, setMatchedResults] = useState([]);
 
-  const pgsData = [
-    {
-      title: "Sunder Bhawan PG – Civil Lines",
-      rent: "₹21,000 – ₹22,000 (double sharing)",
-      minRent: 21000,
-      maxRent: 22000,
-      sharing: ["double"],
-      hasAC: false,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: false,
-      hasPowerBackup: false,
-      facilities: "Meals, WiFi, Geyser, Quiet Environment, Security",
-      nearby: "Civil Lines Metro Station",
-      detailsLink: "https://www.justdial.com/Delhi/Sunder-Bhawan-Girls-Pg-Hostel-Near-Civil-Lines-Metro-Station-Civil-Lines/011PXX11-XX11-230626145847-R7Y6_BZDET",
-      distance: "~3.4 km",
-      directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Sunder+Bhawan+PG+Kashmere+Gate,+Delhi",
-      isHighlighted: true,
-      locality: "Civil Lines"
-    },
-    {
-      title: "Saisha Homes – GTB Nagar",
-      rent: "₹20,000",
-      minRent: 20000,
-      maxRent: 20000,
-      sharing: ["single", "double"],
-      hasAC: true,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: true,
-      hasPowerBackup: true,
-      facilities: "Meals, Wi-Fi, AC, Laundry, Attached Washroom, Power Backup, Security, Geyser, Personal Table/Cupboard",
-      nearby: "2637, Hudson Lane, GTB Nagar",
-      detailsLink: "https://www.magicbricks.com/propertyDetail/saisha-home-pg-hudson-lane-gtb-nagar-in-new-delhi&pgid=4d4233323430677261646531",
-      distance: "~7.5 km",
-      directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/2637+Hudson+Lane,+GTB+Nagar,+Delhi",
-      isHighlighted: false,
-      locality: "GTB Nagar & Hudson"
-    },
-    {
-      title: "Toronto House – Stanza Living",
-      rent: "₹15,399 – ₹18,299",
-      minRent: 15399,
-      maxRent: 18299,
-      sharing: ["single", "double"],
-      hasAC: true,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: false,
-      hasPowerBackup: true,
-      facilities: "AC, Meals, Wi‑Fi, Housekeeping, Attached Washroom, Security, Biometric Entry",
-      nearby: "Jawahar Nagar, North Campus",
-      detailsLink: "https://www.stanzaliving.com/delhi/pg-hostel-in-north-campus/female/toronto-house",
-      distance: "~5 km",
-      directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Toronto+House,+North+Campus+Delhi",
-      isHighlighted: false,
-      locality: "North Campus"
-    },
-    {
-      title: "Birdhouse PG – Vijay Nagar",
-      rent: "₹17,000 – ₹22,000",
-      minRent: 17000,
-      maxRent: 22000,
-      sharing: ["single", "double"],
-      hasAC: true,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: true,
-      hasPowerBackup: true,
-      facilities: "Meals, Wi-Fi, AC, Laundry, Power Backup, Geyser, Security",
-      nearby: "Bungalow Road, Hudson Lane side",
-      detailsLink: "https://birdhouse.co.in/new-delhi/",
-      distance: "~7 km",
-      directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Birdhouse+PG+Vijay+Nagar+Delhi",
-      isHighlighted: false,
-      locality: "North Campus"
-    },
-    {
-      title: "Exotic PG – Hudson Lane",
-      rent: "₹7,800 - ₹10,400",
-      minRent: 7800,
-      maxRent: 10400,
-      sharing: ["double", "triple"],
-      hasAC: true,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: false,
-      hasPowerBackup: true,
-      facilities: "AC, Food*, Wi‑Fi, TV, Power Backup, Security",
-      nearby: "Hudson Lane, GTB Nagar – student hub",
-      detailsLink: "https://www.magicbricks.com/propertyDetail/exotic-pg-hudson-lane-gtb-nagar-in-new-delhi&pgid=4d42323231363933677261646532",
-      distance: "~6.3 km",
-      directionsLink: null,
-      isHighlighted: false,
-      locality: "GTB Nagar & Hudson"
-    },
-    {
-      title: "Orion Aquila – Civil Lines",
-      rent: "₹22,500",
-      minRent: 22500,
-      maxRent: 22500,
-      sharing: ["single", "double"],
-      hasAC: true,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: true,
-      hasPowerBackup: true,
-      facilities: "AC, Meals, Wi-Fi, Laundry, Power Backup, Geyser, Guard, Housekeeping",
-      nearby: "Civil Lines Metro, posh locality",
-      detailsLink: "https://orionhostels.com/orion-aquila-civil-lines/",
-      distance: "~3.6 km",
-      directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Orion+Aquila+Civil+Lines+Delhi",
-      isHighlighted: true,
-      locality: "Civil Lines"
-    },
-    {
-      title: "Elitee PG – Hudson Lane",
-      rent: "₹15,600",
-      minRent: 15600,
-      maxRent: 15600,
-      sharing: ["single", "double"],
-      hasAC: true,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: true,
-      hasPowerBackup: true,
-      facilities: "AC, Meals (veg), Wi-Fi, Power Backup, Biometric Security, Laundry",
-      nearby: "GTB Nagar Metro, Satyawati College",
-      detailsLink: "https://www.magicbricks.com/propertyDetail/elitee-pg-hudson-lane-gtb-nagar-in-new-delhi&pgid=4d4239383032677261646531",
-      distance: "~6 km",
-      directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Elitee+PG+Hudson+Lane,+Delhi",
-      isHighlighted: false,
-      locality: "GTB Nagar & Hudson"
-    },
-    {
-      title: "Armagh House – Stanza Living, Malkaganj",
-      rent: "₹18,000 – ₹22,000",
-      minRent: 18000,
-      maxRent: 22000,
-      sharing: ["single", "double"],
-      hasAC: true,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: true,
-      hasPowerBackup: true,
-      facilities: "AC, Meals, Wi‑Fi, Laundry, Housekeeping, Power Backup, Security, Attached Washroom, Biometric Entry",
-      nearby: "North Campus, Malkaganj",
-      detailsLink: "https://www.stanzaliving.com/delhi/pg-hostel-in-north-campus/female/armagh-house",
-      distance: "~3.3 – 3.9 km",
-      directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Armagh+House+Stanza+Living,+Delhi",
-      isHighlighted: false,
-      locality: "North Campus"
-    },
-    {
-      title: "Aggarwal Living – Kamla Nagar",
-      rent: "₹25,000",
-      minRent: 25000,
-      maxRent: 25000,
-      sharing: ["single", "double"],
-      hasAC: true,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: true,
-      hasPowerBackup: true,
-      facilities: "AC, Meals, Wi-Fi, Laundry, Power Backup, Geyser, Security, Wardrobes",
-      nearby: "Kamla Nagar Market, close to metro & shopping",
-      detailsLink: "https://www.aggarwalliving.com/",
-      distance: "~5 km",
-      directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Aggarwal+Living+Kamla+Nagar+Delhi",
-      isHighlighted: false,
-      locality: "North Campus"
-    },
-    {
-      title: "ASILO India Girls PG – GTB Nagar",
-      rent: "₹13,000 – ₹15,000",
-      minRent: 13000,
-      maxRent: 15000,
-      sharing: ["double", "triple"],
-      hasAC: true,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: true,
-      hasPowerBackup: false,
-      facilities: "AC, Food, Laundry, Wi-Fi, Geyser, Warden Guidance",
-      nearby: "Outram Lane, GTB Nagar Metro Station",
-      detailsLink: "https://www.justdial.com/Delhi/Asilo-India-Near-GTB-METRO-STATION-GATE-NO2-Gtb-Nagar/011PXX11-XX11-190704105528-J3M7_BZDET",
-      distance: "~8.4 km",
-      directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/ASILO+India+Girls+PG+GTB+Nagar",
-      isHighlighted: true,
-      locality: "GTB Nagar & Hudson"
-    },
-    {
-      title: "Mehra PG – Civil Lines",
-      rent: "₹15,500 (excluding electricity, ₹17.5/unit)",
-      minRent: 15500,
-      maxRent: 15500,
-      sharing: ["single", "double"],
-      hasAC: true,
-      hasMeals: true,
-      hasWifi: true,
-      hasLaundry: true,
-      hasPowerBackup: false,
-      facilities: "AC, Food, Wi-Fi, Laundry, Induction, Fridge, Security, Geyser",
-      nearby: "Civil lines metro station, Underhill Road",
-      detailsLink: null,
-      distance: "~4 km",
-      directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/1A+Goela+Lane,+Underhill+Road,+Civil+Lines,+Delhi",
-      isHighlighted: false,
-      locality: "Civil Lines"
-    }
-  ];
+  // Performance Optimization: Cache filtered arrays using useMemo
+  const filteredPGs = useMemo(() => {
+    return selectedFilter === 'All' 
+      ? PGS_DATA 
+      : PGS_DATA.filter(pg => pg.locality === selectedFilter);
+  }, [selectedFilter]);
 
-  const calculateMatches = () => {
-    const scoredPGs = pgsData.map(pg => {
+  const handleCalculateMatches = () => {
+    const scoredPGs = PGS_DATA.map(pg => {
       let score = 100;
 
-      // 1. Budget check
-      if (userBudget === 'under-15') {
-        if (pg.minRent >= 16000) {
-          score -= 40;
-        }
-      } else if (userBudget === '15-20') {
-        if (pg.minRent < 14000 || pg.minRent > 21000) {
-          score -= 30;
-        }
-      } else if (userBudget === 'above-20') {
-        if (pg.maxRent < 19000) {
-          score -= 30;
-        }
-      }
+      if (userBudget === 'under-15' && pg.minRent >= 16000) score -= 40;
+      else if (userBudget === '15-20' && (pg.minRent < 14000 || pg.minRent > 21000)) score -= 30;
+      else if (userBudget === 'above-20' && pg.maxRent < 19000) score -= 30;
 
-      // 2. Sharing check
       if (userSharing.length > 0) {
         const hasMatchingSharing = pg.sharing.some(s => userSharing.includes(s));
-        if (!hasMatchingSharing) {
-          score -= 30;
-        }
+        if (!hasMatchingSharing) score -= 30;
       }
 
-      // 3. Facilities check
       if (userFacilities.length > 0) {
         let facilityMisses = 0;
         userFacilities.forEach(facilityKey => {
-          if (!pg[facilityKey]) {
-            facilityMisses++;
-          }
+          if (!pg[facilityKey]) facilityMisses++;
         });
         score -= (facilityMisses / userFacilities.length) * 30;
       }
 
-      const finalScore = Math.max(0, Math.min(100, Math.round(score)));
-
-      return {
-        ...pg,
-        matchScore: finalScore
-      };
+      return { ...pg, matchScore: Math.max(0, Math.min(100, Math.round(score))) };
     });
 
     const filteredScored = scoredPGs
@@ -278,357 +291,278 @@ export default function FindNest() {
       .sort((a, b) => b.matchScore - a.matchScore);
 
     setMatchedResults(filteredScored);
+    setQuizStep(4);
   };
 
-  const filterOptions = ['All', 'Civil Lines', 'GTB Nagar & Hudson', 'North Campus'];
-
-  const filteredPGs = selectedFilter === 'All' 
-    ? pgsData 
-    : pgsData.filter(pg => pg.locality === selectedFilter);
+  const resetQuizEngine = () => {
+    setQuizStep(1);
+    setUserBudget('any');
+    setUserSharing([]);
+    setUserFacilities([]);
+    setMatchedResults([]);
+  };
 
   return (
-    <div className="relative min-h-screen pt-28 pb-12 overflow-hidden flex flex-col items-center">
+    <div className="relative min-h-screen pt-24 pb-16 overflow-hidden flex flex-col items-center bg-[#FAF6F8] selection:bg-pink-200 selection:text-pink-900">
       <AnimatedBg />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 space-y-8 flex-1 flex flex-col">
-        {/* Header Title Section */}
-        <div className="text-center space-y-3">
-          <div className="mx-auto bg-brand-pink/10 text-brand-pink text-xs border border-brand-pink/20 px-3 py-1.5 rounded-full font-bold w-fit flex items-center gap-1.5 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Student Vetted PG Directories</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 space-y-12 flex-1 flex flex-col">
+        
+        {/* Modern Typography Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-center space-y-4"
+        >
+          <div className="mx-auto bg-gradient-to-r from-pink-50 to-purple-50 text-pink-700 text-xs font-bold border border-pink-200 px-4 py-1.5 rounded-full w-fit flex items-center gap-2 shadow-sm tracking-wide uppercase">
+            <Sparkles className="w-3.5 h-3.5 animate-pulse text-pink-500" />
+            <span>Senior Vetted Safety Directory</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight">
-            Verified PGs near IGDTUW
+          <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight bg-clip-text bg-gradient-to-b from-slate-900 to-slate-700">
+            Verified PGs Near IGDTUW
           </h1>
-          <p className="text-sm text-slate-300 max-w-xl mx-auto font-semibold leading-relaxed">
-            Handpicked by seniors, reviewed by students — safe, affordable, and girl-friendly accommodation guides.
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium">
+            Handpicked by student unions & alumni. Secure, transparent, and optimized for female students seeking premium housing alternatives.
           </p>
-        </div>
+        </motion.div>
 
-        {/* PG Matcher Panel */}
-        <div className="max-w-4xl mx-auto w-full">
-          {!quizMode ? (
-            <motion.button
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              onClick={() => {
-                setQuizMode(true);
-                setQuizStep(1);
-                setUserBudget('any');
-                setUserSharing([]);
-                setUserFacilities([]);
-              }}
-              className="w-full flex flex-col sm:flex-row items-center justify-between p-5 rounded-2xl border border-brand-pink/30 bg-gradient-to-r from-brand-pink/10 to-brand-purple/10 hover:border-brand-pink/55 transition duration-300 shadow-sm cursor-pointer gap-4"
-            >
-              <div className="flex items-center gap-3.5 text-left">
-                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200/50 flex items-center justify-center text-brand-pink shadow-sm flex-shrink-0">
-                  <Sparkles className="w-5 h-5 text-brand-pink animate-pulse" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-sm text-slate-200">Unsure which PG fits you best?</h4>
-                  <p className="text-xs text-slate-400 font-semibold mt-0.5">Try our Interactive PG Matcher to calculate matching scores based on budget, sharing & preferences!</p>
-                </div>
-              </div>
-              <span className="bg-brand-pink text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-[0_2px_8px_rgba(236,72,153,0.2)] flex items-center gap-1 w-full sm:w-auto justify-center">
-                Start Matcher
-                <ChevronRight className="w-3.5 h-3.5" />
-              </span>
-            </motion.button>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="rounded-2xl border border-brand-pink/30 bg-[#16122c]/90 p-6 sm:p-8 shadow-[0_10px_35px_rgba(236,72,153,0.05)] relative overflow-hidden"
-            >
-              {/* Decorative backgrounds */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-pink/5 rounded-full blur-2xl -z-10" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-purple/5 rounded-full blur-2xl -z-10" />
-
-              {/* Step 1: Budget */}
-              {quizStep === 1 && (
-                <div className="space-y-6">
-                  <div className="flex justify-between items-center pb-2 border-b border-slate-700/50">
-                    <h3 className="font-extrabold text-base sm:text-lg text-slate-100 flex items-center gap-2">
-                      <DollarSign className="w-5 h-5 text-brand-pink" />
-                      <span>Step 1: Select Your Budget Range</span>
-                    </h3>
-                    <button 
-                      onClick={() => setQuizMode(false)}
-                      className="text-xs text-slate-400 hover:text-slate-300 font-bold"
-                    >
-                      Cancel
-                    </button>
+        {/* Dynamic Panel Card Wrapper */}
+        <div className="max-w-5xl mx-auto w-full">
+          <AnimatePresence mode="wait">
+            {!quizMode ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                onClick={() => { setQuizMode(true); resetQuizEngine(); }}
+                className="group relative w-full flex flex-col sm:flex-row items-center justify-between p-6 rounded-3xl border border-pink-100 bg-white/70 backdrop-blur-md shadow-[0_20px_50px_-12px_rgba(236,72,153,0.12)] hover:border-pink-300 hover:shadow-[0_20px_50px_-6px_rgba(236,72,153,0.2)] transition-all duration-300 cursor-pointer gap-6 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="flex items-center gap-5 text-left z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-pink-500 to-violet-600 flex items-center justify-center shadow-lg shadow-pink-500/20 flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <Sparkles className="w-6 h-6 text-white" />
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-300 font-semibold">
-                    What is the monthly rent range you are looking for?
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                    {[
-                      { id: 'under-15', label: 'Budget', desc: 'Under ₹15,000' },
-                      { id: '15-20', label: 'Mid-Range', desc: '₹15,000 – ₹20,000' },
-                      { id: 'above-20', label: 'Premium', desc: 'Above ₹20,000' },
-                      { id: 'any', label: 'Any Budget', desc: 'Show all properties' }
-                    ].map((b) => (
-                      <button
-                        key={b.id}
-                        onClick={() => setUserBudget(b.id)}
-                        className={`p-4 rounded-xl border text-left flex flex-col justify-between h-24 transition duration-300 cursor-pointer ${
-                          userBudget === b.id
-                            ? 'bg-brand-pink/5 border-brand-pink text-brand-pink shadow-sm'
-                            : 'bg-slate-800/50 border-slate-700 hover:border-slate-600 text-slate-200'
-                        }`}
-                      >
-                        <span className="font-bold text-xs uppercase tracking-wider block">{b.label}</span>
-                        <span className="text-xs font-semibold text-slate-400 mt-2">{b.desc}</span>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="flex justify-end pt-2">
-                    <button
-                      onClick={() => setQuizStep(2)}
-                      className="bg-brand-pink hover:bg-brand-pink/90 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition duration-300 flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <span>Continue</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
+                  <div>
+                    <h4 className="font-extrabold text-base text-slate-900 flex items-center gap-2">
+                      Need Personalized Matches?
+                    </h4>
+                    <p className="text-sm text-slate-500 mt-1 max-w-xl font-medium leading-normal">
+                      Launch our interactive matching algorithms to dynamically sort accommodations by your precise spatial filters, multi-sharing constraints, and non-negotiable facility matrices.
+                    </p>
                   </div>
                 </div>
-              )}
+                <span className="bg-slate-900 text-white text-xs font-bold px-5 py-3 rounded-2xl shadow-xl shadow-slate-900/10 flex items-center gap-2 w-full sm:w-auto justify-center group-hover:bg-pink-600 group-hover:shadow-pink-600/20 transition-all duration-300 transform group-hover:translate-x-1 z-10">
+                  Start Smart Matcher
+                  <ChevronRight className="w-4 h-4" />
+                </span>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                className="rounded-3xl border border-slate-100 bg-white p-6 sm:p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden"
+              >
+                {/* Visual Ambient Globs */}
+                <div className="absolute -top-10 -right-10 w-48 h-48 bg-pink-400/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-400/10 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Step 2: Sharing */}
-              {quizStep === 2 && (
-                <div className="space-y-6">
-                  <div className="flex justify-between items-center pb-2 border-b border-slate-700/50">
-                    <h3 className="font-extrabold text-base sm:text-lg text-slate-100 flex items-center gap-2">
-                      <Users className="w-5 h-5 text-brand-pink" />
-                      <span>Step 2: Room Sharing Preferences</span>
-                    </h3>
-                    <button 
-                      onClick={() => setQuizMode(false)}
-                      className="text-xs text-slate-400 hover:text-slate-300 font-bold"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-300 font-semibold">
-                    Which room occupancies are you open to? (Select multiple if applicable)
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {[
-                      { id: 'single', label: 'Single Occupancy', desc: 'Maximum privacy & space' },
-                      { id: 'double', label: 'Double Sharing', desc: 'Shared with one student' },
-                      { id: 'triple', label: 'Triple/Multi-sharing', desc: 'Budget-friendly shared room' }
-                    ].map((s) => {
-                      const isSelected = userSharing.includes(s.id);
-                      return (
-                        <button
-                          key={s.id}
-                          onClick={() => {
-                            if (isSelected) {
-                              setUserSharing(userSharing.filter(item => item !== s.id));
-                            } else {
-                              setUserSharing([...userSharing, s.id]);
-                            }
-                          }}
-                          className={`p-4 rounded-xl border text-left flex flex-col justify-between h-24 transition duration-300 relative cursor-pointer ${
-                            isSelected
-                              ? 'bg-brand-pink/5 border-brand-pink text-brand-pink shadow-sm'
-                              : 'bg-slate-800/50 border-slate-700 hover:border-slate-600 text-slate-200'
+                {/* Sub-steps Content Delivery Architecture */}
+                {quizStep === 1 && (
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-100">
+                      <h3 className="font-black text-lg text-slate-900 flex items-center gap-2.5">
+                        <DollarSign className="w-5 h-5 text-pink-500" />
+                        <span>Step 1: Allocation & Budget Range</span>
+                      </h3>
+                      <button onClick={() => setQuizMode(false)} className="text-xs text-slate-400 hover:text-slate-600 font-bold transition">Cancel</button>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {BUDGET_OPTIONS.map((b) => (
+                        <div
+                          key={b.id}
+                          onClick={() => setUserBudget(b.id)}
+                          className={`p-5 rounded-2xl border text-left flex flex-col justify-between h-28 transition-all duration-200 cursor-pointer relative ${
+                            userBudget === b.id
+                              ? 'bg-gradient-to-b from-pink-50 to-white border-pink-500 ring-2 ring-pink-500/10 shadow-md shadow-pink-500/5'
+                              : 'bg-slate-50/50 border-slate-100 hover:border-pink-300 hover:bg-white'
                           }`}
                         >
-                          <div className="flex justify-between items-center w-full">
-                            <span className="font-bold text-xs uppercase tracking-wider block">{s.label}</span>
-                            {isSelected && <Check className="w-4 h-4 text-brand-pink" />}
+                          <span className={`font-extrabold text-xs tracking-wider uppercase ${userBudget === b.id ? 'text-pink-700' : 'text-slate-500'}`}>{b.label}</span>
+                          <span className="text-sm font-bold text-slate-800 mt-2">{b.desc}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex justify-end pt-4">
+                      <button onClick={() => setQuizStep(2)} className="bg-slate-900 hover:bg-pink-600 text-white font-bold text-xs px-6 py-3 rounded-xl transition duration-200 flex items-center gap-2 shadow-lg shadow-slate-950/10">
+                        <span>Next Step</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {quizStep === 2 && (
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-100">
+                      <h3 className="font-black text-lg text-slate-900 flex items-center gap-2.5">
+                        <Users className="w-5 h-5 text-pink-500" />
+                        <span>Step 2: Density & Room Sharing</span>
+                      </h3>
+                      <button onClick={() => setQuizMode(false)} className="text-xs text-slate-400 hover:text-slate-600 font-bold transition">Cancel</button>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      {SHARING_OPTIONS.map((s) => {
+                        const isSelected = userSharing.includes(s.id);
+                        return (
+                          <div
+                            key={s.id}
+                            onClick={() => setUserSharing(prev => isSelected ? prev.filter(item => item !== s.id) : [...prev, s.id])}
+                            className={`p-5 rounded-2xl border text-left flex flex-col justify-between h-28 transition-all duration-200 cursor-pointer relative ${
+                              isSelected
+                                ? 'bg-gradient-to-b from-pink-50 to-white border-pink-500 ring-2 ring-pink-500/10 shadow-md'
+                                : 'bg-slate-50/50 border-slate-100 hover:border-pink-300 hover:bg-white'
+                            }`}
+                          >
+                            <div className="flex justify-between items-center w-full">
+                              <span className={`font-extrabold text-xs tracking-wider uppercase ${isSelected ? 'text-pink-700' : 'text-slate-500'}`}>{s.label}</span>
+                              <div className={`w-4 h-4 rounded-full flex items-center justify-center border transition ${isSelected ? 'border-pink-500 bg-pink-500 text-white' : 'border-slate-300 bg-white'}`}>
+                                {isSelected && <Check className="w-2.5 h-2.5 stroke-[3px]" />}
+                              </div>
+                            </div>
+                            <span className="text-xs font-semibold text-slate-500 mt-2">{s.desc}</span>
                           </div>
-                          <span className="text-xs font-semibold text-slate-400 mt-2">{s.desc}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <div className="flex justify-between pt-2">
-                    <button
-                      onClick={() => setQuizStep(1)}
-                      className="border border-slate-700 hover:border-slate-600 hover:bg-slate-800 text-slate-300 font-bold text-xs px-5 py-2.5 rounded-xl transition duration-300 flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                      <span>Back</span>
-                    </button>
-                    <button
-                      onClick={() => setQuizStep(3)}
-                      className="bg-brand-pink hover:bg-brand-pink/90 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition duration-300 flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <span>Continue</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Step 3: Must-Have Facilities */}
-              {quizStep === 3 && (
-                <div className="space-y-6">
-                  <div className="flex justify-between items-center pb-2 border-b border-slate-700/50">
-                    <h3 className="font-extrabold text-base sm:text-lg text-slate-100 flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-brand-pink" />
-                      <span>Step 3: Essential Facilities</span>
-                    </h3>
-                    <button 
-                      onClick={() => setQuizMode(false)}
-                      className="text-xs text-slate-400 hover:text-slate-300 font-bold"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-300 font-semibold">
-                    Select your non-negotiable amenities (Must-Haves):
-                  </p>
-                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                    {[
-                      { id: 'hasAC', label: '❄️ AC' },
-                      { id: 'hasMeals', label: '🍔 Meals' },
-                      { id: 'hasWifi', label: '🌐 Wi-Fi' },
-                      { id: 'hasLaundry', label: '🧺 Laundry' },
-                      { id: 'hasPowerBackup', label: '🔋 Power Backup' }
-                    ].map((f) => {
-                      const isSelected = userFacilities.includes(f.id);
-                      return (
-                        <button
-                          key={f.id}
-                          onClick={() => {
-                            if (isSelected) {
-                              setUserFacilities(userFacilities.filter(item => item !== f.id));
-                            } else {
-                              setUserFacilities([...userFacilities, f.id]);
-                            }
-                          }}
-                          className={`p-3.5 rounded-xl border text-center font-bold text-xs sm:text-sm transition duration-200 flex flex-col items-center justify-center gap-2 cursor-pointer ${
-                            isSelected
-                              ? 'bg-brand-pink/5 border-brand-pink text-brand-pink shadow-sm'
-                              : 'bg-slate-800/50 border-slate-700 hover:border-slate-600 text-slate-200'
-                          }`}
-                        >
-                          <span>{f.label}</span>
-                          <span className={`w-4 h-4 rounded border flex items-center justify-center ${isSelected ? 'bg-brand-pink border-brand-pink text-white' : 'border-slate-300 bg-white'}`}>
-                            {isSelected && <Check className="w-3 h-3 text-white stroke-[3px]" />}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <div className="flex justify-between pt-2">
-                    <button
-                      onClick={() => setQuizStep(2)}
-                      className="border border-slate-700 hover:border-slate-600 hover:bg-slate-800 text-slate-300 font-bold text-xs px-5 py-2.5 rounded-xl transition duration-300 flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                      <span>Back</span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        calculateMatches();
-                        setQuizStep(4);
-                      }}
-                      className="bg-brand-pink hover:bg-brand-pink/90 text-white font-bold text-xs px-6 py-2.5 rounded-xl shadow-md transition duration-300 flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <span>Show Matches</span>
-                      <Check className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Step 4: Results Display */}
-              {quizStep === 4 && (
-                <div className="space-y-6">
-                  <div className="flex justify-between items-center pb-2 border-b border-slate-700/50">
-                    <h3 className="font-extrabold text-base sm:text-lg text-slate-100 flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-brand-pink" />
-                      <span>Matching PG Accommodations</span>
-                    </h3>
-                    <button 
-                      onClick={() => {
-                        setQuizStep(1);
-                        setUserBudget('any');
-                        setUserSharing([]);
-                        setUserFacilities([]);
-                      }}
-                      className="text-xs text-brand-pink hover:text-brand-pink/80 font-bold flex items-center gap-1 cursor-pointer"
-                    >
-                      <Undo2 className="w-3.5 h-3.5" />
-                      <span>Restart Quiz</span>
-                    </button>
-                  </div>
-
-                  {matchedResults.length === 0 ? (
-                    <div className="text-center py-10 space-y-4">
-                      <AlertCircle className="w-12 h-12 text-slate-600 mx-auto" />
-                      <h4 className="font-bold text-slate-200">No matching PGs found!</h4>
-                      <p className="text-xs text-slate-400 font-semibold max-w-sm mx-auto leading-relaxed">
-                        Try loosening your filters or increasing your budget bounds to find recommendations.
-                      </p>
-                      <button
-                        onClick={() => {
-                          setQuizStep(1);
-                          setUserBudget('any');
-                          setUserSharing([]);
-                          setUserFacilities([]);
-                        }}
-                        className="bg-slate-800 border border-slate-700 text-slate-200 text-xs px-4 py-2.5 rounded-xl hover:bg-slate-750 transition duration-200 font-bold cursor-pointer"
-                      >
-                        Reset Quiz Filters
+                        );
+                      })}
+                    </div>
+                    <div className="flex justify-between pt-4">
+                      <button onClick={() => setQuizStep(1)} className="border border-slate-200 text-slate-600 font-bold text-xs px-5 py-3 rounded-xl hover:bg-slate-50 transition flex items-center gap-1.5">
+                        <ChevronLeft className="w-4 h-4" />
+                        <span>Back</span>
+                      </button>
+                      <button onClick={() => setQuizStep(3)} className="bg-slate-900 hover:bg-pink-600 text-white font-bold text-xs px-6 py-3 rounded-xl transition flex items-center gap-2 shadow-lg shadow-slate-950/10">
+                        <span>Next Step</span>
+                        <ChevronRight className="w-4 h-4" />
                       </button>
                     </div>
-                  ) : (
-                    <div className="space-y-4">
-                      <p className="text-xs sm:text-sm text-slate-300 font-semibold">
-                        We found <strong className="text-brand-pink font-bold">{matchedResults.length} properties</strong> that score over 50% matching compatibility:
-                      </p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
-                        {matchedResults.map((pg, idx) => (
-                          <PGCard
-                            key={idx}
-                            title={pg.title}
-                            rent={pg.rent}
-                            facilities={pg.facilities}
-                            nearby={pg.nearby}
-                            detailsLink={pg.detailsLink}
-                            distance={pg.distance}
-                            directionsLink={pg.directionsLink}
-                            isHighlighted={pg.isHighlighted}
-                            matchScore={pg.matchScore}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flex justify-end border-t border-slate-700/50 pt-4">
-                    <button
-                      onClick={() => setQuizMode(false)}
-                      className="border border-slate-700 hover:border-slate-600 hover:bg-slate-800 text-slate-300 font-bold text-xs px-5 py-2.5 rounded-xl transition duration-300 flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <span>Close Matcher View</span>
-                    </button>
                   </div>
-                </div>
-              )}
-            </motion.div>
-          )}
+                )}
+
+                {quizStep === 3 && (
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-100">
+                      <h3 className="font-black text-lg text-slate-900 flex items-center gap-2.5">
+                        <Sparkles className="w-5 h-5 text-pink-500" />
+                        <span>Step 3: Custom Amenities & Priorities</span>
+                      </h3>
+                      <button onClick={() => setQuizMode(false)} className="text-xs text-slate-400 hover:text-slate-600 font-bold transition">Cancel</button>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                      {FACILITY_OPTIONS.map((f) => {
+                        const isSelected = userFacilities.includes(f.id);
+                        return (
+                          <div
+                            key={f.id}
+                            onClick={() => setUserFacilities(prev => isSelected ? prev.filter(item => item !== f.id) : [...prev, f.id])}
+                            className={`p-4 rounded-xl border text-center font-bold text-sm transition duration-200 flex flex-col items-center justify-center gap-3 cursor-pointer ${
+                              isSelected
+                                ? 'bg-pink-50/50 border-pink-500 text-pink-900 shadow-sm'
+                                : 'bg-slate-50/50 border-slate-100 hover:border-pink-300 hover:bg-white text-slate-700'
+                            }`}
+                          >
+                            <span>{f.label}</span>
+                            <div className={`w-5 h-5 rounded-md border flex items-center justify-center ${isSelected ? 'bg-pink-600 border-pink-600 text-white' : 'border-slate-300 bg-white'}`}>
+                              {isSelected && <Check className="w-3 h-3 text-white stroke-[3px]" />}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className="flex justify-between pt-4">
+                      <button onClick={() => setQuizStep(2)} className="border border-slate-200 text-slate-600 font-bold text-xs px-5 py-3 rounded-xl hover:bg-slate-50 transition flex items-center gap-1.5">
+                        <ChevronLeft className="w-4 h-4" />
+                        <span>Back</span>
+                      </button>
+                      <button onClick={handleCalculateMatches} className="bg-pink-600 hover:bg-pink-700 text-white font-bold text-xs px-6 py-3 rounded-xl transition flex items-center gap-2 shadow-lg shadow-pink-600/20">
+                        <span>Compile Matches</span>
+                        <Check className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {quizStep === 4 && (
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-100">
+                      <h3 className="font-black text-lg text-slate-900 flex items-center gap-2.5">
+                        <Sparkles className="w-5 h-5 text-pink-500 animate-bounce" />
+                        <span>Optimized Match Matrix Results</span>
+                      </h3>
+                      <button onClick={resetQuizEngine} className="text-xs text-pink-600 hover:text-pink-800 font-bold flex items-center gap-1.5 transition">
+                        <Undo2 className="w-3.5 h-3.5" />
+                        <span>Restart Matrix</span>
+                      </button>
+                    </div>
+
+                    {matchedResults.length === 0 ? (
+                      <div className="text-center py-12 space-y-4">
+                        <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto text-slate-400 border border-slate-100">
+                          <AlertCircle className="w-6 h-6" />
+                        </div>
+                        <h4 className="font-black text-slate-800">Zero Optimal Matches Found</h4>
+                        <p className="text-sm text-slate-500 max-w-sm mx-auto leading-relaxed">
+                          Your chosen facility constraints do not align with listings in this specific rent bracket. Consider clearing niche facility fields.
+                        </p>
+                        <button onClick={resetQuizEngine} className="bg-slate-100 text-slate-700 text-xs px-4 py-2.5 rounded-xl hover:bg-slate-200 font-bold transition">
+                          Clear Sorting Filters
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        <p className="text-sm text-slate-500 font-medium">
+                          Identified <span className="text-pink-600 font-extrabold">{matchedResults.length} properties</span> meeting standard safety protocols with dynamic compliance compatibility indexes:
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+                          {matchedResults.map((pg, idx) => (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: idx * 0.05 }}
+                            >
+                              <PGCard {...pg} />
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="flex justify-end border-t border-slate-100 pt-5">
+                      <button onClick={() => setQuizMode(false)} className="border border-slate-200 text-slate-600 font-bold text-xs px-5 py-2.5 rounded-xl hover:bg-slate-50 transition">
+                        <span>Exit Matcher Module</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        {/* Standard Listings Display (rendered only when matcher is NOT active or showing matching results) */}
+        {/* Global Catalog Sub-System Component */}
         {!quizMode && (
-          <>
-            {/* Filter Navigation Menu */}
-            <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
-              {filterOptions.map((opt) => (
+          <div className="space-y-8 flex-1 flex flex-col">
+            {/* Elegant pill filter system */}
+            <div className="flex flex-wrap items-center justify-center gap-2.5 bg-slate-100/50 p-1.5 rounded-2xl w-fit mx-auto backdrop-blur-sm border border-slate-200/50">
+              {FILTER_OPTIONS.map((opt) => (
                 <button
                   key={opt}
                   onClick={() => setSelectedFilter(opt)}
-                  className={`px-4.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition duration-300 cursor-pointer ${
+                  className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all duration-300 ${
                     selectedFilter === opt
-                      ? 'bg-brand-pink/10 text-brand-pink border-brand-pink/20 shadow-[0_0_15px_rgba(244,114,182,0.1)]'
-                      : 'bg-white border-slate-200 text-slate-600 hover:border-brand-pink/30 hover:text-brand-pink'
+                      ? 'bg-white text-pink-700 shadow-md shadow-slate-900/5 ring-1 ring-slate-200'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
                   }`}
                 >
                   {opt}
@@ -636,34 +570,40 @@ export default function FindNest() {
               ))}
             </div>
 
-            {/* PG Listings Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1">
-              {filteredPGs.map((pg, idx) => (
-                <PGCard
-                  key={idx}
-                  title={pg.title}
-                  rent={pg.rent}
-                  facilities={pg.facilities}
-                  nearby={pg.nearby}
-                  detailsLink={pg.detailsLink}
-                  distance={pg.distance}
-                  directionsLink={pg.directionsLink}
-                  isHighlighted={pg.isHighlighted}
-                />
-              ))}
-            </div>
-          </>
+            {/* Main Display Grid using layout animation patterns */}
+            <motion.div 
+              layout
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 items-start"
+            >
+              <AnimatePresence>
+                {filteredPGs.map((pg) => (
+                  <motion.div
+                    layout
+                    key={pg.title}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <PGCard {...pg} />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          </div>
         )}
 
-        {/* General Disclaimer Warning Alert */}
-        <div className="rounded-2xl border border-amber-200 bg-amber-50/50 p-5 flex items-start gap-4 max-w-4xl mx-auto shadow-sm">
-          <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-          <div className="space-y-1">
-            <h4 className="font-bold text-sm text-amber-800">
-              Personal Verification Safety Warning
+        {/* Enhanced Security Disclaimer Banner */}
+        <div className="rounded-3xl border border-amber-200 bg-amber-50/60 backdrop-blur-sm p-6 flex flex-col sm:flex-row items-start gap-4 max-w-4xl mx-auto shadow-sm transition-all duration-300 hover:shadow-md">
+          <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-700 flex-shrink-0">
+            <ShieldAlert className="w-5 h-5" />
+          </div>
+          <div className="space-y-1.5">
+            <h4 className="font-extrabold text-sm text-amber-950 flex items-center gap-2">
+              On-Site Physical Inspection Mandate
             </h4>
-            <p className="text-xs text-slate-600 font-semibold leading-relaxed">
-              All PGs listed above are suggested based on senior inputs for reference and general information. We strongly advise you to explore the official links, speak with the wardens, and personally visit/verify the space before making any financial bookings or down payments.
+            <p className="text-xs text-amber-900/80 leading-relaxed font-medium">
+              Alumni-provided listings offer directory entry-points only. To eliminate rental escrow fraud vectors, never wire reservation advances or execute lease contracts electronically without completing a physical, on-site inventory walkthrough alongside local guardians.
             </p>
           </div>
         </div>
@@ -671,4 +611,3 @@ export default function FindNest() {
     </div>
   );
 }
-

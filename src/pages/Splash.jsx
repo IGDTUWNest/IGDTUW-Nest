@@ -1,24 +1,108 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence, useAnimationFrame, useMotionValue, useTransform } from 'framer-motion';
+
+// Stagger child orchestrator variants
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.12,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const childVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { type: "spring", stiffness: 100, damping: 15 } 
+  }
+};
 
 export default function Splash() {
-  const [showLogo, setShowLogo] = useState(false);
+  const [showContent, setShowContent] = useState(false);
   const [taglineText, setTaglineText] = useState("");
   const navigate = useNavigate();
   const tagline = "Campus Meets Comfort";
 
-  // Simulate bird spiral flight path and reveal logo
+  // Liquid Motion Values for dynamic mathematical flight calculations
+  const birdX = useMotionValue(-150);
+  const birdY = useMotionValue(400);
+  const birdRotate = useMotionValue(0);
+  const birdScale = useMotionValue(0.6);
+  const birdOpacity = useMotionValue(0);
+
+  // Initialize frame rate hooks to drive the physics loop
+  useEffect(() => {
+    let startTime = null;
+    let animationFrameId;
+
+    const updateFlight = (time) => {
+      if (!startTime) startTime = time;
+      const elapsed = (time - startTime) / 1000; // time in seconds
+
+      const duration = 3.6; // Total smooth flight journey duration
+      const progress = Math.min(elapsed / duration, 1);
+
+      // 1. Uniform linear X path across the whole screen width
+      const startX = -200;
+      const endX = window.innerWidth + 200;
+      const currentX = startX + (endX - startX) * progress;
+      birdX.set(currentX);
+
+      // 2. Trigonometric Sine Wave for a liquid, non-robotic Y curve
+      const baseHeight = window.innerHeight * 0.45;
+      const waveAmplitude = window.innerHeight * 0.18; // Height of waves
+      const waveFrequency = 1.8; // Creates beautiful organic fluid ripples
+      
+      const currentY = baseHeight + Math.sin(progress * Math.PI * waveFrequency) * waveAmplitude;
+      birdY.set(currentY);
+
+      // 3. Automated Aerodynamic Banking angle (Derivative estimation)
+      const lookAheadProgress = Math.min(progress + 0.01, 1);
+      const nextY = baseHeight + Math.sin(lookAheadProgress * Math.PI * waveFrequency) * waveAmplitude;
+      const slope = nextY - currentY;
+      birdRotate.set(slope * 0.6); // Naturally tilts up into climbs, leans down into drops
+
+      // 4. Smooth fluid sizing & opacity fading cycles
+      const currentScale = 0.6 + Math.sin(progress * Math.PI) * 0.45;
+      birdScale.set(currentScale);
+
+      if (progress < 0.15) {
+        birdOpacity.set(progress / 0.15); // Luxurious fade in
+      } else if (progress > 0.8) {
+        birdOpacity.set((1 - progress) / 0.2); // Liquid fade out
+      } else {
+        birdOpacity.set(1);
+      }
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(updateFlight);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(updateFlight);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
+  // Trigger content hub drop down as bird glides past middle view
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowLogo(true);
-    }, 2200); // Bird flight completes around 2.2s
+      setShowContent(true);
+    }, 1800); 
     return () => clearTimeout(timer);
   }, []);
 
-  // Typewriter effect after logo is displayed
+  // Premium rapid-tick typewriter sequence
   useEffect(() => {
-    if (!showLogo) return;
+    if (!showContent) return;
     let i = 0;
     setTaglineText("");
     const interval = setInterval(() => {
@@ -27,108 +111,136 @@ export default function Splash() {
       if (i >= tagline.length) {
         clearInterval(interval);
       }
-    }, 85);
+    }, 55);
     return () => clearInterval(interval);
-  }, [showLogo]);
+  }, [showContent]);
 
   return (
-    <div className="relative w-full min-h-screen bg-gradient-to-br from-[#fdfafd] via-[#f5f3ff] to-[#fae8ff] overflow-hidden flex flex-col items-center justify-center font-sans">
+    <div className="relative w-full min-h-screen bg-[#FCFBFC] overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-pink-100 selection:text-pink-600">
       
-      {/* Background Clouds */}
+      {/* --- Premium Ambient Glow Backdrops (From Campus Chronicles) --- */}
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.1, 1],
+          x: [0, 30, 0],
+          y: [0, -20, 0] 
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-pink-300/15 to-rose-400/10 blur-[130px] pointer-events-none" 
+      />
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.15, 1],
+          x: [0, -40, 0],
+          y: [0, 30, 0] 
+        }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-purple-300/10 to-pink-400/10 blur-[160px] pointer-events-none" 
+      />
+
+      {/* --- Ambient Cloud Elements --- */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Cloud 1 */}
         <motion.div
           animate={{ x: ['-20vw', '120vw'] }}
-          transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-[10%] left-0 w-44 h-24 bg-brand-pink/5 rounded-full blur-xl"
+          transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
+          className="absolute top-[15%] left-0 w-64 h-32 bg-pink-400/5 rounded-full blur-3xl"
         />
-        {/* Cloud 2 */}
         <motion.div
           animate={{ x: ['-30vw', '130vw'] }}
-          transition={{ duration: 45, repeat: Infinity, ease: 'linear', delay: 8 }}
-          className="absolute top-[28%] left-0 w-52 h-28 bg-brand-purple/5 rounded-full blur-2xl"
+          transition={{ duration: 60, repeat: Infinity, ease: 'linear', delay: 4 }}
+          className="absolute top-[35%] left-0 w-80 h-40 bg-purple-400/5 rounded-full blur-3xl"
         />
       </div>
 
-      {/* Flying Bird Spiral Animation */}
+      {/* --- Pure Liquid Math-Driven Flow Bird Asset --- */}
       <motion.img
         src="/Screenshot 2025-04-21 191321.png"
         alt="Flying Bird"
-        initial={{ 
-          x: '-20vw', 
-          y: '45vh', 
-          scale: 0.8,
-          rotate: 0 
+        style={{
+          x: birdX,
+          y: birdY,
+          rotate: birdRotate,
+          scale: birdScale,
+          opacity: birdOpacity,
         }}
-        animate={{
-          x: ['-20vw', '25vw', '50vw', '75vw', '120vw'],
-          y: ['45vh', '30vh', '55vh', '40vh', '48vh'],
-          rotate: [0, -15, 15, -10, 0],
-          scale: [0.8, 1, 1.1, 0.9, 0.7],
-          opacity: [1, 1, 1, 1, 0]
-        }}
-        transition={{ 
-          duration: 3, 
-          ease: "easeInOut" 
-        }}
-        className="absolute z-20 w-24 h-auto select-none pointer-events-none"
+        className="absolute left-0 top-0 z-20 w-24 h-auto select-none pointer-events-none filter drop-shadow-[0_20px_30px_rgba(244,63,94,0.08)]"
       />
 
-      {/* Main Logo & Action Center */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showLogo ? 1 : 0 }}
-        transition={{ duration: 1.2 }}
-        className="z-10 text-center flex flex-col items-center px-4 max-w-md w-full"
-      >
-        {/* Rotating Circular Neon Glow */}
-        <div className="relative mb-6 group cursor-pointer">
-          <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-brand-pink to-brand-purple opacity-30 group-hover:opacity-60 blur-md group-hover:blur-lg transition duration-500 animate-pulse-slow" />
-          <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden border border-slate-200 bg-white p-2.5 shadow-xl">
-            <img
-              src="/WhatsApp Image 2025-04-10 at 11.58.50.jpeg"
-              alt="IGDTUW Nest Logo"
-              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
-        </div>
-
-        {/* Brand Name */}
-        <h1 className="font-extrabold text-3xl sm:text-4xl tracking-tight mt-4 bg-gradient-to-r from-brand-pink via-purple-500 to-brand-purple bg-clip-text text-transparent drop-shadow-sm">
-          Welcome to IGDTUW Nest
-        </h1>
-
-        {/* Typewriter Tagline */}
-        <div className="min-h-[2.5rem] h-auto mt-2.5 flex items-center justify-center">
-          <p className="text-slate-600 font-semibold tracking-wider text-base sm:text-lg text-center flex flex-wrap items-center justify-center">
-            {taglineText}
-            {taglineText.length < tagline.length && (
-              <span className="w-1.5 h-4.5 bg-brand-pink ml-1 inline-block animate-pulse" />
-            )}
-          </p>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => navigate('/home')}
-            className="w-4/5 sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-brand-pink to-brand-purple text-white font-bold text-sm hover:shadow-[0_0_20px_rgba(236,72,153,0.4)] transition duration-300"
+      {/* --- Main Interactive Center Hub Container --- */}
+      <AnimatePresence>
+        {showContent && (
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            className="z-10 text-center flex flex-col items-center px-6 max-w-md w-full"
           >
-            Let’s Get Started
-          </motion.button>
-          
-          <motion.button
-            whileHover={{ scale: 1.04, backgroundColor: 'rgba(192,132,252,0.08)' }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => navigate('/about')}
-            className="w-4/5 sm:w-auto px-8 py-3.5 rounded-full border border-brand-purple/20 bg-brand-purple/5 text-brand-purple font-semibold text-sm transition duration-300 hover:border-brand-purple/40"
-          >
-            About Us
-          </motion.button>
-        </div>
-      </motion.div>
+            {/* Logo Wrapper with Ambient Glow */}
+            <motion.div variants={childVariants} className="relative mb-8 group cursor-pointer">
+              <div className="absolute -inset-2 rounded-[32px] bg-gradient-to-r from-pink-500 via-rose-400 to-purple-600 opacity-20 group-hover:opacity-40 blur-xl group-hover:blur-2xl transition duration-700" />
+              <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden border border-white bg-white/80 backdrop-blur-xl p-3 shadow-[0_20px_50px_rgba(0,0,0,0.03)] transition-all duration-500 group-hover:shadow-[0_30px_60px_rgba(244,63,94,0.08)] group-hover:border-pink-100">
+                <img
+                  src="/WhatsApp Image 2025-04-10 at 11.58.50.jpeg"
+                  alt="IGDTUW Nest Logo"
+                  className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+              </div>
+            </motion.div>
+
+            {/* Premium Editorial Title Text */}
+            <motion.h1 
+              variants={childVariants}
+              className="font-black text-3xl sm:text-4xl tracking-tight mt-2 text-slate-900"
+            >
+              Welcome to{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600">
+                IGDTUW Nest
+              </span>
+            </motion.h1>
+
+            {/* Micro Typewriter Caption Banner */}
+            <motion.div variants={childVariants} className="min-h-[2rem] h-auto mt-3.5 flex items-center justify-center">
+              <p className="text-slate-500 font-semibold tracking-wide text-sm sm:text-base text-center flex items-center justify-center">
+                {taglineText}
+                {taglineText.length < tagline.length && (
+                  <motion.span 
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 0.8, repeat: Infinity }}
+                    className="w-1 h-4 bg-pink-500 ml-1.5 inline-block" 
+                  />
+                )}
+              </p>
+            </motion.div>
+
+            {/* Premium Action Buttons */}
+            <motion.div 
+              variants={childVariants}
+              className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full justify-center"
+            >
+              {/* Primary Action Button */}
+              <motion.button
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => navigate('/home')}
+                className="group relative overflow-hidden w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold text-xs shadow-lg shadow-pink-500/15 hover:shadow-pink-500/25 transition-all duration-300 tracking-wide"
+              >
+                <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/20 opacity-40 group-hover:animate-shine" />
+                <span>Let’s Get Started</span>
+              </motion.button>
+              
+              {/* Secondary Clean White Action Button */}
+              <motion.button
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => navigate('/about')}
+                className="w-full sm:w-auto px-8 py-3.5 rounded-2xl border border-slate-200/60 bg-white/60 text-slate-700 backdrop-blur-md font-bold text-xs shadow-sm hover:bg-white hover:text-pink-600 hover:border-pink-200 transition-all duration-300 tracking-wide"
+              >
+                About Us
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
