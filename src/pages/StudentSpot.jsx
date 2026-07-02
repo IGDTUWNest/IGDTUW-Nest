@@ -138,7 +138,7 @@ export default function StudentSpot() {
     : currentTab.data;
 
   return (
-    <div className="relative min-h-screen pt-24 pb-20 bg-[#FCFBFC] overflow-hidden flex flex-col items-center">
+    <div className="relative min-h-screen pt-24 pb-20 bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] overflow-hidden flex flex-col items-center">
       <AnimatedBg />
 
       {/* --- Multi-Layer Ambient Background Gradients --- */}

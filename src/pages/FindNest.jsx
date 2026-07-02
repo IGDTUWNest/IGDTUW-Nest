@@ -303,7 +303,7 @@ export default function FindNest() {
   };
 
   return (
-    <div className="relative min-h-screen pt-24 pb-16 overflow-hidden flex flex-col items-center bg-[#FAF6F8] selection:bg-pink-200 selection:text-pink-900">
+    <div className="relative min-h-screen pt-24 pb-16 overflow-hidden flex flex-col items-center bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] selection:bg-pink-200 selection:text-pink-900">
       <AnimatedBg />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 space-y-12 flex-1 flex flex-col">

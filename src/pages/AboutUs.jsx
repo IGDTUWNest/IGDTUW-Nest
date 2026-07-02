@@ -64,7 +64,7 @@ export default function AboutUs() {
   };
 
   return (
-    <div className="relative min-h-screen pt-28 pb-20 overflow-hidden flex flex-col items-center bg-[#FFFBFD]">
+    <div className="relative min-h-screen pt-28 pb-20 overflow-hidden flex flex-col items-center bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC]">
       <AnimatedBg />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 space-y-20 flex-1 flex flex-col justify-center">

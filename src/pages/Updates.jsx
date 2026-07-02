@@ -123,7 +123,7 @@ export default function Updates() {
   };
 
   return (
-    <div className="relative min-h-screen pt-28 pb-24 bg-[#FCFBFC] overflow-hidden flex flex-col items-center select-none text-slate-800">
+    <div className="relative min-h-screen pt-28 pb-24 bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] overflow-hidden flex flex-col items-center select-none text-slate-800">
       
       {/* Background Luxury Blur Orbs */}
       <div 

@@ -161,10 +161,11 @@ export default function Home() {
           </div>
 
           {/* Upgraded Modern Video Framings */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
             {[
               { id: "y6vGAHNUp3E?si=cDu0F2HSgLHsHslC", title: "IGDTUW Tour 1" },
-              { id: "IEkVnxdJ9p8?si=ToRHuAtWBNxxCiet", title: "IGDTUW Tour 2" }
+              { id: "IEkVnxdJ9p8?si=ToRHuAtWBNxxCiet", title: "IGDTUW Tour 2" },
+              { id: "mO4qIh94AOg?si=La7HtStoOZ5_o2wp", title: "IGDTUW Campus Walkthrough" }
             ].map((video, index) => (
               <div key={index} className="relative rounded-2xl overflow-hidden border border-slate-800 aspect-video bg-slate-900 shadow-[0_15px_35px_rgba(0,0,0,0.6)] group/video hover:border-pink-500/50 transition-all duration-300">
                 {/* Neon shadow overlay underneath video frame edges */}

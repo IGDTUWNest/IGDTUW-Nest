@@ -116,7 +116,7 @@ export default function Splash() {
   }, [showContent]);
 
   return (
-    <div className="relative w-full min-h-screen bg-[#FCFBFC] overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-pink-100 selection:text-pink-600">
+    <div className="relative w-full min-h-screen bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-pink-100 selection:text-pink-600">
       
       {/* --- Premium Ambient Glow Backdrops (From Campus Chronicles) --- */}
       <motion.div 
