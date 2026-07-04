@@ -218,6 +218,49 @@ const PGS_DATA = [
     directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/1A+Goela+Lane,+Underhill+Road,+Civil+Lines,+Delhi",
     isHighlighted: false,
     locality: "Civil Lines"
+  },
+  {
+    title: "North Campus Girls PG",
+    rent: "₹13,000 – ₹19,000 (varies by room)",
+    minRent: 13000,
+    maxRent: 19000,
+    sharing: ["single", "double", "triple"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: true,
+    hasPowerBackup: true,
+    facilities: "4-time Veg Meals, WiFi, AC (most rooms), Attached Washrooms, Lift, Laundry, 24hr Security/CCTV, Power Backup, RO Water",
+    nearby: "Vijay Nagar Chowk, Old Gupta Colony (near GTB Nagar Metro Gate No. 4)",
+    detailsLink: "https://northcampusgirlspg.com",
+    distance: "~6.8 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/North+Campus+Girls+PG,+Vijay+Nagar,+Delhi",
+    isHighlighted: false,
+    locality: "North Campus",
+    phone: "+91-9810136104 / +91-9999658000",
+    email: "campusgirlspg@gmail.com"
+  },
+  {
+    title: "Hazel by Hyphen (Girls)",
+    rent: "starts around ₹29,000 (double sharing)",
+    minRent: 29000,
+    maxRent: 29000,
+    sharing: ["double"],
+    hasAC: true,
+    hasMeals: true,
+    hasWifi: true,
+    hasLaundry: true,
+    hasPowerBackup: true,
+    facilities: "Housekeeping, WiFi, Work Desk, TV + OTT, Laundry, In-house Cafe, Fridge, 3 Meals",
+    nearby: "Bungalow Road, near Kamla Nagar (close to Vishwavidyalaya metro)",
+    detailsLink: "https://cofynd.com",
+    distance: "~4.8 km",
+    directionsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Bungalow+Road,+Kamla+Nagar,+Delhi",
+    isHighlighted: false,
+    isUnverified: true,
+    locality: "North Campus",
+    phone: "+91 9355 28 9999",
+    email: "hello@cofynd.com"
   }
 ];
 
@@ -530,6 +573,7 @@ export default function FindNest() {
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: idx * 0.05 }}
+                              className="h-full"
                             >
                               <PGCard {...pg} />
                             </motion.div>
@@ -573,7 +617,7 @@ export default function FindNest() {
             {/* Main Display Grid using layout animation patterns */}
             <motion.div 
               layout
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 items-start"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1"
             >
               <AnimatePresence>
                 {filteredPGs.map((pg) => (
@@ -584,6 +628,7 @@ export default function FindNest() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4 }}
+                    className="h-full"
                   >
                     <PGCard {...pg} />
                   </motion.div>

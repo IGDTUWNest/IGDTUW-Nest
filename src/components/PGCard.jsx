@@ -1,7 +1,7 @@
-import { MapPin, ArrowUpRight, Compass, ShieldCheck, DollarSign } from 'lucide-react';
+import { MapPin, ArrowUpRight, Compass, ShieldCheck, DollarSign, Phone, Mail, ShieldAlert } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function PGCard({ title, rent, facilities, nearby, detailsLink, distance, directionsLink, isHighlighted, matchScore }) {
+export default function PGCard({ title, rent, facilities, nearby, detailsLink, distance, directionsLink, isHighlighted, matchScore, phone, email, isUnverified }) {
   // Convert facility string to array
   const facilitiesArray = facilities ? facilities.split(',').map(f => f.trim()) : [];
 
@@ -9,7 +9,7 @@ export default function PGCard({ title, rent, facilities, nearby, detailsLink, d
     <motion.div
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
-      className={`relative rounded-2xl glass-panel flex flex-col justify-between overflow-hidden border ${
+      className={`relative rounded-2xl glass-panel flex flex-col justify-between overflow-hidden border h-full ${
         isHighlighted 
           ? 'border-brand-pink/40 bg-gradient-to-b from-brand-pink/10 to-transparent shadow-[0_8px_30px_rgba(236,72,153,0.06)]' 
           : 'border-slate-200/50 bg-white/70'
@@ -27,6 +27,14 @@ export default function PGCard({ title, rent, facilities, nearby, detailsLink, d
         <div className="absolute top-0 right-0 bg-gradient-to-r from-brand-pink to-brand-purple text-[10px] font-extrabold text-white px-3 py-1 rounded-bl-xl uppercase tracking-wider shadow-sm flex items-center gap-1 z-10">
           <ShieldCheck className="w-3.5 h-3.5" />
           <span>Best Student Choice</span>
+        </div>
+      )}
+
+      {/* Top Banner Ribbon for Unverified Listings */}
+      {isUnverified && (
+        <div className="absolute top-0 right-0 bg-gradient-to-r from-amber-500 to-orange-500 text-[10px] font-extrabold text-white px-3 py-1 rounded-bl-xl uppercase tracking-wider shadow-sm flex items-center gap-1 z-10">
+          <ShieldAlert className="w-3.5 h-3.5" />
+          <span>Pending Verification</span>
         </div>
       )}
 
@@ -72,6 +80,33 @@ export default function PGCard({ title, rent, facilities, nearby, detailsLink, d
             ))}
           </div>
         </div>
+
+        {/* Contact Info (if available) */}
+        {(phone || email) && (
+          <div className="text-xs text-slate-600 leading-relaxed pt-3 border-t border-slate-200/50 space-y-1.5">
+            <span className="text-[10px] text-brand-pink/80 font-bold uppercase tracking-wider block">
+              Contact Information
+            </span>
+            <div className="space-y-1">
+              {phone && (
+                <div className="flex items-center gap-2 text-slate-700">
+                  <Phone className="w-3 h-3 text-brand-pink/70" />
+                  <a href={`tel:${phone.split('/')[0].trim()}`} className="hover:underline font-semibold text-slate-600">
+                    {phone}
+                  </a>
+                </div>
+              )}
+              {email && (
+                <div className="flex items-center gap-2 text-slate-700">
+                  <Mail className="w-3 h-3 text-brand-purple/70" />
+                  <a href={`mailto:${email}`} className="hover:underline font-semibold text-slate-600">
+                    {email}
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Action Footer Button Group */}
