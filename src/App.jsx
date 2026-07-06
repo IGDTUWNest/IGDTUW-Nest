@@ -28,14 +28,13 @@ function ScrollToTop() {
   return null;
 }
 
-// Page Wrapper for smooth route transitions
 const PageWrapper = ({ children }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -15 }}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
+      initial={{ opacity: 0, x: -12 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 12 }}
+      transition={{ type: "spring", stiffness: 240, damping: 26 }}
       className="flex-1 w-full flex flex-col"
     >
       {children}

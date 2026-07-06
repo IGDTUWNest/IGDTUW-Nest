@@ -116,7 +116,7 @@ export default function Splash() {
   }, [showContent]);
 
   return (
-    <div className="relative w-full min-h-screen bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-pink-100 selection:text-pink-600">
+    <div className="relative w-full min-h-screen bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] dark:from-[#0a0712] dark:via-[#11091b] dark:to-[#070b14] overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-pink-100 selection:text-pink-600">
       
       {/* --- Premium Cinematic Background Video & Realistic Overlays --- */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
@@ -137,10 +137,10 @@ export default function Splash() {
         <div className="absolute inset-0 backdrop-blur-[1.5px] bg-white/[0.03]" />
 
         {/* 2. Brand-Matching Color Gradient Wash */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#E2D9F5]/50 via-[#F5DDF0]/45 to-[#DBE7FC]/50 mix-blend-color-burn" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#E2D9F5]/50 via-[#F5DDF0]/45 to-[#DBE7FC]/50 dark:from-[#0a0712]/50 dark:via-[#11091b]/45 dark:to-[#070b14]/50 mix-blend-color-burn" />
 
         {/* 3. Radial Vignette Overlay (fades out edges to pull focus to the center) */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(245,221,240,0.4)_70%,rgba(226,217,245,0.85)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(245,221,240,0.4)_70%,rgba(226,217,245,0.85)_100%)] dark:bg-[radial-gradient(circle_at_center,transparent_30%,rgba(17,9,27,0.4)_70%,rgba(10,7,18,0.95)_100%)]" />
       </div>
 
       {/* --- Premium Ambient Glow Backdrops (From Campus Chronicles) --- */}
@@ -203,7 +203,7 @@ export default function Splash() {
             {/* Logo Wrapper with Ambient Glow */}
             <motion.div variants={childVariants} className="relative mb-8 group cursor-pointer">
               <div className="absolute -inset-2 rounded-[32px] bg-gradient-to-r from-pink-500 via-rose-400 to-purple-600 opacity-20 group-hover:opacity-40 blur-xl group-hover:blur-2xl transition duration-700" />
-              <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden border border-white bg-white/80 backdrop-blur-xl p-3 shadow-[0_20px_50px_rgba(0,0,0,0.03)] transition-all duration-500 group-hover:shadow-[0_30px_60px_rgba(244,63,94,0.08)] group-hover:border-pink-100">
+              <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden border border-white dark:border-white/10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-3 shadow-[0_20px_50px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-500 group-hover:shadow-[0_30px_60px_rgba(244,63,94,0.08)] group-hover:border-pink-100 dark:group-hover:border-pink-900">
                 <img
                   src="/WhatsApp Image 2025-04-10 at 11.58.50.jpeg"
                   alt="IGDTUW Nest Logo"
@@ -215,7 +215,7 @@ export default function Splash() {
             {/* Premium Editorial Title Text */}
             <motion.h1 
               variants={childVariants}
-              className="font-black text-3xl sm:text-4xl tracking-tight mt-2 text-slate-900"
+              className="font-black text-3xl sm:text-4xl tracking-tight mt-2 text-slate-900 dark:text-white"
             >
               Welcome to{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600">
@@ -225,7 +225,7 @@ export default function Splash() {
 
             {/* Micro Typewriter Caption Banner */}
             <motion.div variants={childVariants} className="min-h-[2rem] h-auto mt-3.5 flex items-center justify-center">
-              <p className="text-slate-500 font-semibold tracking-wide text-sm sm:text-base text-center flex items-center justify-center">
+              <p className="text-slate-500 dark:text-slate-400 font-semibold tracking-wide text-sm sm:text-base text-center flex items-center justify-center">
                 {taglineText}
                 {taglineText.length < tagline.length && (
                   <motion.span 
@@ -258,7 +258,7 @@ export default function Splash() {
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => navigate('/about')}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-2xl border border-slate-200/60 bg-white/60 text-slate-700 backdrop-blur-md font-bold text-xs shadow-sm hover:bg-white hover:text-pink-600 hover:border-pink-200 transition-all duration-300 tracking-wide"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-2xl border border-slate-200/60 dark:border-white/10 bg-white/60 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 backdrop-blur-md font-bold text-xs shadow-sm hover:bg-white dark:hover:bg-slate-800 hover:text-pink-600 dark:hover:text-pink-400 hover:border-pink-200 dark:hover:border-pink-900 transition-all duration-300 tracking-wide"
               >
                 About Us
               </motion.button>

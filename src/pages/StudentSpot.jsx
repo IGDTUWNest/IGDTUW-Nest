@@ -65,7 +65,7 @@ export default function StudentSpot() {
     { id: "s3", title: "Hauz Khas Fort & Lake", description: "A classic IGDTUW girl getaway — whether it's for brunch plans, poetry reels, or just escaping the campus chaos. The lakeside ruins, cozy cafés, and artsy vibe make it our go-to for peace, pics & plans.", distance: "~12 km (35 min via metro)", images: ["/hauz1.jpg", "/haus2.jpg", "/haus3.jpg", "/haus4.jpg"], mapsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Hauz+Khas+Fort,+New+Delhi/" },
     { id: "s4", title: "Bangla Sahib & CP Hanuman Mandir", description: "Need a moment of peace or strength before exams? These two spiritual gems — just minutes from CP — offer calm and grounding in the middle of the city rush. Bangla Sahib offers peace & langar; Mandir is perfect for exams prep.", distance: "~7 km (25 min via Metro)", images: ["/gurudwara.jpg", "/mandir.jpg", "/gurudwara1.jpg", "/mandir1.jpg"], secondaryLinks: [{ label: "Gurudwara Bangla Sahib", url: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Gurudwara+Bangla+Sahib,+New+Delhi" }, { label: "CP Hanuman Mandir", url: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Hanuman+Mandir,+Connaught+Place" }] },
     { id: "s5", title: "NGMA (Gallery of Modern Art)", description: "Peaceful museum + courtyard café. Abstract art, AC halls, and the perfect quiet study-escape spot.", distance: "~7 km (25 min via metro)", images: ["/ngma1.jpg", "/ngma2.jpg", "/ngma3.jpg"], mapsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/National+Gallery+of+Modern+Art,+New+Delhi/" },
-    { id: "s6", title: "Yamuna Ghat (Vasudev Ghat Park)", description: "Sunrise boat rides, early morning birds, and peaceful aarti by the riverside — Yamuna Ghat is a hidden gem. Vasudev Ghat Park nearby adds lush greenery and photo spots with almost zero crowd.", distance: "~3.0 km (10–15 min auto)", images: ["/yamunaghat1.jpg", "/yamunaghat2.jpg", "/yamunaghat3.jpg", "/yamunaghat4.jpg"], mapsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Vasudev+Ghat+Park,+New+Delhi" },
+    { id: "s6", title: "Yamuna Ghat (Vasudev Ghat Park)", description: "Sunrise boat rides, early morning birds, and peaceful aarti by the riverside — Yamuna Ghat is a hidden gem. Vasudev Ghat Park nearby adds visual greenery and photo spots with almost zero crowd.", distance: "~3.0 km (10–15 min auto)", images: ["/yamunaghat1.jpg", "/yamunaghat2.jpg", "/yamunaghat3.jpg", "/yamunaghat4.jpg"], mapsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Vasudev+Ghat+Park,+New+Delhi" },
     { id: "s7", title: "Sunder Nursery Garden Complex", description: "A dreamy Delhi gem for slow strolls, quiet dates, and garden cafés. Sunder Nursery offers rose gardens, fountains & Mughal ruins, while Karnatic Café (inside!) serves cozy South Indian plates.", distance: "~9.5 km (30–35 min via Metro)", images: ["/sunder1.jpg", "/sunder2.jpg", "/karnatic1.jpg", "/karnatic2.jpg"], mapsLink: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Sunder+Nursery,+New+Delhi" },
     { id: "s8", title: "Lodhi Garden & Art District", description: "A fav for IGDTUW girls who love peaceful vibes & bold creativity. Lodhi Garden is perfect for slow walks & book dates, while Lodhi Art District bursts with murals, graffiti & color.", distance: "~9 km (25–30 min via metro)", images: ["/lodhi1.jpg", "/lodhi2.jpg", "/lodhi3.jpg", "/lodhi4.jpg"], secondaryLinks: [{ label: "Lodhi Garden Map", url: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Lodhi+Garden,+New+Delhi" }, { label: "Art District Map", url: "https://www.google.com/maps/dir/IGDTUW,+Delhi/Lodhi+Art+District,+New+Delhi" }] }
   ];
@@ -138,7 +138,7 @@ export default function StudentSpot() {
     : currentTab.data;
 
   return (
-    <div className="relative min-h-screen pt-24 pb-20 bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] overflow-hidden flex flex-col items-center">
+    <div className="relative min-h-screen pt-24 pb-20 bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] dark:from-[#0a0712] dark:via-[#11091b] dark:to-[#070b14] overflow-hidden flex flex-col items-center">
       <AnimatedBg />
 
       {/* --- Multi-Layer Ambient Background Gradients --- */}
@@ -180,22 +180,22 @@ export default function StudentSpot() {
           {/* Main Title Tile (Large) */}
           <motion.div 
             variants={bentoItemVariants}
-            className="lg:col-span-2 relative overflow-hidden bg-white/70 border border-slate-200/60 backdrop-blur-xl p-6 sm:p-8 rounded-[32px] shadow-sm flex flex-col justify-center"
+            className="lg:col-span-2 relative overflow-hidden bg-white/70 dark:bg-slate-900/60 border border-slate-200/60 dark:border-white/10 backdrop-blur-xl p-6 sm:p-8 rounded-[32px] shadow-sm flex flex-col justify-center"
           >
-            <div className="absolute top-0 right-0 p-8 opacity-5 text-slate-900 pointer-events-none">
+            <div className="absolute top-0 right-0 p-8 opacity-5 text-slate-900 dark:text-white pointer-events-none">
               <Compass className="w-32 h-32" />
             </div>
-            <div className="bg-gradient-to-r from-pink-500/10 to-purple-500/10 text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 text-[10px] tracking-widest font-black uppercase border border-pink-200/50 px-3 py-1 rounded-full w-fit flex items-center gap-1.5 mb-4 shadow-sm bg-white/50">
+            <div className="bg-gradient-to-r from-pink-500/10 to-purple-500/10 text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 text-[10px] tracking-widest font-black uppercase border border-pink-200/50 px-3 py-1 rounded-full w-fit flex items-center gap-1.5 mb-4 shadow-sm bg-white/50 dark:bg-slate-950/30">
               <Sparkles className="w-3 h-3 text-pink-500" />
               <span>Honest Student Curations</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
               Student Picks:{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600">
                 Cafés & Hangouts
               </span>
             </h1>
-            <p className="text-slate-500 text-xs sm:text-sm mt-2 max-w-xl font-medium leading-relaxed">
+            <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-2 max-w-xl font-medium leading-relaxed">
               Because some vibes just can’t be searched on Google Maps. Here is where the <span className="text-pink-500 font-bold">IGDTUW crew</span> actually eats, shops, and kicks back after exams.
             </p>
           </motion.div>
@@ -220,16 +220,16 @@ export default function StudentSpot() {
               onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
               className={`p-5 rounded-[28px] border transition-all duration-300 flex flex-col justify-between text-left relative overflow-hidden ${
                 showFavoritesOnly 
-                  ? 'bg-purple-900 border-purple-950 text-white shadow-md' 
-                  : 'bg-white/70 border-slate-200/60 backdrop-blur-xl hover:border-pink-200 text-slate-800'
+                  ? 'bg-purple-900 dark:bg-purple-950/80 border-purple-950 dark:border-purple-900 text-white shadow-md' 
+                  : 'bg-white/70 dark:bg-slate-900/60 border-slate-200/60 dark:border-white/10 backdrop-blur-xl hover:border-pink-200 dark:hover:border-pink-900 text-slate-800 dark:text-slate-250'
               }`}
             >
-              <Heart className={`w-5 h-5 ${showFavoritesOnly ? 'fill-pink-400 text-pink-400' : 'text-slate-400'}`} />
+              <Heart className={`w-5 h-5 ${showFavoritesOnly ? 'fill-pink-400 text-pink-400' : 'text-slate-400 dark:text-slate-500'}`} />
               <div className="mt-4">
                 <span className="text-lg font-black tracking-tight block">
                   {showFavoritesOnly ? "Showing Saved" : "My Nest Pocket"}
                 </span>
-                <span className={`text-[11px] font-bold ${showFavoritesOnly ? 'text-purple-200' : 'text-slate-500'}`}>
+                <span className={`text-[11px] font-bold ${showFavoritesOnly ? 'text-purple-200' : 'text-slate-500 dark:text-slate-400'}`}>
                   {favorites.length} spots bookmarked
                 </span>
               </div>
@@ -239,8 +239,8 @@ export default function StudentSpot() {
 
         {/* --- Smooth Sliding Tab Navigation --- */}
         {!showFavoritesOnly && (
-          <div className="flex justify-center border-b border-slate-200/40 pb-2">
-            <div className="flex bg-white/70 backdrop-blur-md border border-slate-200/80 p-1.5 rounded-2xl gap-1.5 shadow-[0_4px_25px_rgba(0,0,0,0.01)] relative">
+          <div className="flex justify-center border-b border-slate-200/40 dark:border-white/10 pb-2">
+            <div className="flex bg-white/70 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/80 dark:border-white/10 p-1.5 rounded-2xl gap-1.5 shadow-[0_4px_25px_rgba(0,0,0,0.01)] relative">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const active = tab.id === activeTab;
@@ -248,18 +248,18 @@ export default function StudentSpot() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`relative flex items-center gap-2.5 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-300 focus:outline-none z-10 ${
-                      active ? 'text-pink-600' : 'text-slate-500 hover:text-pink-500'
+                    className={`relative flex items-center gap-2.5 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-300 focus:outline-none z-10 cursor-pointer ${
+                      active ? 'text-pink-600 dark:text-pink-400' : 'text-slate-500 dark:text-slate-400 hover:text-pink-500 dark:hover:text-pink-450'
                     }`}
                   >
                     {active && (
                       <motion.div
                         layoutId="activeTabPill"
-                        className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-rose-500/10 border border-pink-200/40 rounded-xl z-[-1] shadow-[0_4px_15px_rgba(244,63,94,0.05)]"
+                        className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-rose-500/10 dark:from-pink-500/20 dark:to-rose-500/20 border border-pink-200/40 dark:border-pink-900/40 rounded-xl z-[-1] shadow-[0_4px_15px_rgba(244,63,94,0.05)]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
-                    <Icon className={`w-4 h-4 ${active ? 'scale-110 text-pink-500' : ''}`} />
+                    <Icon className={`w-4 h-4 ${active ? 'scale-110 text-pink-500 dark:text-pink-400' : ''}`} />
                     <span className="hidden sm:inline">{tab.name}</span>
                     <span className="inline sm:hidden">{tab.name.split(' ')[0]}</span>
                   </button>
@@ -288,22 +288,22 @@ export default function StudentSpot() {
                       key={spot.id} 
                       variants={cardItemVariants}
                       whileHover={{ y: -6 }}
-                      className="h-full relative group bg-white border border-slate-100 rounded-[28px] overflow-hidden flex flex-col shadow-[0_4px_25px_rgba(0,0,0,0.01)] hover:shadow-[0_20px_40px_rgba(244,63,94,0.04)] hover:border-pink-100/70 transition-all duration-300"
+                      className="h-full relative group bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 rounded-[28px] overflow-hidden flex flex-col shadow-[0_4px_25px_rgba(0,0,0,0.01)] hover:shadow-[0_20px_40px_rgba(244,63,94,0.04)] dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:border-pink-100/70 dark:hover:border-pink-900/70 transition-all duration-300"
                     >
                       {/* Premium Top Image Cover Badge Engine */}
-                      <div className="relative overflow-hidden aspect-[4/3] bg-slate-100">
+                      <div className="relative overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-slate-800">
                         {/* Custom Distance Tag */}
-                        <div className="absolute top-3 left-3 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/40 shadow-sm flex items-center gap-1.5 z-10">
+                        <div className="absolute top-3 left-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/40 dark:border-white/10 shadow-sm flex items-center gap-1.5 z-10">
                           <MapPin className="w-3 h-3 text-pink-500" />
-                          <span className="text-[10px] font-extrabold tracking-wide text-slate-700 uppercase">{spot.distance.split(' ')[0]} {spot.distance.split(' ')[1] || ''}</span>
+                          <span className="text-[10px] font-extrabold tracking-wide text-slate-700 dark:text-slate-200 uppercase">{spot.distance.split(' ')[0]} {spot.distance.split(' ')[1] || ''}</span>
                         </div>
 
                         {/* Pocket Heart Action Toggle */}
                         <button 
                           onClick={(e) => toggleFavorite(spot.id, e)}
-                          className="absolute top-3 right-3 w-8.5 h-8.5 rounded-xl bg-white/80 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-sm z-10 hover:bg-white transition-colors duration-200 group/btn"
+                          className="absolute top-3 right-3 w-8.5 h-8.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-white/40 dark:border-white/10 flex items-center justify-center shadow-sm z-10 hover:bg-white dark:hover:bg-slate-850 transition-colors duration-200 group/btn"
                         >
-                          <Heart className={`w-4 h-4 transition-transform duration-200 group-hover/btn:scale-110 ${isFav ? 'fill-pink-500 text-pink-500' : 'text-slate-400'}`} />
+                          <Heart className={`w-4 h-4 transition-transform duration-200 group-hover/btn:scale-110 ${isFav ? 'fill-pink-500 text-pink-500' : 'text-slate-400 dark:text-slate-500'}`} />
                         </button>
 
                         {/* Standard First Asset Loader Placeholder */}
@@ -318,17 +318,17 @@ export default function StudentSpot() {
                         <div className="absolute bottom-3 right-3 flex gap-1.5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <button
                             onClick={(e) => copyRouteShortcut(spot.title, spot.distance, e)}
-                            className="p-2 bg-slate-900/80 backdrop-blur-md rounded-lg text-white text-[10px] font-bold flex items-center gap-1 hover:bg-slate-900"
+                            className="p-2 bg-slate-900/80 backdrop-blur-md rounded-lg text-white text-[10px] font-bold flex items-center gap-1 hover:bg-slate-900 cursor-pointer"
                             title="Copy route string"
                           >
-                            <Copy className="w-3 h-3" />
+                            <Copy className="w-3 h-3 text-pink-400" />
                             <span>Copy Route</span>
                           </button>
                         </div>
                       </div>
 
                       {/* Card Bottom Panel Content Routing Pass-through */}
-                      <div className="p-5 flex-1 flex flex-col justify-between bg-white">
+                      <div className="p-5 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900/40">
                         <SpotCard
                           title={spot.title}
                           description={spot.description}
@@ -343,11 +343,11 @@ export default function StudentSpot() {
                 })
               ) : (
                 <div className="col-span-full py-16 text-center space-y-3">
-                  <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
+                  <div className="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mx-auto text-slate-400 dark:text-slate-550 border border-slate-200 dark:border-white/10">
                     <HelpCircle className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-slate-800 text-sm">No spots found</h3>
-                  <p className="text-xs text-slate-400 max-w-xs mx-auto">
+                  <h3 className="font-bold text-slate-800 dark:text-white text-sm">No spots found</h3>
+                  <p className="text-xs text-slate-400 dark:text-slate-500 max-w-xs mx-auto">
                     {showFavoritesOnly ? "Your bookmarked pocket layout is empty! Tap the hearts on items to add them here." : "No spots matches this category profile."}
                   </p>
                 </div>
@@ -363,7 +363,7 @@ export default function StudentSpot() {
           whileHover={{ scale: 1.04, y: -3 }}
           whileTap={{ scale: 0.96 }}
           onClick={handleSurpriseMe}
-          className="relative overflow-hidden px-6 py-4 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-purple-950 text-white text-xs font-bold tracking-wider uppercase border border-slate-800/80 shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-2.5 group transition-all duration-300 before:absolute before:inset-0 before:bg-gradient-to-r before:from-pink-500/10 before:to-purple-500/10 before:opacity-0 hover:before:opacity-100 before:transition-opacity after:absolute after:-inset-4 after:rounded-3xl after:bg-gradient-to-r after:from-pink-500/20 after:to-purple-500/20 after:blur-xl after:opacity-40 hover:after:opacity-70 after:-z-10 after:animate-pulse"
+          className="relative overflow-hidden px-6 py-4 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-purple-950 text-white text-xs font-bold tracking-wider uppercase border border-slate-800/80 shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-2.5 group transition-all duration-300 cursor-pointer before:absolute before:inset-0 before:bg-gradient-to-r before:from-pink-500/10 before:to-purple-500/10 before:opacity-0 hover:before:opacity-100 before:transition-opacity after:absolute after:-inset-4 after:rounded-3xl after:bg-gradient-to-r after:from-pink-500/20 after:to-purple-500/20 after:blur-xl after:opacity-40 hover:after:opacity-70 after:-z-10 after:animate-pulse"
         >
           {isSpinning ? (
             <Shuffle className="w-4 h-4 animate-spin text-pink-400" />
@@ -385,10 +385,10 @@ export default function StudentSpot() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center p-4"
           >
-            <div className="bg-white px-8 py-10 rounded-[32px] border border-slate-100 shadow-2xl max-w-sm w-full text-center space-y-4">
+            <div className="bg-white dark:bg-[#0f0c1e] px-8 py-10 rounded-[32px] border border-slate-100 dark:border-white/10 shadow-2xl max-w-sm w-full text-center space-y-4">
               <span className="text-[10px] font-black tracking-widest text-pink-500 uppercase block animate-pulse">Scanning the Grid...</span>
               <div className="h-12 flex items-center justify-center overflow-hidden">
-                <motion.p key={spinningText} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="font-extrabold text-slate-800 text-base line-clamp-1">{spinningText}</motion.p>
+                <motion.p key={spinningText} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="font-extrabold text-slate-800 dark:text-white text-base line-clamp-1">{spinningText}</motion.p>
               </div>
             </div>
           </motion.div>
@@ -406,17 +406,17 @@ export default function StudentSpot() {
               initial={{ scale: 0.92, y: 15 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.92, y: 15 }}
-              className="bg-white max-w-md w-full rounded-[36px] overflow-hidden border border-slate-100 shadow-2xl relative"
+              className="bg-white dark:bg-[#0f0c1e] max-w-md w-full rounded-[36px] overflow-hidden border border-slate-100 dark:border-white/10 shadow-2xl relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
                 onClick={() => setRandomSpotModal(null)}
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-900/10 hover:bg-slate-900/20 text-slate-800 flex items-center justify-center z-10 backdrop-blur-md transition-colors"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-900/10 dark:bg-white/10 hover:bg-slate-900/20 dark:hover:bg-white/20 text-slate-800 dark:text-white flex items-center justify-center z-10 backdrop-blur-md transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
 
-              <div className="h-48 bg-slate-100 relative">
+              <div className="h-48 bg-slate-100 dark:bg-slate-800 relative">
                 <img src={randomSpotModal.images[0]} alt="" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-5 text-white">
@@ -429,7 +429,7 @@ export default function StudentSpot() {
               </div>
 
               <div className="p-6 space-y-5">
-                <p className="text-xs font-medium text-slate-600 leading-relaxed">{randomSpotModal.description}</p>
+                <p className="text-xs font-medium text-slate-600 dark:text-slate-355 leading-relaxed">{randomSpotModal.description}</p>
                 <div className="flex gap-3">
                   <a 
                     href={randomSpotModal.mapsLink || (randomSpotModal.secondaryLinks && randomSpotModal.secondaryLinks[0].url)} 

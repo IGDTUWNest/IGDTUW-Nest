@@ -346,7 +346,7 @@ export default function FindNest() {
   };
 
   return (
-    <div className="relative min-h-screen pt-24 pb-16 overflow-hidden flex flex-col items-center bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] selection:bg-pink-200 selection:text-pink-900">
+    <div className="relative min-h-screen pt-24 pb-16 overflow-hidden flex flex-col items-center bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] dark:from-[#0a0712] dark:via-[#11091b] dark:to-[#070b14] selection:bg-pink-200 selection:text-pink-900">
       <AnimatedBg />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 space-y-12 flex-1 flex flex-col">
@@ -358,14 +358,14 @@ export default function FindNest() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="text-center space-y-4"
         >
-          <div className="mx-auto bg-gradient-to-r from-pink-50 to-purple-50 text-pink-700 text-xs font-bold border border-pink-200 px-4 py-1.5 rounded-full w-fit flex items-center gap-2 shadow-sm tracking-wide uppercase">
+          <div className="mx-auto bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-950/30 dark:to-purple-950/30 text-pink-700 dark:text-pink-400 border border-pink-200 dark:border-pink-900/60 px-4 py-1.5 rounded-full w-fit flex items-center gap-2 shadow-sm tracking-wide uppercase">
             <Sparkles className="w-3.5 h-3.5 animate-pulse text-pink-500" />
             <span>Senior Vetted Safety Directory</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight bg-clip-text bg-gradient-to-b from-slate-900 to-slate-700">
+          <h1 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight bg-clip-text">
             Verified PGs Near IGDTUW
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium">
             Handpicked by student unions & alumni. Secure, transparent, and optimized for female students seeking premium housing alternatives.
           </p>
         </motion.div>
@@ -379,7 +379,7 @@ export default function FindNest() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 onClick={() => { setQuizMode(true); resetQuizEngine(); }}
-                className="group relative w-full flex flex-col sm:flex-row items-center justify-between p-6 rounded-3xl border border-pink-100 bg-white/70 backdrop-blur-md shadow-[0_20px_50px_-12px_rgba(236,72,153,0.12)] hover:border-pink-300 hover:shadow-[0_20px_50px_-6px_rgba(236,72,153,0.2)] transition-all duration-300 cursor-pointer gap-6 overflow-hidden"
+                className="group relative w-full flex flex-col sm:flex-row items-center justify-between p-6 rounded-3xl border border-pink-100 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 shadow-[0_20px_50px_-12px_rgba(236,72,153,0.12)] hover:border-pink-300 dark:hover:border-pink-850 transition-all duration-300 cursor-pointer gap-6 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="flex items-center gap-5 text-left z-10">
@@ -387,15 +387,15 @@ export default function FindNest() {
                     <Sparkles className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-extrabold text-base text-slate-900 flex items-center gap-2">
+                    <h4 className="font-extrabold text-base text-slate-900 dark:text-white flex items-center gap-2">
                       Need Personalized Matches?
                     </h4>
-                    <p className="text-sm text-slate-500 mt-1 max-w-xl font-medium leading-normal">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-xl font-medium leading-normal">
                       Launch our interactive matching algorithms to dynamically sort accommodations by your precise spatial filters, multi-sharing constraints, and non-negotiable facility matrices.
                     </p>
                   </div>
                 </div>
-                <span className="bg-slate-900 text-white text-xs font-bold px-5 py-3 rounded-2xl shadow-xl shadow-slate-900/10 flex items-center gap-2 w-full sm:w-auto justify-center group-hover:bg-pink-600 group-hover:shadow-pink-600/20 transition-all duration-300 transform group-hover:translate-x-1 z-10">
+                <span className="bg-slate-900 text-white dark:bg-slate-800 border dark:border-white/10 text-xs font-bold px-5 py-3 rounded-2xl shadow-xl shadow-slate-950/10 flex items-center gap-2 w-full sm:w-auto justify-center group-hover:bg-pink-600 group-hover:shadow-pink-600/20 transition-all duration-300 transform group-hover:translate-x-1 z-10">
                   Start Smart Matcher
                   <ChevronRight className="w-4 h-4" />
                 </span>
@@ -405,7 +405,7 @@ export default function FindNest() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
-                className="rounded-3xl border border-slate-100 bg-white p-6 sm:p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden"
+                className="rounded-3xl border border-slate-100 dark:border-white/10 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] relative overflow-hidden"
               >
                 {/* Visual Ambient Globs */}
                 <div className="absolute -top-10 -right-10 w-48 h-48 bg-pink-400/10 rounded-full blur-3xl pointer-events-none" />
@@ -414,12 +414,12 @@ export default function FindNest() {
                 {/* Sub-steps Content Delivery Architecture */}
                 {quizStep === 1 && (
                   <div className="space-y-6">
-                    <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                      <h3 className="font-black text-lg text-slate-900 flex items-center gap-2.5">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-white/10">
+                      <h3 className="font-black text-lg text-slate-900 dark:text-white flex items-center gap-2.5">
                         <DollarSign className="w-5 h-5 text-pink-500" />
                         <span>Step 1: Allocation & Budget Range</span>
                       </h3>
-                      <button onClick={() => setQuizMode(false)} className="text-xs text-slate-400 hover:text-slate-600 font-bold transition">Cancel</button>
+                      <button onClick={() => setQuizMode(false)} className="text-xs text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-bold transition">Cancel</button>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                       {BUDGET_OPTIONS.map((b) => (
@@ -428,17 +428,17 @@ export default function FindNest() {
                           onClick={() => setUserBudget(b.id)}
                           className={`p-5 rounded-2xl border text-left flex flex-col justify-between h-28 transition-all duration-200 cursor-pointer relative ${
                             userBudget === b.id
-                              ? 'bg-gradient-to-b from-pink-50 to-white border-pink-500 ring-2 ring-pink-500/10 shadow-md shadow-pink-500/5'
-                              : 'bg-slate-50/50 border-slate-100 hover:border-pink-300 hover:bg-white'
+                              ? 'bg-gradient-to-b from-pink-50 to-white dark:from-pink-950/40 dark:to-slate-900 border-pink-500 ring-2 ring-pink-500/10 shadow-md shadow-pink-500/5'
+                              : 'bg-slate-50/50 dark:bg-slate-800/50 border-slate-100 dark:border-white/5 hover:border-pink-300 dark:hover:border-pink-900 hover:bg-white dark:hover:bg-slate-800'
                           }`}
                         >
-                          <span className={`font-extrabold text-xs tracking-wider uppercase ${userBudget === b.id ? 'text-pink-700' : 'text-slate-500'}`}>{b.label}</span>
-                          <span className="text-sm font-bold text-slate-800 mt-2">{b.desc}</span>
+                          <span className={`font-extrabold text-xs tracking-wider uppercase ${userBudget === b.id ? 'text-pink-700 dark:text-pink-400' : 'text-slate-500 dark:text-slate-400'}`}>{b.label}</span>
+                          <span className="text-sm font-bold text-slate-800 dark:text-white mt-2">{b.desc}</span>
                         </div>
                       ))}
                     </div>
                     <div className="flex justify-end pt-4">
-                      <button onClick={() => setQuizStep(2)} className="bg-slate-900 hover:bg-pink-600 text-white font-bold text-xs px-6 py-3 rounded-xl transition duration-200 flex items-center gap-2 shadow-lg shadow-slate-950/10">
+                      <button onClick={() => setQuizStep(2)} className="bg-slate-900 dark:bg-slate-850 hover:bg-pink-600 dark:hover:bg-pink-500 text-white border dark:border-white/10 font-bold text-xs px-6 py-3 rounded-xl transition duration-200 flex items-center gap-2 shadow-lg shadow-slate-950/10">
                         <span>Next Step</span>
                         <ChevronRight className="w-4 h-4" />
                       </button>
@@ -448,12 +448,12 @@ export default function FindNest() {
 
                 {quizStep === 2 && (
                   <div className="space-y-6">
-                    <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                      <h3 className="font-black text-lg text-slate-900 flex items-center gap-2.5">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-white/10">
+                      <h3 className="font-black text-lg text-slate-900 dark:text-white flex items-center gap-2.5">
                         <Users className="w-5 h-5 text-pink-500" />
                         <span>Step 2: Density & Room Sharing</span>
                       </h3>
-                      <button onClick={() => setQuizMode(false)} className="text-xs text-slate-400 hover:text-slate-600 font-bold transition">Cancel</button>
+                      <button onClick={() => setQuizMode(false)} className="text-xs text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-bold transition">Cancel</button>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       {SHARING_OPTIONS.map((s) => {
@@ -464,27 +464,27 @@ export default function FindNest() {
                             onClick={() => setUserSharing(prev => isSelected ? prev.filter(item => item !== s.id) : [...prev, s.id])}
                             className={`p-5 rounded-2xl border text-left flex flex-col justify-between h-28 transition-all duration-200 cursor-pointer relative ${
                               isSelected
-                                ? 'bg-gradient-to-b from-pink-50 to-white border-pink-500 ring-2 ring-pink-500/10 shadow-md'
-                                : 'bg-slate-50/50 border-slate-100 hover:border-pink-300 hover:bg-white'
+                                ? 'bg-gradient-to-b from-pink-50 to-white dark:from-pink-950/40 dark:to-slate-900 border-pink-500 ring-2 ring-pink-500/10 shadow-md'
+                                : 'bg-slate-50/50 dark:bg-slate-800/50 border-slate-100 dark:border-white/5 hover:border-pink-300 dark:hover:border-pink-900 hover:bg-white dark:hover:bg-slate-800'
                             }`}
                           >
                             <div className="flex justify-between items-center w-full">
-                              <span className={`font-extrabold text-xs tracking-wider uppercase ${isSelected ? 'text-pink-700' : 'text-slate-500'}`}>{s.label}</span>
-                              <div className={`w-4 h-4 rounded-full flex items-center justify-center border transition ${isSelected ? 'border-pink-500 bg-pink-500 text-white' : 'border-slate-300 bg-white'}`}>
+                              <span className={`font-extrabold text-xs tracking-wider uppercase ${isSelected ? 'text-pink-700 dark:text-pink-400' : 'text-slate-500 dark:text-slate-400'}`}>{s.label}</span>
+                              <div className={`w-4 h-4 rounded-full flex items-center justify-center border transition ${isSelected ? 'border-pink-500 bg-pink-500 text-white' : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900'}`}>
                                 {isSelected && <Check className="w-2.5 h-2.5 stroke-[3px]" />}
                               </div>
                             </div>
-                            <span className="text-xs font-semibold text-slate-500 mt-2">{s.desc}</span>
+                            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">{s.desc}</span>
                           </div>
                         );
                       })}
                     </div>
                     <div className="flex justify-between pt-4">
-                      <button onClick={() => setQuizStep(1)} className="border border-slate-200 text-slate-600 font-bold text-xs px-5 py-3 rounded-xl hover:bg-slate-50 transition flex items-center gap-1.5">
+                      <button onClick={() => setQuizStep(1)} className="border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 font-bold text-xs px-5 py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
                         <ChevronLeft className="w-4 h-4" />
                         <span>Back</span>
                       </button>
-                      <button onClick={() => setQuizStep(3)} className="bg-slate-900 hover:bg-pink-600 text-white font-bold text-xs px-6 py-3 rounded-xl transition flex items-center gap-2 shadow-lg shadow-slate-950/10">
+                      <button onClick={() => setQuizStep(3)} className="bg-slate-900 dark:bg-slate-850 hover:bg-pink-600 dark:hover:bg-pink-500 text-white border dark:border-white/10 font-bold text-xs px-6 py-3 rounded-xl transition flex items-center gap-2 shadow-lg shadow-slate-950/10">
                         <span>Next Step</span>
                         <ChevronRight className="w-4 h-4" />
                       </button>
@@ -494,12 +494,12 @@ export default function FindNest() {
 
                 {quizStep === 3 && (
                   <div className="space-y-6">
-                    <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                      <h3 className="font-black text-lg text-slate-900 flex items-center gap-2.5">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-white/10">
+                      <h3 className="font-black text-lg text-slate-900 dark:text-white flex items-center gap-2.5">
                         <Sparkles className="w-5 h-5 text-pink-500" />
                         <span>Step 3: Custom Amenities & Priorities</span>
                       </h3>
-                      <button onClick={() => setQuizMode(false)} className="text-xs text-slate-400 hover:text-slate-600 font-bold transition">Cancel</button>
+                      <button onClick={() => setQuizMode(false)} className="text-xs text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 font-bold transition">Cancel</button>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                       {FACILITY_OPTIONS.map((f) => {
@@ -510,12 +510,12 @@ export default function FindNest() {
                             onClick={() => setUserFacilities(prev => isSelected ? prev.filter(item => item !== f.id) : [...prev, f.id])}
                             className={`p-4 rounded-xl border text-center font-bold text-sm transition duration-200 flex flex-col items-center justify-center gap-3 cursor-pointer ${
                               isSelected
-                                ? 'bg-pink-50/50 border-pink-500 text-pink-900 shadow-sm'
-                                : 'bg-slate-50/50 border-slate-100 hover:border-pink-300 hover:bg-white text-slate-700'
+                                ? 'bg-pink-50/50 dark:bg-pink-950/30 border-pink-500 text-pink-900 dark:text-pink-400 shadow-sm'
+                                : 'bg-slate-50/50 dark:bg-slate-800/50 border-slate-100 dark:border-white/5 hover:border-pink-300 hover:bg-white dark:hover:bg-slate-850 text-slate-700 dark:text-slate-300'
                             }`}
                           >
                             <span>{f.label}</span>
-                            <div className={`w-5 h-5 rounded-md border flex items-center justify-center ${isSelected ? 'bg-pink-600 border-pink-600 text-white' : 'border-slate-300 bg-white'}`}>
+                            <div className={`w-5 h-5 rounded-md border flex items-center justify-center ${isSelected ? 'bg-pink-600 border-pink-600 text-white' : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900'}`}>
                               {isSelected && <Check className="w-3 h-3 text-white stroke-[3px]" />}
                             </div>
                           </div>
@@ -523,7 +523,7 @@ export default function FindNest() {
                       })}
                     </div>
                     <div className="flex justify-between pt-4">
-                      <button onClick={() => setQuizStep(2)} className="border border-slate-200 text-slate-600 font-bold text-xs px-5 py-3 rounded-xl hover:bg-slate-50 transition flex items-center gap-1.5">
+                      <button onClick={() => setQuizStep(2)} className="border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 font-bold text-xs px-5 py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
                         <ChevronLeft className="w-4 h-4" />
                         <span>Back</span>
                       </button>
@@ -537,12 +537,12 @@ export default function FindNest() {
 
                 {quizStep === 4 && (
                   <div className="space-y-6">
-                    <div className="flex justify-between items-center pb-4 border-b border-slate-100">
-                      <h3 className="font-black text-lg text-slate-900 flex items-center gap-2.5">
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-white/10">
+                      <h3 className="font-black text-lg text-slate-900 dark:text-white flex items-center gap-2.5">
                         <Sparkles className="w-5 h-5 text-pink-500 animate-bounce" />
                         <span>Optimized Match Matrix Results</span>
                       </h3>
-                      <button onClick={resetQuizEngine} className="text-xs text-pink-600 hover:text-pink-800 font-bold flex items-center gap-1.5 transition">
+                      <button onClick={resetQuizEngine} className="text-xs text-pink-600 dark:text-pink-400 hover:text-pink-800 dark:hover:text-pink-300 font-bold flex items-center gap-1.5 transition">
                         <Undo2 className="w-3.5 h-3.5" />
                         <span>Restart Matrix</span>
                       </button>
@@ -550,21 +550,21 @@ export default function FindNest() {
 
                     {matchedResults.length === 0 ? (
                       <div className="text-center py-12 space-y-4">
-                        <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto text-slate-400 border border-slate-100">
+                        <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-2xl flex items-center justify-center mx-auto text-slate-400 dark:text-slate-500 border border-slate-100 dark:border-white/10">
                           <AlertCircle className="w-6 h-6" />
                         </div>
-                        <h4 className="font-black text-slate-800">Zero Optimal Matches Found</h4>
-                        <p className="text-sm text-slate-500 max-w-sm mx-auto leading-relaxed">
+                        <h4 className="font-black text-slate-800 dark:text-white">Zero Optimal Matches Found</h4>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto leading-relaxed">
                           Your chosen facility constraints do not align with listings in this specific rent bracket. Consider clearing niche facility fields.
                         </p>
-                        <button onClick={resetQuizEngine} className="bg-slate-100 text-slate-700 text-xs px-4 py-2.5 rounded-xl hover:bg-slate-200 font-bold transition">
+                        <button onClick={resetQuizEngine} className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs px-4 py-2.5 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 font-bold transition">
                           Clear Sorting Filters
                         </button>
                       </div>
                     ) : (
                       <div className="space-y-4">
-                        <p className="text-sm text-slate-500 font-medium">
-                          Identified <span className="text-pink-600 font-extrabold">{matchedResults.length} properties</span> meeting standard safety protocols with dynamic compliance compatibility indexes:
+                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
+                          Identified <span className="text-pink-600 dark:text-pink-400 font-extrabold">{matchedResults.length} properties</span> meeting standard safety protocols with dynamic compliance compatibility indexes:
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
                           {matchedResults.map((pg, idx) => (
@@ -582,8 +582,8 @@ export default function FindNest() {
                       </div>
                     )}
 
-                    <div className="flex justify-end border-t border-slate-100 pt-5">
-                      <button onClick={() => setQuizMode(false)} className="border border-slate-200 text-slate-600 font-bold text-xs px-5 py-2.5 rounded-xl hover:bg-slate-50 transition">
+                    <div className="flex justify-end border-t border-slate-100 dark:border-white/10 pt-5">
+                      <button onClick={() => setQuizMode(false)} className="border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 font-bold text-xs px-5 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition">
                         <span>Exit Matcher Module</span>
                       </button>
                     </div>
@@ -598,15 +598,15 @@ export default function FindNest() {
         {!quizMode && (
           <div className="space-y-8 flex-1 flex flex-col">
             {/* Elegant pill filter system */}
-            <div className="flex flex-wrap items-center justify-center gap-2.5 bg-slate-100/50 p-1.5 rounded-2xl w-fit mx-auto backdrop-blur-sm border border-slate-200/50">
+            <div className="flex flex-wrap items-center justify-center gap-2.5 bg-slate-100/50 dark:bg-slate-900/60 p-1.5 rounded-2xl w-fit mx-auto backdrop-blur-sm border border-slate-200/50 dark:border-white/10">
               {FILTER_OPTIONS.map((opt) => (
                 <button
                   key={opt}
                   onClick={() => setSelectedFilter(opt)}
-                  className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all duration-300 ${
+                  className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer ${
                     selectedFilter === opt
-                      ? 'bg-white text-pink-700 shadow-md shadow-slate-900/5 ring-1 ring-slate-200'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+                      ? 'bg-white dark:bg-slate-800 text-pink-700 dark:text-pink-400 shadow-md shadow-slate-900/5 ring-1 ring-slate-200 dark:ring-white/10'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-800/50'
                   }`}
                 >
                   {opt}
@@ -639,15 +639,15 @@ export default function FindNest() {
         )}
 
         {/* Enhanced Security Disclaimer Banner */}
-        <div className="rounded-3xl border border-amber-200 bg-amber-50/60 backdrop-blur-sm p-6 flex flex-col sm:flex-row items-start gap-4 max-w-4xl mx-auto shadow-sm transition-all duration-300 hover:shadow-md">
-          <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-700 flex-shrink-0">
+        <div className="rounded-3xl border border-amber-200 dark:border-amber-900/60 bg-amber-50/60 dark:bg-amber-950/20 backdrop-blur-sm p-6 flex flex-col sm:flex-row items-start gap-4 max-w-4xl mx-auto shadow-sm transition-all duration-300 hover:shadow-md">
+          <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/50 flex items-center justify-center text-amber-700 dark:text-amber-450 flex-shrink-0">
             <ShieldAlert className="w-5 h-5" />
           </div>
           <div className="space-y-1.5">
-            <h4 className="font-extrabold text-sm text-amber-950 flex items-center gap-2">
+            <h4 className="font-extrabold text-sm text-amber-950 dark:text-amber-200 flex items-center gap-2">
               On-Site Physical Inspection Mandate
             </h4>
-            <p className="text-xs text-amber-900/80 leading-relaxed font-medium">
+            <p className="text-xs text-amber-900/80 dark:text-amber-300/80 leading-relaxed font-medium">
               Alumni-provided listings offer directory entry-points only. To eliminate rental escrow fraud vectors, never wire reservation advances or execute lease contracts electronically without completing a physical, on-site inventory walkthrough alongside local guardians.
             </p>
           </div>
