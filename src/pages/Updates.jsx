@@ -16,7 +16,7 @@ export default function Updates() {
     glow: "from-pink-500 via-rose-400 to-purple-500",
     category: "Campus Life",
     icon: <Compass className="w-3 h-3" />,
-    badgeColor: "bg-rose-50 text-rose-600 border-rose-200/60",
+    badgeColor: "bg-rose-50 dark:bg-rose-950/20 text-rose-600 dark:text-rose-400 border-rose-200/60 dark:border-rose-900/40",
     readTime: "2 min read"
   };
 
@@ -27,7 +27,7 @@ export default function Updates() {
       glow: "from-purple-500 via-indigo-400 to-blue-500",
       category: "Academics",
       icon: <BookOpen className="w-3 h-3" />,
-      badgeColor: "bg-purple-50 text-purple-600 border-purple-200/60",
+      badgeColor: "bg-purple-50 dark:bg-purple-950/20 text-purple-600 dark:text-purple-400 border-purple-200/60 dark:border-purple-900/40",
       readTime: "1 min read"
     },
     {
@@ -36,7 +36,7 @@ export default function Updates() {
       glow: "from-blue-500 via-cyan-400 to-teal-500",
       category: "Placements",
       icon: <Award className="w-3 h-3" />,
-      badgeColor: "bg-blue-50 text-blue-600 border-blue-200/60",
+      badgeColor: "bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 border-blue-200/60 dark:border-blue-900/40",
       readTime: "2 min read"
     },
     {
@@ -45,7 +45,7 @@ export default function Updates() {
       glow: "from-amber-500 via-orange-400 to-yellow-500",
       category: "Campus Life",
       icon: <Compass className="w-3 h-3" />,
-      badgeColor: "bg-amber-50 text-amber-700 border-amber-200/60",
+      badgeColor: "bg-amber-50 dark:bg-amber-950/20 text-amber-700 dark:text-amber-400 border-amber-200/60 dark:border-amber-900/40",
       readTime: "1 min read"
     },
     {
@@ -54,7 +54,7 @@ export default function Updates() {
       glow: "from-rose-500 via-pink-400 to-orange-400",
       category: "Academics",
       icon: <BookOpen className="w-3 h-3" />,
-      badgeColor: "bg-rose-50 text-rose-600 border-rose-200/60",
+      badgeColor: "bg-rose-50 dark:bg-rose-950/20 text-rose-600 dark:text-rose-400 border-rose-200/60 dark:border-rose-900/40",
       readTime: "1 min read"
     },
     {
@@ -63,7 +63,7 @@ export default function Updates() {
       glow: "from-violet-500 via-purple-400 to-pink-500",
       category: "Placements",
       icon: <Award className="w-3 h-3" />,
-      badgeColor: "bg-indigo-50 text-indigo-600 border-indigo-200/60",
+      badgeColor: "bg-indigo-50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 border-indigo-200/60 dark:border-indigo-900/40",
       readTime: "2 min read"
     },
     {
@@ -72,7 +72,7 @@ export default function Updates() {
       glow: "from-fuchsia-500 via-rose-400 to-red-500",
       category: "Campus Life",
       icon: <Compass className="w-3 h-3" />,
-      badgeColor: "bg-fuchsia-50 text-fuchsia-600 border-fuchsia-200/60",
+      badgeColor: "bg-fuchsia-50 dark:bg-fuchsia-950/20 text-fuchsia-600 dark:text-fuchsia-400 border-fuchsia-200/60 dark:border-fuchsia-900/40",
       readTime: "2 min read"
     },
     {
@@ -81,7 +81,7 @@ export default function Updates() {
       glow: "from-sky-500 via-blue-400 to-indigo-500",
       category: "Academics",
       icon: <BookOpen className="w-3 h-3" />,
-      badgeColor: "bg-sky-50 text-sky-600 border-sky-200/60",
+      badgeColor: "bg-sky-50 dark:bg-sky-950/20 text-sky-600 dark:text-sky-400 border-sky-200/60 dark:border-sky-900/40",
       readTime: "1 min read"
     },
     {
@@ -90,7 +90,7 @@ export default function Updates() {
       glow: "from-emerald-500 via-teal-400 to-cyan-500",
       category: "Placements",
       icon: <Award className="w-3 h-3" />,
-      badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200/60",
+      badgeColor: "bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-455 border-emerald-200/60 dark:border-emerald-900/40",
       readTime: "2 min read"
     }
   ];
@@ -99,12 +99,15 @@ export default function Updates() {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.12 }
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.15
+      }
     }
   };
 
   const cardScrollVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.96 },
+    hidden: { opacity: 0, y: 35, scale: 0.95 },
     show: { 
       opacity: 1, 
       y: 0, 
@@ -123,7 +126,7 @@ export default function Updates() {
   };
 
   return (
-    <div className="relative min-h-screen pt-28 pb-24 bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] overflow-hidden flex flex-col items-center select-none text-slate-800">
+    <div className="relative min-h-screen pt-28 pb-24 bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] dark:from-[#0a0712] dark:via-[#11091b] dark:to-[#070b14] overflow-hidden flex flex-col items-center select-none text-slate-800 dark:text-slate-100 transition-colors duration-300">
       
       {/* Background Luxury Blur Orbs */}
       <div 
@@ -139,8 +142,8 @@ export default function Updates() {
       <AnimatedBg />
 
       {/* Hero Ambient Accents */}
-      <div className="absolute top-16 left-[8%] w-80 h-80 bg-pink-200/20 blur-3xl rounded-full animate-pulse pointer-events-none z-0" />
-      <div className="absolute top-24 right-[10%] w-72 h-72 bg-purple-200/20 blur-3xl rounded-full pointer-events-none z-0" />
+      <div className="absolute top-16 left-[8%] w-80 h-80 bg-pink-200/20 dark:bg-pink-950/10 blur-3xl rounded-full animate-pulse pointer-events-none z-0" />
+      <div className="absolute top-24 right-[10%] w-72 h-72 bg-purple-200/20 dark:bg-purple-950/10 blur-3xl rounded-full pointer-events-none z-0" />
 
       {/* Tiny Background Twinkles */}
       <div className="absolute top-36 left-1/4 w-1.5 h-1.5 bg-pink-400/40 rounded-full animate-ping pointer-events-none" />
@@ -154,14 +157,14 @@ export default function Updates() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="mx-auto bg-white/90 backdrop-blur-xl text-pink-600 text-[10px] tracking-[0.25em] border border-pink-200/60 px-4 py-1.5 rounded-full font-black uppercase w-fit flex items-center gap-2 shadow-[0_10px_35px_rgba(244,63,94,0.06)] mb-6"
+            className="mx-auto bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-pink-600 dark:text-pink-400 border border-pink-200/60 dark:border-pink-900/60 px-4 py-1.5 rounded-full font-black uppercase w-fit flex items-center gap-2 shadow-[0_10px_35px_rgba(244,63,94,0.06)] mb-6"
           >
-            <Sparkles className="w-3.5 h-3.5 text-pink-500" />
+            <Sparkles className="w-3.5 h-3.5 text-pink-500 animate-pulse" />
             <span>Premium Core Lounge</span>
           </motion.div>
 
           {/* Premium Text Reveal Header */}
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-none text-slate-900 overflow-hidden py-1">
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-none text-slate-900 dark:text-white overflow-hidden py-1">
             <motion.span
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -183,7 +186,7 @@ export default function Updates() {
             </motion.span>
           </h1>
           
-          <p className="text-slate-500 text-xs sm:text-sm mt-5 max-w-2xl mx-auto font-semibold leading-relaxed tracking-wide">
+          <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-5 max-w-2xl mx-auto font-semibold leading-relaxed tracking-wide">
             Raw, unfiltered insights passed down from seniors who unlocked the path before you. Tap the live transmission node down below to monitor incoming broadcast updates.
           </p>
         </div>
@@ -193,12 +196,12 @@ export default function Updates() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="relative rounded-[36px] p-[2px] bg-gradient-to-r from-pink-500 via-rose-400 to-purple-500 shadow-[0_20px_50px_rgba(244,63,94,0.08)] overflow-hidden group"
+          className="relative rounded-[36px] p-[2px] bg-gradient-to-r from-pink-505 via-rose-400 to-purple-505 shadow-[0_20px_50px_rgba(244,63,94,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] overflow-hidden group"
         >
-          <div className="absolute inset-0 bg-white/95 rounded-[36px]" />
+          <div className="absolute inset-0 bg-white/95 dark:bg-slate-900/95 rounded-[36px]" />
           
           {/* Glass Overlay Interior Panel */}
-          <div className="relative rounded-[35px] bg-white/60 backdrop-blur-2xl p-8 sm:p-10 flex flex-col md:flex-row gap-8 items-start justify-between border border-white/40 transition-colors duration-500 group-hover:bg-rose-50/60">
+          <div className="relative rounded-[35px] bg-white/60 dark:bg-slate-900/60 backdrop-blur-2xl p-8 sm:p-10 flex flex-col md:flex-row gap-8 items-start justify-between border border-white/40 dark:border-white/10 transition-colors duration-500 group-hover:bg-rose-50/60 dark:group-hover:bg-slate-850/60">
             <div className="space-y-4 flex-1">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-[9px] font-black px-3 py-1 rounded-full text-white uppercase tracking-widest flex items-center gap-1 shadow-sm">
@@ -208,26 +211,26 @@ export default function Updates() {
                   {featuredTip.icon}
                   {featuredTip.category}
                 </span>
-                <span className="text-slate-400 text-[11px] font-bold">{featuredTip.readTime}</span>
+                <span className="text-slate-400 dark:text-slate-500 text-[11px] font-bold">{featuredTip.readTime}</span>
               </div>
 
-              <p className="text-slate-700 group-hover:text-slate-950 text-sm sm:text-[15px] leading-relaxed font-semibold transition-colors duration-300">
+              <p className="text-slate-700 dark:text-slate-300 group-hover:text-slate-950 dark:group-hover:text-white text-sm sm:text-[15px] leading-relaxed font-semibold transition-colors duration-300">
                 "{featuredTip.text}"
               </p>
 
               <div className="pt-2 flex items-center gap-2">
                 <div className="w-6 h-0.5 bg-pink-500/60 rounded-full" />
-                <span className="text-slate-800 font-black text-sm tracking-wide">— {featuredTip.author}</span>
+                <span className="text-slate-800 dark:text-white font-black text-sm tracking-wide">— {featuredTip.author}</span>
               </div>
             </div>
 
             {/* Premium Live Counter Interaction Node */}
             <button 
               onClick={handleLike}
-              className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-2xl border transition-all duration-300 ${
+              className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-2xl border transition-all duration-300 cursor-pointer ${
                 isLiked 
                   ? 'bg-pink-500 border-pink-500 text-white shadow-[0_10px_25px_rgba(244,63,94,0.3)] scale-105' 
-                  : 'bg-white border-slate-200 text-slate-500 hover:text-pink-500 hover:border-pink-200 shadow-sm'
+                  : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:text-pink-500 hover:border-pink-200'
               }`}
             >
               <Heart className={`w-4 h-4 transition-transform ${isLiked ? 'scale-125 fill-white' : 'group-hover:scale-110'}`} />
@@ -253,24 +256,24 @@ export default function Updates() {
                 scale: 1.025,
                 transition: { type: "spring", stiffness: 400, damping: 22 }
               }}
-              className="group relative rounded-[32px] p-[1.5px] overflow-hidden transition-all duration-500 shadow-[0_12px_35px_-12px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_50px_-12px_rgba(244,63,94,0.08)] bg-transparent"
+              className="group relative rounded-[32px] p-[1.5px] overflow-hidden transition-all duration-500 shadow-[0_12px_35px_-12px_rgba(0,0,0,0.04)] dark:shadow-[0_12px_35px_-12px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_-12px_rgba(244,63,94,0.08)] bg-transparent"
             >
               {/* Dynamic Ambient Outer Glow Border Mesh */}
               <div className={`absolute inset-0 bg-gradient-to-br ${note.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[2px]`} />
-              <div className="absolute inset-0 bg-white/95 rounded-[32px] transition-colors duration-500 group-hover:opacity-0" />
+              <div className="absolute inset-0 bg-white/95 dark:bg-slate-900/95 rounded-[32px] transition-colors duration-500 group-hover:opacity-0" />
 
               {/* Card Hover Tint Layer */}
-              <div className="relative h-full rounded-[31px] bg-white/40 backdrop-blur-2xl p-7 flex flex-col justify-between border border-white/60 group-hover:bg-rose-50/70 group-hover:border-rose-200/50 transition-all duration-500">
+              <div className="relative h-full rounded-[31px] bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl p-7 flex flex-col justify-between border border-white/60 dark:border-white/10 group-hover:bg-rose-50/70 dark:group-hover:bg-slate-850/60 group-hover:border-rose-200/50 dark:group-hover:border-pink-900/30 transition-all duration-500">
                 
                 <div className="space-y-4 relative z-10">
                   <div className="flex items-center justify-between">
                     {/* Categorization Badges Block */}
                     <div className="flex items-center gap-2">
-                      <span className={`px-2.5 py-0.5 rounded-full border text-[9px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors duration-300 shadow-2xs ${note.badgeColor} group-hover:bg-white group-hover:border-rose-300/40`}>
+                      <span className={`px-2.5 py-0.5 rounded-full border text-[9px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors duration-300 shadow-2xs ${note.badgeColor} group-hover:bg-white dark:group-hover:bg-slate-900 group-hover:border-rose-300/40`}>
                         {note.icon}
                         {note.category}
                       </span>
-                      <span className="text-[10px] text-slate-400 font-semibold">{note.readTime}</span>
+                      <span className="text-[10px] text-slate-400 dark:text-slate-500 font-semibold">{note.readTime}</span>
                     </div>
 
                     {/* Micro Live Pulsing Active Beacon Node */}
@@ -280,12 +283,12 @@ export default function Updates() {
                     </div>
                   </div>
                   
-                  <p className="text-xs sm:text-[13.5px] text-slate-600 group-hover:text-slate-900 leading-relaxed font-semibold transition-colors duration-300">
+                  <p className="text-xs sm:text-[13.5px] text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white leading-relaxed font-semibold transition-colors duration-300">
                     "{note.text}"
                   </p>
                 </div>
 
-                <div className="mt-7 pt-4 border-t border-slate-200/40 group-hover:border-rose-200/50 flex items-center justify-end relative z-10 transition-colors duration-300">
+                <div className="mt-7 pt-4 border-t border-slate-200/40 dark:border-white/10 group-hover:border-rose-200/50 dark:group-hover:border-pink-900/20 flex items-center justify-end relative z-10 transition-colors duration-300">
                   <span className={`text-transparent bg-clip-text bg-gradient-to-r ${note.glow} font-black text-xs sm:text-sm tracking-wide transform group-hover:scale-102 transition-transform duration-300`}>
                     — {note.author}
                   </span>
@@ -302,7 +305,7 @@ export default function Updates() {
           whileHover={{ scale: 1.04, y: -4 }}
           whileTap={{ scale: 0.96 }}
           onClick={() => setPanelOpen(true)}
-          className="relative overflow-hidden px-6 py-4.5 rounded-2xl bg-slate-950 text-white text-xs font-black tracking-[0.2em] uppercase shadow-[0_20px_45px_rgba(15,23,42,0.35)] flex items-center gap-3 group transition-all duration-300"
+          className="relative overflow-hidden px-6 py-4.5 rounded-2xl bg-slate-950 dark:bg-slate-900 border dark:border-white/15 text-white text-xs font-black tracking-[0.2em] uppercase shadow-[0_20px_45px_rgba(15,23,42,0.35)] flex items-center gap-3 group transition-all duration-300 cursor-pointer"
         >
           {/* Radial Beacon Ring Pings */}
           <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-500 animate-ping opacity-25 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none" />
@@ -338,17 +341,17 @@ export default function Updates() {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed inset-y-0 left-0 w-[88vw] sm:w-[410px] bg-white/95 border-r border-slate-200/60 z-50 p-7 flex flex-col justify-between backdrop-blur-3xl shadow-[30px_0_60px_rgba(0,0,0,0.04)]"
+              className="fixed inset-y-0 left-0 w-[88vw] sm:w-[410px] bg-white/95 dark:bg-slate-900/95 border-r border-slate-200/60 dark:border-white/10 z-50 p-7 flex flex-col justify-between backdrop-blur-3xl shadow-[30px_0_60px_rgba(0,0,0,0.04)] dark:shadow-[30px_0_60px_rgba(0,0,0,0.3)] transition-colors duration-300"
             >
               <div className="flex-1 flex flex-col overflow-hidden space-y-6 mb-6">
-                <div className="flex items-center justify-between pb-4 border-b border-slate-200/60 flex-shrink-0">
-                  <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2.5">
+                <div className="flex items-center justify-between pb-4 border-b border-slate-200/60 dark:border-white/10 flex-shrink-0">
+                  <h3 className="font-black text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
                     <Volume2 className="w-5 h-5 text-pink-600 animate-bounce" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-600">Live Transmissions</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300">Live Transmissions</span>
                   </h3>
                   <button
                     onClick={() => setPanelOpen(false)}
-                    className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200/70 text-slate-400 hover:text-slate-700 transition duration-200"
+                    className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200/70 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-700 dark:hover:text-slate-250 transition duration-200 cursor-pointer"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -361,61 +364,61 @@ export default function Updates() {
                       setPanelOpen(false);
                       navigate('/hackathons');
                     }}
-                    className="p-5 rounded-[24px] bg-gradient-to-br from-pink-500/5 via-purple-500/5 to-transparent border border-pink-500/15 hover:border-pink-500/40 transition duration-300 cursor-pointer relative group"
+                    className="p-5 rounded-[24px] bg-gradient-to-br from-pink-500/5 via-purple-500/5 to-transparent border border-pink-500/15 hover:border-pink-500/40 dark:border-pink-500/30 transition duration-300 cursor-pointer relative group"
                   >
                     <span className="absolute top-4 right-4 bg-gradient-to-r from-pink-600 to-rose-500 text-[8px] font-black px-2.5 py-0.5 rounded-full text-white uppercase tracking-widest shadow-md shadow-pink-500/10">
                       NEW
                     </span>
-                    <h4 className="font-black text-sm text-slate-900 group-hover:text-pink-600 transition duration-200 pr-12">
+                    <h4 className="font-black text-sm text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition duration-200 pr-12">
                       📌 Upcoming Hackathons!
                     </h4>
-                    <p className="text-xs text-slate-500 mt-2 font-semibold leading-relaxed">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 font-semibold leading-relaxed">
                       Walmart Sparkathon, WWT Women, and Delhi Ideathons. Tap to explore rules and timelines.
                     </p>
                   </motion.div>
 
-                  <div className="p-5 rounded-[24px] bg-white border border-slate-200/60 relative shadow-[0_4px_20px_rgba(0,0,0,0.01)]">
+                  <div className="p-5 rounded-[24px] bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-white/5 relative shadow-[0_4px_20px_rgba(0,0,0,0.01)]">
                     <span className="absolute top-4 right-4 bg-amber-500/10 text-amber-700 text-[8px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-widest border border-amber-500/20">
                       ACTIVE
                     </span>
-                    <h4 className="font-black text-sm text-slate-900">
+                    <h4 className="font-black text-sm text-slate-900 dark:text-white">
                       ☀️ Summer Vacation Started
                     </h4>
-                    <p className="text-xs text-slate-500 mt-2 font-semibold leading-relaxed">
-                      <span className="text-slate-400 font-black text-[9px] tracking-widest block uppercase mb-1">June 2, 2026</span>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 font-semibold leading-relaxed">
+                      <span className="text-slate-400 dark:text-slate-550 font-black text-[9px] tracking-widest block uppercase mb-1">June 2, 2026</span>
                       The official summer recess has commenced! Enjoy your break till July 31. Use this time for DSA prep, building projects, and preparing for the upcoming placement season.
                     </p>
                   </div>
 
-                  <div className="p-5 rounded-[24px] bg-white border border-slate-200/60 relative shadow-[0_4px_20px_rgba(0,0,0,0.01)]">
+                  <div className="p-5 rounded-[24px] bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-white/5 relative shadow-[0_4px_20px_rgba(0,0,0,0.01)]">
                     <span className="absolute top-4 right-4 bg-emerald-500/10 text-emerald-700 text-[8px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-widest border border-emerald-500/20">
                       INFO
                     </span>
-                    <h4 className="font-black text-sm text-slate-900">
+                    <h4 className="font-black text-sm text-slate-900 dark:text-white">
                       📝 Exam Evaluations Underway
                     </h4>
-                    <p className="text-xs text-slate-500 mt-2 font-semibold leading-relaxed">
-                      <span className="text-slate-400 font-black text-[9px] tracking-widest block uppercase mb-1">June 2, 2026</span>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 font-semibold leading-relaxed">
+                      <span className="text-slate-400 dark:text-slate-550 font-black text-[9px] tracking-widest block uppercase mb-1">June 2, 2026</span>
                       Evaluation of answer sheets for Even Semester End-Term exams has officially started. Compilation of results is scheduled to be completed by early July.
                     </p>
                   </div>
 
-                  <div className="p-5 rounded-[24px] bg-white border border-slate-200/60 relative shadow-[0_4px_20px_rgba(0,0,0,0.01)]">
+                  <div className="p-5 rounded-[24px] bg-white dark:bg-slate-800 border border-slate-200/60 dark:border-white/5 relative shadow-[0_4px_20px_rgba(0,0,0,0.01)]">
                     <span className="absolute top-4 right-4 bg-purple-500/10 text-purple-700 text-[8px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-widest border border-purple-500/20">
                       T&P
                     </span>
-                    <h4 className="font-black text-sm text-slate-900">
+                    <h4 className="font-black text-sm text-slate-900 dark:text-white">
                       💼 T&P Placement Prep Drive
                     </h4>
-                    <p className="text-xs text-slate-500 mt-2 font-semibold leading-relaxed">
-                      <span className="text-slate-400 font-black text-[9px] tracking-widest block uppercase mb-1">June 2, 2026</span>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 font-semibold leading-relaxed">
+                      <span className="text-slate-400 dark:text-slate-550 font-black text-[9px] tracking-widest block uppercase mb-1">June 2, 2026</span>
                       The Training & Placement cell has opened registrations for summer interview prep drives. Update your resumes, LinkedIn profiles, and register via the T&P portal!
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="p-5 rounded-[28px] bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 text-white space-y-4 shadow-2xl relative overflow-hidden">
+              <div className="p-5 rounded-[28px] bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 text-white space-y-4 shadow-2xl relative overflow-hidden flex-shrink-0">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl pointer-events-none" />
                 <div className="flex items-center gap-2">
                   <Lightbulb className="w-4 h-4 text-pink-400" />

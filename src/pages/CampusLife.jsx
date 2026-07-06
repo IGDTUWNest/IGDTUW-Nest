@@ -38,7 +38,7 @@ export default function CampusLife() {
       link: "https://igdtuwcity.github.io/IGDTUW_CITY/",
       creators: "Joysa Jain & Aarohi Chadha",
       creatorsInfo: "(Batch of 2027, CSE-AI)",
-      description: "A dynamic student-led media page covering society updates, event highlights, and everything that makes IGDTUW what it is. Stay updated on fests, fests, and student initiatives!"
+      description: "A dynamic student-led media page covering society updates, event highlights, and everything that makes IGDTUW what it is. Stay updated on fests, events, and student initiatives!"
     },
     {
       title: "IGDTUW Hub",
@@ -86,7 +86,7 @@ export default function CampusLife() {
     : photos.filter(p => p.category === activeFilter);
 
   return (
-    <div className="relative min-h-screen pt-28 pb-20 overflow-hidden bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] selection:bg-pink-100 selection:text-pink-600">
+    <div className="relative min-h-screen pt-28 pb-20 overflow-hidden bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] dark:from-[#0a0712] dark:via-[#11091b] dark:to-[#070b14] selection:bg-pink-200 selection:text-pink-900 transition-colors duration-300">
       <AnimatedBg />
 
       {/* --- Premium Glowing Ambient Background Layer --- */}
@@ -105,15 +105,15 @@ export default function CampusLife() {
         <motion.div variants={itemVariants} className="text-center space-y-4">
           <motion.div
             whileHover={{ scale: 1.03 }}
-            className="mx-auto bg-pink-50/80 backdrop-blur-md text-pink-600 text-xs font-bold border border-pink-100/80 px-4 py-1.5 rounded-full w-fit flex items-center gap-2 shadow-[0_2px_10px_rgba(244,63,94,0.02)] tracking-wider uppercase cursor-default"
+            className="mx-auto bg-pink-50/80 dark:bg-pink-950/30 backdrop-blur-md text-pink-600 dark:text-pink-400 border border-pink-100/80 dark:border-pink-900/60 px-4 py-1.5 rounded-full w-fit flex items-center gap-2 shadow-[0_2px_10px_rgba(244,63,94,0.02)] tracking-wider uppercase cursor-default"
           >
             <Award className="w-3.5 h-3.5 text-pink-500 animate-pulse" />
             <span>Campus Resources & Hubs</span>
           </motion.div>
-          <h1 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-4xl sm:text-6xl font-black text-slate-900 dark:text-white tracking-tight">
             Campus <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600">Chronicles</span>
           </h1>
-          <p className="text-sm sm:text-base text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
+          <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-xl mx-auto leading-relaxed font-medium">
             Bridging academics and culture. Access student-curated platforms designed to redefine your university experience.
           </p>
         </motion.div>
@@ -128,10 +128,10 @@ export default function CampusLife() {
                 y: -10,
                 transition: { type: "spring", stiffness: 400, damping: 25 }
               }}
-              className="group rounded-3xl bg-white/70 backdrop-blur-xl border border-white relative overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.02)] hover:border-pink-200/80 hover:shadow-[0_30px_60px_rgba(244,63,94,0.08)] transition-all duration-500"
+              className="group rounded-3xl bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border border-white dark:border-white/10 relative overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.02)] hover:border-pink-200/80 dark:hover:border-pink-850 hover:shadow-[0_30px_60px_rgba(244,63,94,0.08)] dark:hover:shadow-[0_30px_60px_rgba(0,0,0,0.3)] transition-all duration-500"
             >
               {/* Image Container with Custom Zoom & Overlay */}
-              <div className="h-60 overflow-hidden bg-slate-100 relative">
+              <div className="h-60 overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
                 <motion.img
                   src={feat.image}
                   alt={feat.title}
@@ -155,19 +155,19 @@ export default function CampusLife() {
               <div className="p-8 flex-1 flex flex-col justify-between gap-6">
                 <div className="space-y-5">
                   {feat.creators && (
-                    <div className="bg-slate-50/60 backdrop-blur-sm border border-slate-100/80 p-4 rounded-2xl flex items-center gap-3.5">
-                      <div className="bg-white p-2.5 rounded-xl shadow-sm border border-pink-50">
-                        <Users className="w-4 h-4 text-pink-500" />
+                    <div className="bg-slate-50/60 dark:bg-slate-800/60 backdrop-blur-sm border border-slate-100/80 dark:border-white/5 p-4 rounded-2xl flex items-center gap-3.5">
+                      <div className="bg-white dark:bg-slate-900 p-2.5 rounded-xl shadow-sm border border-pink-50 dark:border-pink-900/40">
+                        <Users className="w-4 h-4 text-pink-500 animate-pulse" />
                       </div>
                       <div>
                         <span className="text-[10px] text-pink-500 font-black uppercase tracking-widest block">Core Architects</span>
-                        <p className="text-sm font-bold text-slate-800 mt-0.5">{feat.creators}</p>
-                        <span className="text-xs text-slate-400 font-semibold">{feat.creatorsInfo}</span>
+                        <p className="text-sm font-bold text-slate-800 dark:text-white mt-0.5">{feat.creators}</p>
+                        <span className="text-xs text-slate-400 dark:text-slate-500 font-semibold">{feat.creatorsInfo}</span>
                       </div>
                     </div>
                   )}
 
-                  <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                     {feat.description}
                   </p>
                 </div>
@@ -178,7 +178,7 @@ export default function CampusLife() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileTap={{ scale: 0.98 }}
-                  className="relative overflow-hidden flex items-center justify-center gap-2 font-bold text-xs py-4 w-full rounded-2xl text-white bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 shadow-lg shadow-pink-500/15 hover:shadow-pink-500/25 transition-all duration-300"
+                  className="relative overflow-hidden flex items-center justify-center gap-2 font-bold text-xs py-4 w-full rounded-2xl text-white bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 shadow-lg shadow-pink-500/15 hover:shadow-pink-500/25 transition-all duration-300 cursor-pointer"
                 >
                   {/* Subtle reflecting ambient hover line */}
                   <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/20 opacity-40 group-hover:animate-shine" />
@@ -196,35 +196,35 @@ export default function CampusLife() {
         <motion.div variants={itemVariants} className="space-y-8 pt-8">
 
           {/* Header & Filter Controls combo */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-slate-100 pb-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-slate-100 dark:border-white/10 pb-6">
             <div className="flex items-center gap-3 self-start">
-              <div className="p-2.5 rounded-2xl bg-pink-50 text-pink-500 border border-pink-100">
+              <div className="p-2.5 rounded-2xl bg-pink-50 dark:bg-pink-950/30 text-pink-500 dark:text-pink-400 border border-pink-100 dark:border-pink-900/40">
                 <Camera className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
                   Campus Canvas
                 </h2>
-                <p className="text-xs text-slate-400 font-medium">
+                <p className="text-xs text-slate-400 dark:text-slate-500 font-medium">
                   The unscripted university visual diary.
                 </p>
               </div>
             </div>
 
             {/* Premium Pill Filters */}
-            <div className="flex bg-slate-100/80 p-1 rounded-xl border border-slate-200/40 backdrop-blur-sm self-center md:self-auto overflow-x-auto max-w-full relative">
+            <div className="flex bg-slate-100/80 dark:bg-slate-900/60 p-1 rounded-xl border border-slate-200/40 dark:border-white/10 backdrop-blur-sm self-center md:self-auto overflow-x-auto max-w-full relative">
               {filters.map((filter) => (
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
-                  className="px-4 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 whitespace-nowrap relative z-10"
+                  className="px-4 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 whitespace-nowrap relative z-10 cursor-pointer"
                   style={{ color: activeFilter === filter ? '#db2777' : '#64748b' }}
                 >
                   {filter}
                   {activeFilter === filter && (
                     <motion.div
                       layoutId="activePill"
-                      className="absolute inset-0 bg-white rounded-lg shadow-sm -z-10"
+                      className="absolute inset-0 bg-white dark:bg-slate-800 rounded-lg shadow-sm -z-10"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -248,7 +248,7 @@ export default function CampusLife() {
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   key={item.src}
                   onClick={() => setActivePhoto(item.src)}
-                  className="break-inside-avoid relative rounded-2xl overflow-hidden bg-white border border-slate-100 cursor-pointer shadow-sm group hover:shadow-xl hover:border-pink-100/70 transition-all duration-300"
+                  className="break-inside-avoid relative rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/5 cursor-pointer shadow-sm group hover:shadow-xl hover:border-pink-100/70 dark:hover:border-pink-900/75 transition-all duration-300"
                 >
                   <img
                     src={item.src}
@@ -259,7 +259,7 @@ export default function CampusLife() {
 
                   {/* Framer-optimized interaction layer */}
                   <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] flex flex-col items-center justify-center gap-1.5 transition-all duration-300">
-                    <div className="p-2.5 rounded-full bg-white text-pink-500 shadow-md transform scale-75 group-hover:scale-100 transition-transform duration-300 ease-out">
+                    <div className="p-2.5 rounded-full bg-white dark:bg-slate-800 text-pink-500 dark:text-pink-400 shadow-md transform scale-75 group-hover:scale-100 transition-transform duration-300 ease-out">
                       <ZoomIn className="w-4 h-4" />
                     </div>
                     <span className="text-[10px] text-white font-black tracking-widest uppercase bg-pink-500/80 px-2 py-0.5 rounded-md backdrop-blur-sm">
@@ -286,7 +286,7 @@ export default function CampusLife() {
             <motion.button
               whileHover={{ scale: 1.05, rotate: 90 }}
               onClick={() => setActivePhoto(null)}
-              className="absolute top-6 right-6 p-3 rounded-2xl bg-white/5 text-white border border-white/10 hover:bg-pink-500 hover:text-white hover:border-pink-400 transition-all duration-200"
+              className="absolute top-6 right-6 p-3 rounded-2xl bg-white/5 text-white border border-white/10 hover:bg-pink-500 hover:text-white hover:border-pink-400 transition-all duration-200 cursor-pointer"
             >
               <X className="w-5 h-5" />
             </motion.button>
