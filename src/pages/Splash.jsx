@@ -118,6 +118,31 @@ export default function Splash() {
   return (
     <div className="relative w-full min-h-screen bg-gradient-to-br from-[#E2D9F5] via-[#F5DDF0] to-[#DBE7FC] overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-pink-100 selection:text-pink-600">
       
+      {/* --- Premium Cinematic Background Video & Realistic Overlays --- */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-45 scale-105"
+          style={{ 
+            filter: 'blur(2px) saturate(1.1) brightness(1.02)' 
+          }}
+        >
+          <source src="/splash-video.mp4" type="video/mp4" />
+        </video>
+        
+        {/* 1. Frosted Glass Backdrop Overlay */}
+        <div className="absolute inset-0 backdrop-blur-[1.5px] bg-white/[0.03]" />
+
+        {/* 2. Brand-Matching Color Gradient Wash */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#E2D9F5]/50 via-[#F5DDF0]/45 to-[#DBE7FC]/50 mix-blend-color-burn" />
+
+        {/* 3. Radial Vignette Overlay (fades out edges to pull focus to the center) */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(245,221,240,0.4)_70%,rgba(226,217,245,0.85)_100%)]" />
+      </div>
+
       {/* --- Premium Ambient Glow Backdrops (From Campus Chronicles) --- */}
       <motion.div 
         animate={{ 
