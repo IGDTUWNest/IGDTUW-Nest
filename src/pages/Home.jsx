@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Home as HomeIcon, Compass, Bell, Play, ArrowRight, Video, Sparkles, Users } from 'lucide-react';
+import { Home as HomeIcon, Compass, Bell, Play, ArrowRight, Video, Sparkles, Users, Mail } from 'lucide-react';
 import AnimatedBg from '../components/AnimatedBg'; 
 
 // --- SVG Components ---
@@ -204,6 +204,9 @@ export default function Home() {
               <div className="w-14 h-14 rounded-2xl bg-[#25D366] flex items-center justify-center text-white shadow-lg border-2 border-white">
                 <WhatsApp className="w-6 h-6" />
               </div>
+              <div className="w-14 h-14 rounded-2xl bg-[#7C3AED] flex items-center justify-center text-white shadow-lg border-2 border-white">
+                <Mail className="w-6 h-6" />
+              </div>
             </div>
             
             <div className="space-y-1">
@@ -238,6 +241,13 @@ export default function Home() {
             >
               <Users className="w-4 h-4 text-emerald-100 group-hover/btn:scale-110 transition-transform" />
               <span>join WhatsApp Group</span>
+            </a>
+            <a
+              href="mailto:igdtuwnest@gmail.com"
+              className="group/btn px-6 py-3.5 rounded-xl bg-purple-600 text-white text-xs font-black uppercase tracking-widest shadow-md hover:bg-purple-550 hover:shadow-[0_10px_20px_rgba(124,58,237,0.3)] transition-all duration-300 text-center flex items-center justify-center gap-2 border-b-4 border-purple-800"
+            >
+              <Mail className="w-4 h-4 text-purple-200 group-hover/btn:scale-110 transition-transform" />
+              <span>Email Us</span>
             </a>
           </div>
         </motion.div>
