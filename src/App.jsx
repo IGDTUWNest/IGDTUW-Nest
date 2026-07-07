@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 
 // Component Imports
 import Navbar from './components/Navbar';
@@ -127,6 +128,9 @@ export default function App() {
 
       {/* Centered heart Footer */}
       <Footer />
+
+      {/* Vercel Analytics */}
+      <Analytics />
     </div>
   );
 }
